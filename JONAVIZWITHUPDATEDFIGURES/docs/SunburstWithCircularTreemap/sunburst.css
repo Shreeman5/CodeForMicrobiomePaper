@@ -1,0 +1,444 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.label {
+    font-size: 10px;
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+
+/* submit button */
+.button-container {
+    position: absolute;
+    top: 50px; /* Positioned above the dropdown container */
+    left: 50px; /* Same x-coordinate as dropdown container */
+    width: 690px;
+    height:90px;
+}
+
+button{
+    width: 100%;
+    height: 100%;
+    font-size: 38px; /* Increased font size */
+}
+/* submit button*/
+
+
+
+/* Multiple select dropdown */
+.dropdown-container {
+    width: 650px;
+    height: 2000px;
+    position: absolute;
+    top: 150px; /* y-coordinate */
+    left: 50px; /* x-coordinate */
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+select {
+    width: 100%;
+    height: 98%;
+    font-size: 38px; /* Increased font size */
+}
+/* Multiple select dropdown */
+
+
+/* Tabs */
+#tabs-container {
+    position: absolute;
+    top: 50px; /* Adjust this value as needed to position from the top */
+    left: 800px; /* Position 1500px from the left of the screen */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.tab {
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    width: 550px;
+    height: 120px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 30px; /* Increase font size */
+}
+.tab.active {
+    background-color: #ddd;
+    border-bottom: none;
+}
+/* Tabs */
+
+
+/* Slider from Tab 1 */
+.slider {
+    /* margin: 50px; */
+    position: absolute;
+    left:800px;
+    top:230px;
+}
+.handle {
+    fill: #666;
+    stroke: #000;
+    stroke-width: 1.25px;
+}
+.track, .track-inset, .track-overlay {
+    stroke-linecap: round;
+}
+.track {
+    stroke: #ddd;
+    stroke-width: 8px;
+}
+.track-inset {
+    stroke: #ddd;
+    stroke-width: 6px;
+}
+.track-overlay {
+    pointer-events: stroke;
+    stroke-width: 50px;
+    stroke: transparent;
+}
+/* Slider from Tab 1 */
+
+
+/* Dropdown from Tab 2 */
+
+.custom-select-T2 {
+    position: absolute;
+    display: inline-block;
+    top: 280px;
+    left:800px;
+    visibility: hidden;
+}
+
+.select-items-T2 {
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 800px; /* Match the width of the input box */
+    font-size: 16px; /* Adjust font size */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    display: none; /* Hide dropdown initially */
+}
+
+.select-items-T2 div {
+    color: black;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 26px; /* Adjust font size */
+}
+
+.select-items-T2 div:hover {
+    background-color: #ddd;
+}
+
+#selectInput-T2 {
+    width: 800px; /* Change the width as needed */
+    height: 100px;  /* Change the height as needed */
+    font-size: 56px; /* Adjust font size */
+    padding: 10px; /* Adjust padding */
+}
+
+/* Dropdown from Tab 2 */
+
+
+/* Dropdown from Tab 3 */
+
+.custom-select-T3 {
+    position: absolute;
+    display: inline-block;
+    top: 280px;
+    left:800px;
+    visibility: hidden;
+}
+
+.select-items-T3 {
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 800px; /* Match the width of the input box */
+    font-size: 16px; /* Adjust font size */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    display: none; /* Hide dropdown initially */
+}
+
+.select-items-T3 div {
+    color: black;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 26px; /* Adjust font size */
+}
+
+.select-items-T3 div:hover {
+    background-color: #ddd;
+}
+
+#selectInput-T3 {
+    width: 800px; /* Change the width as needed */
+    height: 100px;  /* Change the height as needed */
+    font-size: 56px; /* Adjust font size */
+    padding: 10px; /* Adjust padding */
+}
+
+/* Dropdown from Tab 3 */
+
+
+/* Dropdown and other things from Tab 4 */
+
+.custom-select-T4 {
+    position: absolute;
+    display: inline-block;
+    top: 280px;
+    left: 800px;
+    visibility: hidden;
+}
+
+#selectContainer-T4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.select-items-T4 {
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 800px;
+    font-size: 16px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    display: none;
+}
+
+.select-items-T4 div {
+    color: black;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 26px;
+}
+
+.select-items-T4 div:hover {
+    background-color: #ddd;
+}
+
+#selectInput-T4 {
+    width: 500px; /* Adjusted width to make space for the selected options */
+    height: 100px;
+    font-size: 56px;
+    padding: 10px;
+}
+
+#selectedContainer-T4 {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px; /* Space between selected items */
+}
+
+#selectedContainer-T4 span {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    font-size: 26px; /* Larger text size for selected options */
+}
+
+#selectedContainer-T4 button {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 24px; /* Smaller text size for 'X' button */
+    padding: 2px 5px;
+    width:30px;
+}
+
+/* Dropdown and other things from Tab 4 */
+
+
+/* Slider from Tab 5 */
+
+.slider2 {
+    /* margin: 50px; */
+    position: absolute;
+    left:800px;
+    top:230px;
+}
+.handle2 {
+    fill: #666;
+    stroke: #000;
+    stroke-width: 1.25px;
+}
+.track2, .track-inset2, .track-overlay2 {
+    stroke-linecap: round;
+}
+.track2 {
+    stroke: #ddd;
+    stroke-width: 8px;
+}
+.track-inset2 {
+    stroke: #ddd;
+    stroke-width: 6px;
+}
+.track-overlay2 {
+    pointer-events: stroke;
+    stroke-width: 50px;
+    stroke: transparent;
+}
+
+/* Slider from Tab 5 */
+
+
+/* Slider from Tab 6 */
+
+.slider3 {
+    /* margin: 50px; */
+    position: absolute;
+    left:800px;
+    top:230px;
+}
+.handle3 {
+    fill: #666;
+    stroke: #000;
+    stroke-width: 1.25px;
+}
+.track3, .track-inset3, .track-overlay3 {
+    stroke-linecap: round;
+}
+.track3 {
+    stroke: #ddd;
+    stroke-width: 8px;
+}
+.track-inset3 {
+    stroke: #ddd;
+    stroke-width: 6px;
+}
+.track-overlay3 {
+    pointer-events: stroke;
+    stroke-width: 50px;
+    stroke: transparent;
+}
+
+/* Slider from Tab 6 */
+
+
+/* Dropdown from Tab 7 */
+
+.custom-select-T5 {
+    position: absolute;
+    display: inline-block;
+    top: 280px;
+    left:800px;
+    visibility: hidden;
+}
+
+.select-items-T5 {
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 800px; /* Match the width of the input box */
+    font-size: 16px; /* Adjust font size */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    display: none; /* Hide dropdown initially */
+}
+
+.select-items-T5 div {
+    color: black;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 26px; /* Adjust font size */
+}
+
+.select-items-T5 div:hover {
+    background-color: #ddd;
+}
+
+#selectInput-T5 {
+    width: 800px; /* Change the width as needed */
+    height: 100px;  /* Change the height as needed */
+    font-size: 56px; /* Adjust font size */
+    padding: 10px; /* Adjust padding */
+}
+
+/* Dropdown from Tab 7 */
+
+
+
+
+/* Visualization divs */
+.dynamic-div {
+    position: absolute;
+    background-color: white;
+    margin: 10px;
+}
+
+#allDivs {
+    position: fixed;
+    top: 900px; /* Fixed top position */
+    left: 800px; /* Fixed left position */
+    width: 100%; /* Set width */
+    height: 100%; /* Set height */
+    overflow: auto; /* Enable scrolling if content overflows */
+}
+/* Visualization divs */
+
+
+
+/* Legend div */
+.dynamic-div-x {
+    position: absolute;
+    background-color: white;
+    margin: 10px;
+}
+
+#legendDiv {
+    position: fixed;
+    top: 450px; /* Fixed top position */
+    left: 1300px; /* Fixed left position */
+    width: 3000px; /* Set width */
+    height: 440px; /* Set height */
+    overflow: auto; /* Enable scrolling if content overflows */
+}
+
+/* Legend div */
+
+
+/* Tooltip*/
+.tooltip {
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 10px; /* Increased padding */
+    border-radius: 5px;
+    visibility: hidden;
+    z-index: 10;
+    pointer-events: none; /* Ensures the tooltip does not interfere with mouse events */
+    font-size: 34px; /* Increased font size */
+}
+/* Tooltip*/
+
+
+/* Checkboxes */
+.checkbox-container {
+    position: absolute;
+}
+label {
+    font-size: 50px; /* Increase label font size */
+    margin-left: 10px;
+}
+input[type="checkbox"] {
+    width: 50px; /* Increase checkbox size */
+    height: 50px;
+}
+/* Checkboxes */
+

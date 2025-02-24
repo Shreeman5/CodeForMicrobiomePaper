@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization of Microbiome</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Select2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'>
+    <!-- CSS file used -->
+    <link rel="stylesheet" href="sunburst.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- After pressing this, tabs will render or disappear based on number of samples chosen -->
+    <!-- getSelectedOptions() is located in script.js -->
+    <div class="button-container">
+        <button onclick="getSelectedOptions()">Submit</button>
+    </div>
+
+    <!-- All the samples. One sample can be picked -->
+    <div class="dropdown-container">
+        <label for="multiSelect">Choose your Sample:</label><br>
+        <select id="multiSelect" name="options">
+
+            <option value="Audra_Walker_1">Audra_Walker_1</option>
+            <option value="Jaclyn_Kawwas_1">Jaclyn_Kawwas_1</option>
+            <option value="Jill_Sue_1">Jill_Sue_1</option>
+            <option value="Jim_Walsh_after">Jim_Walsh_after</option>
+            <option value="Jim_Walsh_before">Jim_Walsh_before</option>
+            <option value="Leo_Grady_1">Leo_Grady_1</option>
+            <option value="Leo_Grady_2">Leo_Grady_2</option>
+            <option value="Maclay_Ramsey_1">Maclay_Ramsey_1</option>
+            <option value="Rainey_Dunham_1">Rainey_Dunham_1</option>
+
+            <option value="ERR260506_Diarrhea">ERR260506_Diarrhea</option>
+            <option value="ERR262943_Diarrhea">ERR262943_Diarrhea</option>
+            <option value="ERR262958_Diarrhea">ERR262958_Diarrhea</option>
+            <option value="SRR5831603_Diarrhea">SRR5831603_Diarrhea</option>
+            <option value="SRR5831595_Diarrhea">SRR5831595_Diarrhea</option>
+            <option value="SRR5831593_Diarrhea">SRR5831593_Diarrhea</option>
+
+            <option value="ERR478967_Healthy">ERR478967_Healthy</option>
+            <option value="ERR719231_Healthy">ERR719231_Healthy</option>
+            <option value="ERR1190638_Healthy">ERR1190638_Healthy</option>
+            <option value="SRR341621_Healthy">SRR341621_Healthy</option>
+            <option value="SRR6474217_Healthy">SRR6474217_Healthy</option>
+            <option value="SRR6474279_Healthy">SRR6474279_Healthy</option>
+
+            <option value="ERR478985_Bowel Cancer">ERR478985_Bowel Cancer</option>
+            <option value="ERR479334_Bowel Cancer">ERR479334_Bowel Cancer</option>
+            <option value="ERR479517_Bowel Cancer">ERR479517_Bowel Cancer</option>
+            <option value="ERR480854_Bowel Cancer">ERR480854_Bowel Cancer</option>
+            <option value="ERR2726653_Bowel Cancer">ERR2726653_Bowel Cancer</option>
+
+            <option value="ERR527150_Liver Cirrhosis">ERR527150_Liver Cirrhosis</option>
+            <option value="ERR528318_Liver Cirrhosis">ERR528318_Liver Cirrhosis</option>
+            <option value="ERR532384_Liver Cirrhosis">ERR532384_Liver Cirrhosis</option>
+            <option value="ERR532392_Liver Cirrhosis">ERR532392_Liver Cirrhosis</option>
+            <option value="ERR532623_Liver Cirrhosis">ERR532623_Liver Cirrhosis</option>
+
+            <option value="ERR1912974_Parkinson's Disease">ERR1912974_Parkinson's Disease</option>
+            <option value="ERR1913019_Parkinson's Disease">ERR1913019_Parkinson's Disease</option>
+            <option value="ERR1913069_Parkinson's Disease">ERR1913069_Parkinson's Disease</option>
+            <option value="ERR1913124_Parkinson's Disease">ERR1913124_Parkinson's Disease</option>
+            <option value="ERR1913188_Parkinson's Disease">ERR1913188_Parkinson's Disease</option>
+
+            <option value="SRR1215593_Crohn's Disease">SRR1215593_Crohn's Disease</option>
+            <option value="SRR5936079_Crohn's Disease">SRR5936079_Crohn's Disease</option>
+            <option value="SRR5950737_Crohn's Disease">SRR5950737_Crohn's Disease</option>
+            <option value="SRR5983330_Crohn's Disease">SRR5983330_Crohn's Disease</option>
+            <option value="SRR5983386_Crohn's Disease">SRR5983386_Crohn's Disease</option>
+
+        </select>
+    </div>
+    
+    <!-- Slider -->
+    <div class="slider"></div>
+    <!-- Dropdown-->
+    <div class="custom-select-T2">
+        <div id="selectContainer-T2">
+            <input type="text" id="selectInput-T2" placeholder="Search for Actions">
+            <div id="selectedContainer-T2"></div>
+        </div>
+        <div id="selectBox-T2" class="select-items-T2"></div>
+    </div>
+    <!-- Checkboxes -->
+    <div id="checkboxes"></div> 
+    <!-- Legend container -->
+    <div id="legendDiv"></div>
+    <div id="legendDiv2"></div>
+    <div id="legendDiv3"></div>
+    <div id="legendDiv4"></div>
+    <!-- Visualization container-->
+    <div id="allDivs"></div>
+    <!-- Tooltip container-->
+    <div id="tooltip" class="tooltip"></div>
+    <!-- All the javascrip files used -->
+    <script src="sunburstGettingValueFunctions.js"></script>
+    <script src="sunburstStructuralFunctions.js"></script>
+    <script src="findIndicatorsNumbers.js"></script>
+    <script src="viz.js"></script>
+    <script src="sunburst3.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
