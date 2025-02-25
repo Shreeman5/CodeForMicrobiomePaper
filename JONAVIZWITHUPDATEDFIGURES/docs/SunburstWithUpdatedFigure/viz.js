@@ -1748,13 +1748,13 @@ class Tab2Viz{
                     if (value <= 0.5) {
                         return d3.interpolateRgb("darkred", "rgb(255, 200, 200)")(value / 0.5);
                     } else {
-                        return d3.interpolateRgb("rgb(220, 230, 255)", "lightblue")((value - 0.51) / (1 - 0.51));
+                        return d3.interpolateRgb("rgb(220, 230, 255)", "rgb(210, 215, 255)")((value - 0.51) / (1 - 0.51));
                     }
                 };
 
                 const bivariateColorScaleHIO = (value) => {
                     if (value <= 0.5) {
-                        return d3.interpolateRgb("lightblue", "rgb(220, 230, 255)")(value / 0.5);
+                        return d3.interpolateRgb("rgb(210, 215, 255)", "rgb(220, 230, 255)")(value / 0.5);
                     } else {
                         return d3.interpolateRgb("rgb(255, 200, 200)", "darkred")((value - 0.51) / (1 - 0.51));
                     }
@@ -1767,8 +1767,8 @@ class Tab2Viz{
                     if (obj.weight < 0){
                         let sampleCDF = findTaxonCDFbyName(that.structureData[ival], obj.organism)
 
-                        if (obj.ncbi_taxon_id === '1407607'){
-                            console.log('SampleCDF: ', sampleCDF)
+                        if (obj.ncbi_taxon_id === '283168'){
+                            console.log('LIOSampleCDF: ', sampleCDF)
                         }
                         
                         if (sampleCDF == null){
@@ -1797,6 +1797,10 @@ class Tab2Viz{
                     else{
                         
                         let sampleCDF = findTaxonCDFbyName(that.structureData[ival], obj.organism)
+
+                        if (obj.ncbi_taxon_id === '1350'){
+                            console.log('HIOSampleCDF: ', sampleCDF)
+                        }
 
                         if (sampleCDF == null){
                             sampleCDF = '0'
@@ -1837,7 +1841,7 @@ class Tab2Viz{
                 const width = 1150;  // Updated width
 
                 // Set up the donut chart (top 60%)
-                const radius = (donutHeight / 2) - 30;
+                const radius = (donutHeight / 1.4) - 30;
 
                 // Normalize weights for donut
                 const totalWeight = d3.sum(donutArray, d => Math.abs(d.weight));
@@ -1863,7 +1867,7 @@ class Tab2Viz{
 
                 // Create a group for the donut chart and translate it to the top section
                 const donutGroup = svg.append("g")
-                .attr("transform", `translate(${0}, ${-220})`);
+                .attr("transform", `translate(${0}, ${-40})`);
 
                 // Add the main arcs
                 donutGroup.selectAll("path.main")
@@ -1896,9 +1900,13 @@ class Tab2Viz{
                 .style("stroke-width", "10px");
 
                 // Create bar code chart (bottom 40%)
-                const barWidth = (width / barcodeArray.length) - 5;
+                const barWidth = (width / barcodeArray.length) - 4;
+                let barcodechartwidth = barWidth * barcodeArray.length
+                let availablespace = (width - barcodechartwidth)/2
+                let startingpoint = -575 + availablespace
+                // console.log(startingpoint)
                 const barcodeGroup = svg.append("g")
-                .attr("transform", `translate(-500, ${200})`);
+                .attr("transform", `translate(${startingpoint}, ${500})`);
 
                 // Create bars
                 barcodeGroup.selectAll("rect")
@@ -1907,7 +1915,7 @@ class Tab2Viz{
                 .attr("x", (d, i) => i * barWidth)
                 .attr("y", 0)
                 .attr("width", barWidth - 1) // -1 for spacing between bars
-                .attr("height", barcodeHeight/2)
+                .attr("height", barcodeHeight/10)
                 .attr("fill", d => d.color)
                 .attr("stroke", "#fff")
                 .style("stroke-width", "1px");
@@ -1917,9 +1925,9 @@ class Tab2Viz{
                 .data(barcodeArray)
                 .enter().append("line")
                 .attr("x1", (d, i) => i * barWidth)  // Center of each bar
-                .attr("x2", (d, i) => i * barWidth + barWidth)
-                .attr("y1", d => d.weight < 0 ? -10 : barcodeHeight/2 + 10)  // Lift 10px from top or bottom
-                .attr("y2", d => d.weight < 0 ? -10 : barcodeHeight/2 + 10)
+                .attr("x2", (d, i) => i * barWidth + barWidth - 2)
+                .attr("y1", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)  // Lift 10px from top or bottom
+                .attr("y2", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)
                 .attr("stroke", "black")
                 .attr("stroke-width", "4px")
                 .attr("stroke-linecap", "round");
