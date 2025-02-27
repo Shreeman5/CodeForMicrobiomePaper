@@ -109,219 +109,219 @@ class Tab2Viz{
     }
 
     renderLegendOfFirstRow(){
-        // let svg = d3.select(".dynamic-div-x2" ).append("svg")
-        // .attr("width", 760)
-        // .attr("height", 1070)
+        let svg = d3.select(".dynamic-div-x2" ).append("svg")
+        .attr("width", 760)
+        .attr("height", 1070)
 
-        // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 120)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text(("Low Abundance of Organism"))
+        svg.append("text")
+            .attr("x", 542)
+            .attr("y", 120)
+            .attr("font-size", "38")
+            .attr("fill", "Black")
+            .attr("text-anchor", "end")
+            .text(("Low Abundance of Organism"))
 
-        // const gradient = svg.append("defs")
-        //     .append("linearGradient")
-        //     .attr("id", "gradient")
-        //     .attr("x1", "0%")
-        //     .attr("y1", "0%")
-        //     .attr("x2", "100%")
-        //     .attr("y2", "0%");
+        const gradient = svg.append("defs")
+            .append("linearGradient")
+            .attr("id", "gradient")
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "0%");
 
-        // gradient.append("stop")
-        //     .attr("offset", "0%")
-        //     .attr("stop-color", "#0200b9")
-        //     .attr("stop-opacity", 1);
+        gradient.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "#0200b9")
+            .attr("stop-opacity", 1);
 
-        // gradient.append("stop")
-        //         .attr("offset", "100%")
-        //         .attr("stop-color", "#00fff3")
-        //         .attr("stop-opacity", 1);
+        gradient.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#00fff3")
+                .attr("stop-opacity", 1);
 
-        // svg.append("rect")
-        //     .attr("x", 552)   
-        //     .attr("y", 90)    
-        //     .attr("width", 200) 
-        //     .attr("height", 30) 
-        //     .attr("fill", "url(#gradient)")
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
+        svg.append("rect")
+            .attr("x", 552)   
+            .attr("y", 90)    
+            .attr("width", 200) 
+            .attr("height", 30) 
+            .attr("fill", "url(#gradient)")
+            .attr("stroke", "black")
+            .attr("stroke-width", "1")
 
-        // svg.append("text")
-        // .attr("x", 552)
-        // .attr("y", 150)
-        // .attr("font-size", "38")
-        // .attr("fill", "Black")
-        // .text("0")
+        svg.append("text")
+        .attr("x", 552)
+        .attr("y", 150)
+        .attr("font-size", "38")
+        .attr("fill", "Black")
+        .text("0")
 
-        // svg.append("text")
-        // .attr("x", 752)
-        // .attr("y", 150)
-        // .attr("font-size", "38")
-        // .attr("fill", "Black")
-        // .attr("text-anchor", "end")
-        // .text((this.sliderMin).toFixed(0))
+        svg.append("text")
+        .attr("x", 752)
+        .attr("y", 150)
+        .attr("font-size", "38")
+        .attr("fill", "Black")
+        .attr("text-anchor", "end")
+        .text((this.sliderMin).toFixed(0))
 
-        // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 190)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text(("Normal Abundance of Organism"))
+        svg.append("text")
+            .attr("x", 542)
+            .attr("y", 190)
+            .attr("font-size", "38")
+            .attr("fill", "Black")
+            .attr("text-anchor", "end")
+            .text(("Normal Abundance of Organism"))
 
 
-        // svg.append("rect")
-        //     .attr("x", 552)  
-        //     .attr("y", 160)   
-        //     .attr("width", 200) 
-        //     .attr("height", 30) 
-        //     .attr("fill", "purple")
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
+        svg.append("rect")
+            .attr("x", 552)  
+            .attr("y", 160)   
+            .attr("width", 200) 
+            .attr("height", 30) 
+            .attr("fill", "purple")
+            .attr("stroke", "black")
+            .attr("stroke-width", "1")
 
-        // svg.append("text")
-        //     .attr("x", 552)
-        //     .attr("y", 220)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .text((this.sliderMin).toFixed(0))
+        svg.append("text")
+            .attr("x", 552)
+            .attr("y", 220)
+            .attr("font-size", "38")
+            .attr("fill", "Black")
+            .text((this.sliderMin).toFixed(0))
 
-        // svg.append("text")
-        //     .attr("x", 752)
-        //     .attr("y", 220)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text((this.sliderMax).toFixed(0))
+        svg.append("text")
+            .attr("x", 752)
+            .attr("y", 220)
+            .attr("font-size", "38")
+            .attr("fill", "Black")
+            .attr("text-anchor", "end")
+            .text((this.sliderMax).toFixed(0))
 
-        // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 260)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text(("High Abundance of Organism"))
+        svg.append("text")
+            .attr("x", 542)
+            .attr("y", 260)
+            .attr("font-size", "38")
+            .attr("fill", "Black")
+            .attr("text-anchor", "end")
+            .text(("High Abundance of Organism"))
 
-        // const gradient2 = svg.append("defs")
-        //     .append("linearGradient")
-        //     .attr("id", "gradient2")
-        //     .attr("x1", "0%")
-        //     .attr("y1", "0%")
-        //     .attr("x2", "100%")
-        //     .attr("y2", "0%");
+        const gradient2 = svg.append("defs")
+            .append("linearGradient")
+            .attr("id", "gradient2")
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "0%");
 
-        // gradient2.append("stop")
-        //     .attr("offset", "0%")
-        //     .attr("stop-color", "#ff0000")
-        //     .attr("stop-opacity", 1);
+        gradient2.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "#ff0000")
+            .attr("stop-opacity", 1);
 
-        // gradient2.append("stop")
-        //         .attr("offset", "100%")
-        //         .attr("stop-color", "#7b0000")
-        //         .attr("stop-opacity", 1);
+        gradient2.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#7b0000")
+                .attr("stop-opacity", 1);
 
-        // svg.append("rect")
-        //     .attr("x", 552)  
-        //     .attr("y", 230)    
-        //     .attr("width", 200) 
-        //     .attr("height", 30) 
-        //     .attr("fill", "url(#gradient2)") 
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
+        svg.append("rect")
+            .attr("x", 552)  
+            .attr("y", 230)    
+            .attr("width", 200) 
+            .attr("height", 30) 
+            .attr("fill", "url(#gradient2)") 
+            .attr("stroke", "black")
+            .attr("stroke-width", "1")
 
-        // svg.append("text")
-        //     .attr("x", 552)
-        //     .attr("y", 290)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .text((this.sliderMax).toFixed(0))
+        svg.append("text")
+            .attr("x", 552)
+            .attr("y", 290)
+            .attr("font-size", "38")
+            .attr("fill", "Black")
+            .text((this.sliderMax).toFixed(0))
 
-        // svg.append("text")
-        //     .attr("x", 752)
-        //     .attr("y", 290)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text("100")
+        svg.append("text")
+            .attr("x", 752)
+            .attr("y", 290)
+            .attr("font-size", "38")
+            .attr("fill", "Black")
+            .attr("text-anchor", "end")
+            .text("100")
 
-        // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 330)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text("LIO = Low-Indicator Organism")
+        svg.append("text")
+            .attr("x", 542)
+            .attr("y", 330)
+            .attr("font-size", "38")
+            .attr("fill", "Black")
+            .attr("text-anchor", "end")
+            .text("LIO = Low-Indicator Organism")
 
-        // const gradient3 = svg.append("defs")
-        //     .append("linearGradient")
-        //     .attr("id", "gradient3")
-        //     .attr("x1", "0%")
-        //     .attr("y1", "0%")
-        //     .attr("x2", "100%")
-        //     .attr("y2", "0%");
+        const gradient3 = svg.append("defs")
+            .append("linearGradient")
+            .attr("id", "gradient3")
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "0%");
 
-        // gradient3.append("stop")
-        //     .attr("offset", "0%")
-        //     .attr("stop-color", "#d2691e")
-        //     .attr("stop-opacity", 1);
+        gradient3.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "#d2691e")
+            .attr("stop-opacity", 1);
 
-        // gradient3.append("stop")
-        //         .attr("offset", "100%")
-        //         .attr("stop-color", "#d2691e")
-        //         .attr("stop-opacity", 1);
+        gradient3.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#d2691e")
+                .attr("stop-opacity", 1);
             
-        // svg.append("rect")
-        //     .attr("x", 552)   
-        //     .attr("y", 300)   
-        //     .attr("width", 200) 
-        //     .attr("height", 30) 
-        //     .attr("fill", "url(#gradient3)") 
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
+        svg.append("rect")
+            .attr("x", 552)   
+            .attr("y", 300)   
+            .attr("width", 200) 
+            .attr("height", 30) 
+            .attr("fill", "url(#gradient3)") 
+            .attr("stroke", "black")
+            .attr("stroke-width", "1")
 
-        // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 400)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text("HIO = High-Indicator Organism")
+        svg.append("text")
+            .attr("x", 542)
+            .attr("y", 400)
+            .attr("font-size", "38")
+            .attr("fill", "Black")
+            .attr("text-anchor", "end")
+            .text("HIO = High-Indicator Organism")
 
-        // const gradient4 = svg.append("defs")
-        //     .append("linearGradient")
-        //     .attr("id", "gradient4")
-        //     .attr("x1", "0%")
-        //     .attr("y1", "0%")
-        //     .attr("x2", "100%")
-        //     .attr("y2", "0%");
+        const gradient4 = svg.append("defs")
+            .append("linearGradient")
+            .attr("id", "gradient4")
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "0%");
 
-        // gradient4.append("stop")
-        //     .attr("offset", "0%")
-        //     .attr("stop-color", "#003300")
-        //     .attr("stop-opacity", 1);
+        gradient4.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "#003300")
+            .attr("stop-opacity", 1);
 
-        // gradient4.append("stop")
-        //         .attr("offset", "100%")
-        //         .attr("stop-color", "#003300")
-        //         .attr("stop-opacity", 1);
+        gradient4.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#003300")
+                .attr("stop-opacity", 1);
             
-        // svg.append("rect")
-        //     .attr("x", 552)    
-        //     .attr("y", 370)    
-        //     .attr("width", 200)
-        //     .attr("height", 30) 
-        //     .attr("fill", "url(#gradient4)") 
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
+        svg.append("rect")
+            .attr("x", 552)    
+            .attr("y", 370)    
+            .attr("width", 200)
+            .attr("height", 30) 
+            .attr("fill", "url(#gradient4)") 
+            .attr("stroke", "black")
+            .attr("stroke-width", "1")
     }
 
 
     renderLegendofSecondRow(){
         let svg = d3.select(".dynamic-div-x3" ).append("svg")
         .attr("width", 760)
-        .attr("height", 1070)
+        .attr("height", 1570)
 
 
         svg.append("text")
@@ -354,7 +354,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("contains top 30 organisms for Crohns. LIOs")
+            .text("contains top 30 organisms(by literature ")
 
         svg.append("text")
             .attr("x", 0)
@@ -362,7 +362,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("are indicated by black inner arcs and HIOs")
+            .text("weight) for Crohns. LIOs are indicated by ")
 
         svg.append("text")
             .attr("x", 0)
@@ -370,16 +370,16 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("are indicated by black outer arcs.")
-
+            .text("black inner arcs and HIOs are indicated by")
 
         svg.append("text")
             .attr("x", 0)
-            .attr("y", 470)
+            .attr("y", 430)
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("For all the barcodes, each rectangle")
+            .text("black outer arcs.")    
+
 
         svg.append("text")
             .attr("x", 0)
@@ -387,7 +387,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("represents an organism associated with")
+            .text("For all the barcodes, each rectangle")
 
         svg.append("text")
             .attr("x", 0)
@@ -395,7 +395,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("Crohns where rectangle placement is")
+            .text("represents an organism associated with")
 
         svg.append("text")
             .attr("x", 0)
@@ -403,7 +403,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("proportional to literature weight: leftmost")
+            .text("Crohns where rectangle placement is")
 
         svg.append("text")
             .attr("x", 0)
@@ -411,7 +411,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("rectangle has most weight and rightmost")
+            .text("proportional to literature weight: leftmost")
 
         svg.append("text")
             .attr("x", 0)
@@ -419,7 +419,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("rectangle has least weight. Barcode contains")
+            .text("rectangle has most weight and rightmost")
 
         svg.append("text")
             .attr("x", 0)
@@ -427,7 +427,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("bottom 53 organisms for Crohns. LIOs are")
+            .text("rectangle has least weight. Barcode contains")
 
         svg.append("text")
             .attr("x", 0)
@@ -435,7 +435,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("indicated by black lines at the top of")
+            .text("bottom 53 organisms(by literature weight) for")
 
         svg.append("text")
             .attr("x", 0)
@@ -443,7 +443,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("rectangles and HIOs are indicated by black")
+            .text("Crohns. LIOs are indicated by black lines at")
 
         svg.append("text")
             .attr("x", 0)
@@ -451,7 +451,78 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("lines at the bottom of rectangles.")
+            .text("the top of rectangles and HIOs are indicated")
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 1070)
+            .attr("font-size", "38")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("by black lines at the bottom of rectangles.")
+
+        const gradient5 = svg.append("defs")
+            .append("linearGradient")
+            .attr("id", "gradient7")
+            .attr("x1", "0%").attr("y1", "0%")
+            .attr("x2", "100%").attr("y2", "0%");
+        
+        // Define gradient color stops
+        gradient5.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "rgb(255, 200, 200)");
+        
+        gradient5.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "darkred");
+        
+        // Append the rectangle with the gradient
+        svg.append("rect")
+            .attr("x", 380)
+            .attr("y", 1120)
+            .attr("width", 380)
+            .attr("height", 30)
+            .style("fill", "url(#gradient7)");
+
+
+        const gradient8 = svg.append("defs")
+            .append("linearGradient")
+            .attr("id", "gradient8")
+            .attr("x1", "0%").attr("y1", "0%")
+            .attr("x2", "100%").attr("y2", "0%");
+        
+        // Define gradient color stops
+        gradient8.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "rgb(210, 215, 255)");
+        
+        gradient8.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "rgb(220, 230, 255)");
+
+        // Append the rectangle with the gradient
+        svg.append("rect")
+            .attr("x", 0)
+            .attr("y", 1120)
+            .attr("width", 380)
+            .attr("height", 30)
+            .style("fill", "url(#gradient8)");
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 1180)
+            .attr("font-size", "25")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("0% Organism Similarity")
+
+        svg.append("text")
+            .attr("x", 760)
+            .attr("y", 1180)
+            .attr("font-size", "25")
+            .attr("fill", "Black")
+            .attr("text-anchor", "end")
+            .text("100% Organism Similarity")
 
 
         
@@ -947,7 +1018,7 @@ class Tab2Viz{
 
 
         if (buttons.length === 0 || this.tab2Boolean === 'new'){
-            let diseaseNames = ["Resistant Starch", "Iron", "Vitamin D", "Omega-3 Fatty Acids", "Intermittent Fasting"]//this.structureData[2].map(item => item.Name);
+            let diseaseNames = this.structureData[2].map(item => item.Name);
 
             const selectBox = document.getElementById('selectBox-T2');
             let selectedValues = [];
@@ -1145,6 +1216,7 @@ class Tab2Viz{
                 }
             }
         });
+        // console.log(transformedObjects)
         return transformedObjects;
     }
 
@@ -1237,6 +1309,8 @@ class Tab2Viz{
             action: combinedResults[key].action
         }));
 
+        // console.log(resultArray)
+
 
         transformedData3 = resultArray
 
@@ -1259,10 +1333,10 @@ class Tab2Viz{
 
             if (i <= 11){
                 svg = d3.select(this.classNames[i]).append("svg")
-                .attr("width", 1150)
+                .attr("width", 2300)
                 .attr("height", 1220)
                 .append("g")
-                .attr("transform", "translate(" + 1150 / 2 + "," + 1220 / 2 + ")");
+                .attr("transform", "translate(" + 2300 / 2 + "," + 1220 / 2 + ")");
             }
             // else if (i === 5){
 
@@ -1302,82 +1376,172 @@ class Tab2Viz{
                 svg.append("text")
                 // .attr("x", -450)
                 .attr("y", -580)
+                .attr("x", -540)
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
                 .text('Sample 1 Closeness to Condition--Crohns')
+
+                svg.append("text")
+                // .attr("x", -450)
+                .attr("y", -580)
+                .attr("x", 540)
+                .attr("font-size", "38")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle") 
+                .text('Sample 1 Closeness to Condition Post Intervention(s)--Crohns')
             }
             else if (i === 4){
                 svg.append("text")
                 // .attr("x", -480)
                 .attr("y", -580)
+                .attr("x", -540)
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
                 .text('Sample 2 Closeness to Condition--Crohns')
+
+                svg.append("text")
+                // .attr("x", -450)
+                .attr("y", -580)
+                .attr("x", 540)
+                .attr("font-size", "38")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle") 
+                .text('Sample 2 Closeness to Condition Post Intervention(s)--Crohns')
             }
             else if (i === 5){
                 svg.append("text")
                 // .attr("x", -450)
                 .attr("y", -580)
+                .attr("x", -540)
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
                 .text('Sample 3 Closeness to Condition--Crohns')
+
+                svg.append("text")
+                // .attr("x", -450)
+                .attr("y", -580)
+                .attr("x", 540)
+                .attr("font-size", "38")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle") 
+                .text('Sample 3 Closeness to Condition Post Intervention(s)--Crohns')
             }
             else if (i === 6){
                 svg.append("text")
                 // .attr("x", -480)
                 .attr("y", -580)
+                .attr("x", -540)
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
                 .text('Sample 4 Closeness to Condition--Crohns')
+
+                svg.append("text")
+                // .attr("x", -450)
+                .attr("y", -580)
+                .attr("x", 540)
+                .attr("font-size", "38")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle") 
+                .text('Sample 4 Closeness to Condition Post Intervention(s)--Crohns')
             }
             else if (i === 7){
                 svg.append("text")
                 // .attr("x", -450)
                 .attr("y", -580)
+                .attr("x", -540)
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
                 .text('Sample 5 Closeness to Condition--Crohns')
+
+                svg.append("text")
+                // .attr("x", -450)
+                .attr("y", -580)
+                .attr("x", 540)
+                .attr("font-size", "38")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle") 
+                .text('Sample 5 Closeness to Condition Post Intervention(s)--Crohns')
             }
             else if (i === 8){
                 svg.append("text")
                 // .attr("x", -480)
                 .attr("y", -580)
+                .attr("x", -540)
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
                 .text('Sample 6 Closeness to Condition--Crohns')
+
+                svg.append("text")
+                // .attr("x", -450)
+                .attr("y", -580)
+                .attr("x", 540)
+                .attr("font-size", "38")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle") 
+                .text('Sample 6 Closeness to Condition Post Intervention(s)--Crohns')
             }
             else if (i === 9){
                 svg.append("text")
                 // .attr("x", -450)
                 .attr("y", -580)
+                .attr("x", -540)
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
                 .text('Sample 7 Closeness to Condition--Crohns')
+
+                svg.append("text")
+                // .attr("x", -450)
+                .attr("y", -580)
+                .attr("x", 540)
+                .attr("font-size", "38")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle") 
+                .text('Sample 7 Closeness to Condition Post Intervention(s)--Crohns')
             }
             else if (i === 10){
                 svg.append("text")
                 // .attr("x", -480)
                 .attr("y", -580)
+                .attr("x", -540)
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
                 .text('Sample 8 Closeness to Condition--Crohns')
+
+                svg.append("text")
+                // .attr("x", -450)
+                .attr("y", -580)
+                .attr("x", 540)
+                .attr("font-size", "38")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle") 
+                .text('Sample 8 Closeness to Condition Post Intervention(s)--Crohns')
             }
             else if (i === 11){
                 svg.append("text")
                 // .attr("x", -480)
                 .attr("y", -580)
+                .attr("x", -540)
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
                 .text('Sample 9 Closeness to Condition--Crohns')
+
+                svg.append("text")
+                // .attr("x", -450)
+                .attr("y", -580)
+                .attr("x", 540)
+                .attr("font-size", "38")
+                .attr("fill", "black")
+                .attr("text-anchor", "middle") 
+                .text('Sample 9 Closeness to Condition Post Intervention(s)--Crohns')
             }
             
 
@@ -1527,11 +1691,14 @@ class Tab2Viz{
                         let taxonID = nodeName.substring(lastIndex + 2)
 
                         let myWeight = findTaxonWeightbyName(transformedData3, taxonName)
+                        
 
                         let cdf = findTaxonCDFbyName(selectedDataArray[3], taxonName)
 
                         if (cdf !== null && myWeight !== null){
-
+                            // if (myWeight != null){
+                            //     console.log('X:', myWeight)
+                            // }
                             for (let i = 0; i < myWeight.length; i++){
                                 if (myWeight[i] < 0){
                                     cdf = (Number(cdf) + 0)/2
@@ -1860,7 +2027,8 @@ class Tab2Viz{
             }
 
 
-            if (i >= 3 ){
+            if (i >= 3){
+                console.log('X:', transformedData3)
                 let ival = i
 
                 let curatedPresentTaxons = []
@@ -1876,7 +2044,8 @@ class Tab2Viz{
                 if (i === 3){
                     console.log("transformedData:", transformedData)
                 }
-                console.log(this.structureData[ival])
+                // console.log(this.structureData[2])
+                // console.log(this.structureData[ival])
 
                 const bivariateColorScaleLIO = (value) => {
                     if (value <= 0.5) {
@@ -1894,75 +2063,153 @@ class Tab2Viz{
                     }
                 };
 
+                // const selectedContainer = document.getElementById("selectedContainer-T2");
+                // const selectedSpans = selectedContainer.querySelectorAll("span");
+                // const selectedItems = Array.from(selectedSpans).map(span => {
+                //     const text = span.textContent;
+                //     return text.substring(0, text.length - 1).trim();
+                //   });
+                // console.log("Currently selected items:", selectedItems);
+
+
                 const newArray = [];
 
                 // let countofArray = 0
                 for (const obj of transformedData) {
                     if (obj.weight < 0){
                         let sampleCDF = findTaxonCDFbyName(that.structureData[ival], obj.organism)
-
-                        if (obj.ncbi_taxon_id === '283168'){
-                            console.log('LIOSampleCDF: ', sampleCDF)
-                        }
-                        
+                        const result = getOrganismWeight(transformedData3, obj.organism);
                         if (sampleCDF == null){
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleLIO(sampleCDF)
+                            let interventionCDF = Number(sampleCDF)
+                            if (result != null){
+                                for (let i = 0; i < result.length; i++){
+                                    if (result[i] < 0){
+                                        interventionCDF = (interventionCDF + 0)/2
+                                    }
+                                    else if (result[i] > 0){ 
+                                        interventionCDF = (interventionCDF + 1)/2
+                                    }
+                                }
+                            }
+                            let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
+                            let changeColor = 'black'
+                            if (Number(interventionCDF) > Number(sampleCDF)){
+                                changeColor = 'green'
+                            }
+                            else if (Number(interventionCDF) < Number(sampleCDF)){
+                                changeColor = 'red'
+                            }
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
                                 weight: obj.weight,
-                                color: colorRGB
+                                color: colorRGB,
+                                interventionColor: colorRGB2,
+                                indicatorColor: changeColor 
                             });
                         }
                         else{
-                            // console.log('SampleCDF:', sampleCDF)
-                            // console.log('organismLIO: ', obj.organism)
                             let colorRGB = bivariateColorScaleLIO(sampleCDF)
-                            // console.log(colorRGB)
+                            let interventionCDF = Number(sampleCDF)
+                            if (result != null){
+                                for (let i = 0; i < result.length; i++){
+                                    if (result[i] < 0){
+                                        interventionCDF = (interventionCDF + 0)/2
+                                    }
+                                    else if (result[i] > 0){ 
+                                        interventionCDF = (interventionCDF + 1)/2
+                                    }
+                                }
+                            }
+                            let colorRGB2 = bivariateColorScaleLIO(interventionCDF) 
+                            let changeColor = 'black'
+                            if (Number(interventionCDF) > Number(sampleCDF)){
+                                changeColor = 'green'
+                            }
+                            else if (Number(interventionCDF) < Number(sampleCDF)){
+                                changeColor = 'red'
+                            }
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
                                 weight: obj.weight,
-                                color: colorRGB
+                                color: colorRGB,
+                                interventionColor: colorRGB2,
+                                indicatorColor: changeColor 
                             });
                         }
                     }
                     else{
-                        
                         let sampleCDF = findTaxonCDFbyName(that.structureData[ival], obj.organism)
-
-                        if (obj.ncbi_taxon_id === '1350'){
-                            console.log('HIOSampleCDF: ', sampleCDF)
-                        }
-
+                        const result = getOrganismWeight(transformedData3, obj.organism);
                         if (sampleCDF == null){
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleHIO(sampleCDF)
+                            let interventionCDF = Number(sampleCDF)
+                            if (result != null){
+                                for (let i = 0; i < result.length; i++){
+                                    if (result[i] < 0){
+                                        interventionCDF = (interventionCDF + 0)/2
+                                    }
+                                    else if (result[i] > 0){ 
+                                        interventionCDF = (interventionCDF + 1)/2
+                                    }
+                                }
+                            }
+                            let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
+                            let changeColor = 'black'
+                            if (Number(interventionCDF) < Number(sampleCDF)){
+                                changeColor = 'green'
+                            }
+                            else if (Number(interventionCDF) > Number(sampleCDF)){
+                                changeColor = 'red'
+                            }
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
                                 weight: obj.weight,
-                                color: colorRGB
+                                color: colorRGB,
+                                interventionColor: colorRGB2,
+                                indicatorColor: changeColor 
                             });
                         }
                         else{
-                            // console.log('SampleCDF:', sampleCDF)
-                            // console.log('organismHIO: ', obj.organism)
                             let colorRGB = bivariateColorScaleHIO(sampleCDF)
-                            // console.log(colorRGB)
+                            let interventionCDF = Number(sampleCDF)
+                            if (result != null){
+                                for (let i = 0; i < result.length; i++){
+                                    if (result[i] < 0){
+                                        interventionCDF = (interventionCDF + 0)/2
+                                    }
+                                    else if (result[i] > 0){ 
+                                        interventionCDF = (interventionCDF + 1)/2
+                                    }
+                                }
+                            }
+                            let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
+                            let changeColor = 'black'
+                            if (Number(interventionCDF) < Number(sampleCDF)){
+                                changeColor = 'green'
+                            }
+                            else if (Number(interventionCDF) > Number(sampleCDF)){
+                                changeColor = 'red'
+                            }
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
                                 weight: obj.weight,
-                                color: colorRGB
+                                color: colorRGB,
+                                interventionColor: colorRGB2,
+                                indicatorColor: changeColor 
                             });
                         }
                     }
                 }
 
                 newArray.sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight));
-                console.log(newArray)
+                // console.log(newArray)
 
                 // Split the array into two parts
                 const donutArray = newArray.slice(0, 30);
@@ -2001,7 +2248,7 @@ class Tab2Viz{
 
                 // Create a group for the donut chart and translate it to the top section
                 const donutGroup = svg.append("g")
-                .attr("transform", `translate(${0}, ${-40})`);
+                .attr("transform", `translate(${-540}, ${-40})`);
 
                 // Add the main arcs
                 donutGroup.selectAll("path.main")
@@ -2033,12 +2280,48 @@ class Tab2Viz{
                 .attr("stroke", d => d.data.weight > 0 ? "black" : "white")
                 .style("stroke-width", "10px");
 
+
+
+                const donutGroup2 = svg.append("g")
+                .attr("transform", `translate(${540}, ${-40})`);
+
+                // Add the main arcs
+                donutGroup2.selectAll("path.main")
+                .data(pie(donutArray))
+                .enter().append("path")
+                .attr("class", "main")
+                .attr("d", arc)
+                .attr("fill", d => d.data.interventionColor)
+                .attr("stroke", "#fff")
+                .style("stroke-width", "2px");
+
+                // Add the lifted inner strokes for negative weights
+                donutGroup2.selectAll("path.inner-stroke")
+                .data(pie(donutArray))
+                .enter().append("path")
+                .attr("class", "inner-stroke")
+                .attr("d", innerArc)
+                .attr("fill", "none")
+                .attr("stroke", d => d.data.weight < 0 ? d.data.indicatorColor : "white")
+                .style("stroke-width", "10px");
+
+                // Add the lifted outer strokes for positive weights
+                donutGroup2.selectAll("path.outer-stroke")
+                .data(pie(donutArray))
+                .enter().append("path")
+                .attr("class", "outer-stroke")
+                .attr("d", outerArc)
+                .attr("fill", "none")
+                .attr("stroke", d => d.data.weight > 0 ? d.data.indicatorColor : "white")
+                .style("stroke-width", "10px");
+
+
                 // Create bar code chart (bottom 40%)
                 const barWidth = (width / barcodeArray.length) - 4;
                 let barcodechartwidth = barWidth * barcodeArray.length
                 let availablespace = (width - barcodechartwidth)/2
-                let startingpoint = -575 + availablespace
-                // console.log(startingpoint)
+
+                let startingpoint = -575 + availablespace - 540
                 const barcodeGroup = svg.append("g")
                 .attr("transform", `translate(${startingpoint}, ${500})`);
 
@@ -2063,6 +2346,35 @@ class Tab2Viz{
                 .attr("y1", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)  // Lift 10px from top or bottom
                 .attr("y2", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)
                 .attr("stroke", "black")
+                .attr("stroke-width", "4px")
+                .attr("stroke-linecap", "round");
+
+
+                let startingpoint2 = -575 + availablespace + 540
+                const barcodeGroup2 = svg.append("g")
+                .attr("transform", `translate(${startingpoint2}, ${500})`);
+
+                // Create bars
+                barcodeGroup2.selectAll("rect")
+                .data(barcodeArray)
+                .enter().append("rect")
+                .attr("x", (d, i) => i * barWidth)
+                .attr("y", 0)
+                .attr("width", barWidth - 1) // -1 for spacing between bars
+                .attr("height", barcodeHeight/10)
+                .attr("fill", d => d.interventionColor)
+                .attr("stroke", "#fff")
+                .style("stroke-width", "1px");
+
+
+                barcodeGroup2.selectAll("line")
+                .data(barcodeArray)
+                .enter().append("line")
+                .attr("x1", (d, i) => i * barWidth)  // Center of each bar
+                .attr("x2", (d, i) => i * barWidth + barWidth - 2)
+                .attr("y1", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)  // Lift 10px from top or bottom
+                .attr("y2", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)
+                .attr("stroke", d => d.indicatorColor)
                 .attr("stroke-width", "4px")
                 .attr("stroke-linecap", "round");
             }

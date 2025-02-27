@@ -401,7 +401,7 @@ function renderVizDivs(numberOfDivs){
     let x = 0
     let y = 0
     if (numberOfDivs >= 1){
-        numberOfDivs = 12
+        numberOfDivs = 7
     }
     else{
         numberOfDivs = 0
@@ -412,7 +412,7 @@ function renderVizDivs(numberOfDivs){
         
         newDiv.classList.add('dynamic-div-' + i);
         
-        let width = 1150;
+        let width = 2300;
         let height = 1220;
         // if (i === 5){
         //     width = 3120
@@ -427,11 +427,21 @@ function renderVizDivs(numberOfDivs){
         
         container.appendChild(newDiv);
         
-        if ((i + 1) % 3 === 0) { 
-            x = 0;
-            y += height;
-        } else { 
-            x += width;
+        if (i <= 2){
+            if ((i + 1) % 3 === 0) { 
+                x = 0;
+                y += height;
+            } else { 
+                x += 1150;
+            }
+        }
+        else{
+            if (i % 2 === 0) { 
+                x = 0;
+                y += height;
+            } else { 
+                x += width;
+            }
         }
 
         // if (i === 4){

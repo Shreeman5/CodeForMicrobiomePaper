@@ -40,6 +40,19 @@ function findTaxonWeightbyName(dataArray, taxonName){
     return null; 
 }
 
+function getOrganismWeight(data, targetOrganism) {
+    // Loop through the array of organisms
+    for (let i = 0; i < data.length; i++) {
+      // Check if the current organism matches the target
+      if (data[i].organism === targetOrganism) {
+        // Return the weight array for the matching organism
+        return data[i].weight;
+      }
+    }
+    // Return null or appropriate message if organism not found
+    return null;
+  }
+
 // find action by ID
 function findNamesbyID(dataArray, taxonId){
     for (let obj of dataArray) {
