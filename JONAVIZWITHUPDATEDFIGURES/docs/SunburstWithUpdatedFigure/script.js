@@ -413,7 +413,7 @@ function renderVizDivs(numberOfDivs){
         newDiv.classList.add('dynamic-div-' + i);
         
         let width = 2300;
-        let height = 1220;
+        let height = 1300;
         // if (i === 5){
         //     width = 3120
         //     height = 1220

@@ -541,7 +541,7 @@ class Tab2Viz{
         
         gradient9.append("stop")
             .attr("offset", "100%")
-            .attr("stop-color", "grey");
+            .attr("stop-color", "white");
         
         // Append the rectangle with the gradient
         svg.append("rect")
@@ -561,7 +561,7 @@ class Tab2Viz{
         // Define gradient color stops
         gradient10.append("stop")
             .attr("offset", "0%")
-            .attr("stop-color", "grey");
+            .attr("stop-color", "white");
         
         gradient10.append("stop")
             .attr("offset", "100%")
@@ -581,7 +581,7 @@ class Tab2Viz{
             .attr("font-size", "25")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("Negative Change w/ Action(s)")
+            .text("Bad CDF Change w/ Action(s)")
 
         svg.append("text")
             .attr("x", 760)
@@ -589,7 +589,7 @@ class Tab2Viz{
             .attr("font-size", "25")
             .attr("fill", "Black")
             .attr("text-anchor", "end")
-            .text("Positive Change w/ Action(s)")
+            .text("Good CDF Change w/ Action(s)")
 
 
         
@@ -2509,28 +2509,16 @@ class Tab2Viz{
                 .attr("transform", `translate(${startingpoint2}, ${500})`);
 
                 // Create bars
-                // barcodeGroup2.selectAll("rect")
-                // .data(barcodeArray)
-                // .enter().append("rect")
-                // .attr("x", (d, i) => i * barWidth)
-                // .attr("y", 0)
-                // .attr("width", barWidth - 1) // -1 for spacing between bars
-                // .attr("height", barcodeHeight/10)
-                // .attr("fill", d => d.interventionColor)
-                // .attr("stroke", "black")
-                // .style("stroke-width", "1px");
-
                 barcodeGroup2.selectAll("rect")
                 .data(barcodeArray)
                 .enter().append("rect")
                 .attr("x", (d, i) => i * barWidth)
-                .attr("y", 40)
+                .attr("y", 0)
                 .attr("width", barWidth - 1) // -1 for spacing between bars
                 .attr("height", barcodeHeight/10)
-                .attr("fill", d => d.colorDifference)
+                .attr("fill", d => d.interventionColor)
                 .attr("stroke", "black")
                 .style("stroke-width", "1px");
-
 
                 barcodeGroup2.selectAll("line")
                 .data(barcodeArray)
@@ -2542,6 +2530,22 @@ class Tab2Viz{
                 .attr("stroke", "black")
                 .attr("stroke-width", "4px")
                 .attr("stroke-linecap", "round");
+
+                let startingpoint3 = -575 + availablespace + 540
+                const barcodeGroup3 = svg.append("g")
+                .attr("transform", `translate(${startingpoint3}, ${570})`);
+
+
+                barcodeGroup3.selectAll("rect")
+                .data(barcodeArray)
+                .enter().append("rect")
+                .attr("x", (d, i) => i * barWidth)
+                .attr("y", 0)
+                .attr("width", barWidth - 1) // -1 for spacing between bars
+                .attr("height", barcodeHeight/15)
+                .attr("fill", d => d.colorDifference)
+                .attr("stroke", "black")
+                .style("stroke-width", "1px");
             }
             // if (i === 4){
 
