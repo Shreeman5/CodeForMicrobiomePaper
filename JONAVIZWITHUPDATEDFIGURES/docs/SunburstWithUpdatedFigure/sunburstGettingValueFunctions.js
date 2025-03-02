@@ -10,6 +10,21 @@ function findTaxonCDFbyName(dataArray, taxonName){
     return element ? element.CDF : null;
 }
 
+function findTaxonCDF1byName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.CDF1 : null;
+}
+
+function findTaxonCDF2byName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.CDF2 : null;
+}
+
+function findTaxonCDF3byName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.CDF3 : null;
+}
+
 // find Taxon CDF by Name, different function from above
 function findTaxonCDFbyName2(dataArray, taxonName){
     for (let obj of dataArray) {

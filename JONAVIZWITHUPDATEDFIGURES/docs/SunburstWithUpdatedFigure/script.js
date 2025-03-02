@@ -373,7 +373,7 @@ function renderLegendDivs(){
     newDiv3.style.left = '0px';
     newDiv3.style.top = '0px';
     newDiv3.style.width = '800px';
-    newDiv3.style.height = '1100px';
+    newDiv3.style.height = '1600px';
     container3.appendChild(newDiv3);
 
     let container4 = document.getElementById('legendDiv4');
@@ -382,7 +382,7 @@ function renderLegendDivs(){
     newDiv4.style.left = '0px';
     newDiv4.style.top = '0px';
     newDiv4.style.width = '800px';
-    newDiv4.style.height = '1100px';
+    newDiv4.style.height = '1300px';
     container4.appendChild(newDiv4);
 }
 

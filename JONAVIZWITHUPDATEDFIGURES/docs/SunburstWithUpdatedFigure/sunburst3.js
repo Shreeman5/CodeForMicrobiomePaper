@@ -50,24 +50,20 @@ async function getAllData(selectedSamples) {
         let csvData4 = await d3.csv('CSVs/Actions.csv')
         responseArray.push(csvData4)
         for (let i = 0; i < selectedSamples.length; i++){
+
+            let csvData5 = await d3.csv("CSVs/AggregateFiles/ERR262943_Diarrhea_aggregate.csv")
+            responseArray.push(csvData5)
+            let csvData9 = await d3.csv("CSVs/AggregateFiles/ERR262958_Diarrhea_aggregate.csv")
+            responseArray.push(csvData9)
+            let csvData13 = await d3.csv("CSVs/AggregateFiles/SRR5936079_Crohn's Disease_aggregate.csv")
+            responseArray.push(csvData13)
+            let csvData17 = await d3.csv("CSVs/AggregateFiles/SRR5950737_Crohn's Disease_aggregate.csv")
+            responseArray.push(csvData17)
+
+
             let csvData3 = await d3.csv("CSVs/AggregateFiles/"+selectedSamples[i]+"_aggregate.csv")
             responseArray.push(csvData3)
-            let csvData5 = await d3.csv("CSVs/AggregateFiles/Jaclyn_Kawwas_1_aggregate.csv")
-            responseArray.push(csvData5)
-            let csvData6 = await d3.csv("CSVs/AggregateFiles/Jill_Sue_1_aggregate.csv")
-            responseArray.push(csvData6)
-            let csvData7 = await d3.csv("CSVs/AggregateFiles/Leo_Grady_1_aggregate.csv")
-            responseArray.push(csvData7)
-            let csvData8 = await d3.csv("CSVs/AggregateFiles/Maclay_Ramsey_1_aggregate.csv")
-            responseArray.push(csvData8)
-            let csvData9 = await d3.csv("CSVs/AggregateFiles/Rainey_Dunham_1_aggregate.csv")
-            responseArray.push(csvData9)
-            let csvData10 = await d3.csv("CSVs/AggregateFiles/Leo_Grady_2_aggregate.csv")
-            responseArray.push(csvData10)
-            let csvData11 = await d3.csv("CSVs/AggregateFiles/Jim_Walsh_after_aggregate.csv")
-            responseArray.push(csvData11)
-            let csvData12 = await d3.csv("CSVs/AggregateFiles/Jim_Walsh_before_aggregate.csv")
-            responseArray.push(csvData12)
+
         }
         return responseArray;
 

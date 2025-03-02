@@ -209,7 +209,7 @@ select {
     top: 2100px; /* Fixed top position */
     left: 0px; /* Fixed left position */
     width: 800px; /* Set width */
-    height: 1100px; /* Set height */
+    height: 1300px; /* Set height */
 }
 
 
@@ -221,7 +221,7 @@ select {
 
 #legendDiv4 {
     position: absolute;
-    top: 3300px; /* Fixed top position */
+    top: 3500px; /* Fixed top position */
     left: 0px; /* Fixed left position */
     width: 800px; /* Set width */
     height: 1100px; /* Set height */

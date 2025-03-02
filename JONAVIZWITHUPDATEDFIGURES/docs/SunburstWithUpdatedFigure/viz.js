@@ -11,6 +11,7 @@ class Tab2Viz{
         this.rootName = rootName
         this.selectedOptions = selectedOptions
         this.structureData = structureData
+        // console.log(this.structureData)
         this.classNames = classNames
         Tab2Viz.Tab2VizRootName = rootName
         this.selectedRemovals = selectedRemovals
@@ -523,6 +524,72 @@ class Tab2Viz{
             .attr("fill", "Black")
             .attr("text-anchor", "end")
             .text("100% Organism Similarity")
+
+
+
+
+        const gradient9 = svg.append("defs")
+            .append("linearGradient")
+            .attr("id", "gradient9")
+            .attr("x1", "0%").attr("y1", "0%")
+            .attr("x2", "100%").attr("y2", "0%");
+        
+        // Define gradient color stops
+        gradient9.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "yellow");
+        
+        gradient9.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "grey");
+        
+        // Append the rectangle with the gradient
+        svg.append("rect")
+            .attr("x", 0)
+            .attr("y", 1200)
+            .attr("width", 380)
+            .attr("height", 30)
+            .style("fill", "url(#gradient9)");
+
+
+        const gradient10 = svg.append("defs")
+            .append("linearGradient")
+            .attr("id", "gradient10")
+            .attr("x1", "0%").attr("y1", "0%")
+            .attr("x2", "100%").attr("y2", "0%");
+        
+        // Define gradient color stops
+        gradient10.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "grey");
+        
+        gradient10.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "green");
+        
+        // Append the rectangle with the gradient
+        svg.append("rect")
+            .attr("x", 380)
+            .attr("y", 1200)
+            .attr("width", 380)
+            .attr("height", 30)
+            .style("fill", "url(#gradient10)");
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 1260)
+            .attr("font-size", "25")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("Negative Change w/ Action(s)")
+
+        svg.append("text")
+            .attr("x", 760)
+            .attr("y", 1260)
+            .attr("font-size", "25")
+            .attr("fill", "Black")
+            .attr("text-anchor", "end")
+            .text("Positive Change w/ Action(s)")
 
 
         
@@ -1380,7 +1447,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample 1 Closeness to Condition--Crohns')
+                .text('Diarrhea Sample 1 Proximity to Crohns')
 
                 svg.append("text")
                 // .attr("x", -450)
@@ -1389,7 +1456,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample 1 Closeness to Condition Post Intervention(s)--Crohns')
+                .text('Diarrhea Sample 1 Proximity to Crohns Post 3 Actions')
             }
             else if (i === 4){
                 svg.append("text")
@@ -1399,7 +1466,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample 2 Closeness to Condition--Crohns')
+                .text('Diarrhea Sample 2 Proximity to Crohns')
 
                 svg.append("text")
                 // .attr("x", -450)
@@ -1408,7 +1475,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample 2 Closeness to Condition Post Intervention(s)--Crohns')
+                .text('Diarrhea Sample 2 Proximity to Crohns Post 3 Actions')
             }
             else if (i === 5){
                 svg.append("text")
@@ -1418,7 +1485,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample 3 Closeness to Condition--Crohns')
+                .text('Crohns Sample 1 Proximity to Crohns')
 
                 svg.append("text")
                 // .attr("x", -450)
@@ -1427,7 +1494,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample 3 Closeness to Condition Post Intervention(s)--Crohns')
+                .text('Crohns Sample 1 Proximity to Crohns Post 3 Actions')
             }
             else if (i === 6){
                 svg.append("text")
@@ -1437,7 +1504,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample 4 Closeness to Condition--Crohns')
+                .text('Crohns Sample 2 Proximity to Crohns')
 
                 svg.append("text")
                 // .attr("x", -450)
@@ -1446,7 +1513,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample 4 Closeness to Condition Post Intervention(s)--Crohns')
+                .text('Crohns Sample 2 Proximity to Crohns Post 3 Actions')
             }
             else if (i === 7){
                 svg.append("text")
@@ -2028,7 +2095,7 @@ class Tab2Viz{
 
 
             if (i >= 3){
-                console.log('X:', transformedData3)
+                // console.log('X:', transformedData3)
                 let ival = i
 
                 let curatedPresentTaxons = []
@@ -2041,10 +2108,10 @@ class Tab2Viz{
                 }
 
                 transformedData = transformedData.filter(obj => curatedPresentTaxons.includes(obj.organism));
-                if (i === 3){
-                    console.log("transformedData:", transformedData)
-                }
-                // console.log(this.structureData[2])
+                // if (i === 3){
+                //     console.log("transformedData:", transformedData)
+                //     console.log(this.structureData[ival])
+                // }
                 // console.log(this.structureData[ival])
 
                 const bivariateColorScaleLIO = (value) => {
@@ -2063,6 +2130,15 @@ class Tab2Viz{
                     }
                 };
 
+
+                const colorDifferenceScaleLIO = d3.scaleLinear()
+                                .domain([-1, 0, 1])
+                                .range(["yellow", "white", "green"]);
+
+                const colorDifferenceScaleHIO = d3.scaleLinear()
+                                .domain([-1, 0, 1])
+                                .range(["green", "white", "yellow"]);
+
                 // const selectedContainer = document.getElementById("selectedContainer-T2");
                 // const selectedSpans = selectedContainer.querySelectorAll("span");
                 // const selectedItems = Array.from(selectedSpans).map(span => {
@@ -2078,138 +2154,194 @@ class Tab2Viz{
                 for (const obj of transformedData) {
                     if (obj.weight < 0){
                         let sampleCDF = findTaxonCDFbyName(that.structureData[ival], obj.organism)
-                        const result = getOrganismWeight(transformedData3, obj.organism);
+                        // const result = getOrganismWeight(transformedData3, obj.organism);
                         if (sampleCDF == null){
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleLIO(sampleCDF)
-                            let interventionCDF = Number(sampleCDF)
-                            if (result != null){
-                                for (let i = 0; i < result.length; i++){
-                                    if (result[i] < 0){
-                                        interventionCDF = (interventionCDF + 0)/2
-                                    }
-                                    else if (result[i] > 0){ 
-                                        interventionCDF = (interventionCDF + 1)/2
-                                    }
-                                }
-                            }
+
+                            let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
+                            let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
+                            let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
+                            let interventionCDF = [sampleCDF1, sampleCDF2, sampleCDF3].sort((x, y) => x - y)[1]
                             let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
-                            let changeColor = 'black'
-                            if (Number(interventionCDF) > Number(sampleCDF)){
-                                changeColor = 'green'
-                            }
-                            else if (Number(interventionCDF) < Number(sampleCDF)){
-                                changeColor = 'red'
-                            }
+
+                            let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
+                            let differenceInColor = colorDifferenceScaleLIO(differenceInCDF)
+                            // if (ival === 3){
+                            //     console.log("interventionValue: ", interventionCDF, obj.organism)
+                            // }
+                            // let interventionCDF = Number(sampleCDF)
+                            // if (result != null){
+                            //     for (let i = 0; i < result.length; i++){
+                            //         if (result[i] < 0){
+                            //             interventionCDF = (interventionCDF + 0)/2
+                            //         }
+                            //         else if (result[i] > 0){ 
+                            //             interventionCDF = (interventionCDF + 1)/2
+                            //         }
+                            //     }
+                            // }
+                            // let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
+                            // let changeColor = 'black'
+                            // if (Number(interventionCDF) > Number(sampleCDF)){
+                            //     changeColor = 'green'
+                            // }
+                            // else if (Number(interventionCDF) < Number(sampleCDF)){
+                            //     changeColor = 'red'
+                            // }
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
                                 weight: obj.weight,
                                 color: colorRGB,
                                 interventionColor: colorRGB2,
-                                indicatorColor: changeColor 
+                                colorDifference: differenceInColor
+                                // indicatorColor: changeColor 
                             });
                         }
                         else{
                             let colorRGB = bivariateColorScaleLIO(sampleCDF)
-                            let interventionCDF = Number(sampleCDF)
-                            if (result != null){
-                                for (let i = 0; i < result.length; i++){
-                                    if (result[i] < 0){
-                                        interventionCDF = (interventionCDF + 0)/2
-                                    }
-                                    else if (result[i] > 0){ 
-                                        interventionCDF = (interventionCDF + 1)/2
-                                    }
-                                }
-                            }
-                            let colorRGB2 = bivariateColorScaleLIO(interventionCDF) 
-                            let changeColor = 'black'
-                            if (Number(interventionCDF) > Number(sampleCDF)){
-                                changeColor = 'green'
-                            }
-                            else if (Number(interventionCDF) < Number(sampleCDF)){
-                                changeColor = 'red'
-                            }
+
+
+                            let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
+                            let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
+                            let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
+                            let interventionCDF = [sampleCDF1, sampleCDF2, sampleCDF3].sort((x, y) => x - y)[1]
+                            let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
+
+                            let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
+                            let differenceInColor = colorDifferenceScaleLIO(differenceInCDF)
+                            // if (ival === 3){
+                            //     console.log("interventionValue2: ", interventionCDF, obj.organism)
+                            // }
+                            // let interventionCDF = Number(sampleCDF)
+                            // if (result != null){
+                            //     for (let i = 0; i < result.length; i++){
+                            //         if (result[i] < 0){
+                            //             interventionCDF = (interventionCDF + 0)/2
+                            //         }
+                            //         else if (result[i] > 0){ 
+                            //             interventionCDF = (interventionCDF + 1)/2
+                            //         }
+                            //     }
+                            // }
+                            // let colorRGB2 = bivariateColorScaleLIO(interventionCDF) 
+                            // let changeColor = 'black'
+                            // if (Number(interventionCDF) > Number(sampleCDF)){
+                            //     changeColor = 'green'
+                            // }
+                            // else if (Number(interventionCDF) < Number(sampleCDF)){
+                            //     changeColor = 'red'
+                            // }
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
                                 weight: obj.weight,
                                 color: colorRGB,
                                 interventionColor: colorRGB2,
-                                indicatorColor: changeColor 
+                                colorDifference: differenceInColor
+                                // interventionColor: colorRGB2,
+                                // indicatorColor: changeColor 
                             });
                         }
                     }
                     else{
                         let sampleCDF = findTaxonCDFbyName(that.structureData[ival], obj.organism)
-                        const result = getOrganismWeight(transformedData3, obj.organism);
+                        // const result = getOrganismWeight(transformedData3, obj.organism);
                         if (sampleCDF == null){
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleHIO(sampleCDF)
-                            let interventionCDF = Number(sampleCDF)
-                            if (result != null){
-                                for (let i = 0; i < result.length; i++){
-                                    if (result[i] < 0){
-                                        interventionCDF = (interventionCDF + 0)/2
-                                    }
-                                    else if (result[i] > 0){ 
-                                        interventionCDF = (interventionCDF + 1)/2
-                                    }
-                                }
-                            }
+
+                            let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
+                            let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
+                            let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
+                            let interventionCDF = [sampleCDF1, sampleCDF2, sampleCDF3].sort((x, y) => x - y)[1]
                             let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
-                            let changeColor = 'black'
-                            if (Number(interventionCDF) < Number(sampleCDF)){
-                                changeColor = 'green'
-                            }
-                            else if (Number(interventionCDF) > Number(sampleCDF)){
-                                changeColor = 'red'
-                            }
+
+                            let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
+                            let differenceInColor = colorDifferenceScaleHIO(differenceInCDF)
+                            // if (ival === 3){
+                            //     console.log("interventionValue3: ", interventionCDF, obj.organism)
+                            // }
+                            // let interventionCDF = Number(sampleCDF)
+                            // if (result != null){
+                            //     for (let i = 0; i < result.length; i++){
+                            //         if (result[i] < 0){
+                            //             interventionCDF = (interventionCDF + 0)/2
+                            //         }
+                            //         else if (result[i] > 0){ 
+                            //             interventionCDF = (interventionCDF + 1)/2
+                            //         }
+                            //     }
+                            // }
+                            // let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
+                            // let changeColor = 'black'
+                            // if (Number(interventionCDF) < Number(sampleCDF)){
+                            //     changeColor = 'green'
+                            // }
+                            // else if (Number(interventionCDF) > Number(sampleCDF)){
+                            //     changeColor = 'red'
+                            // }
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
                                 weight: obj.weight,
                                 color: colorRGB,
                                 interventionColor: colorRGB2,
-                                indicatorColor: changeColor 
+                                colorDifference: differenceInColor
+                                // interventionColor: colorRGB2,
+                                // indicatorColor: changeColor 
                             });
                         }
                         else{
                             let colorRGB = bivariateColorScaleHIO(sampleCDF)
-                            let interventionCDF = Number(sampleCDF)
-                            if (result != null){
-                                for (let i = 0; i < result.length; i++){
-                                    if (result[i] < 0){
-                                        interventionCDF = (interventionCDF + 0)/2
-                                    }
-                                    else if (result[i] > 0){ 
-                                        interventionCDF = (interventionCDF + 1)/2
-                                    }
-                                }
-                            }
+
+                            let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
+                            let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
+                            let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
+                            let interventionCDF = [sampleCDF1, sampleCDF2, sampleCDF3].sort((x, y) => x - y)[1]
                             let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
-                            let changeColor = 'black'
-                            if (Number(interventionCDF) < Number(sampleCDF)){
-                                changeColor = 'green'
-                            }
-                            else if (Number(interventionCDF) > Number(sampleCDF)){
-                                changeColor = 'red'
-                            }
+
+                            let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
+                            let differenceInColor = colorDifferenceScaleHIO(differenceInCDF)
+                            // if (ival === 3){
+                            //     console.log("interventionValue4: ", interventionCDF, obj.organism)
+                            // }
+                            // let interventionCDF = Number(sampleCDF)
+                            // if (result != null){
+                            //     for (let i = 0; i < result.length; i++){
+                            //         if (result[i] < 0){
+                            //             interventionCDF = (interventionCDF + 0)/2
+                            //         }
+                            //         else if (result[i] > 0){ 
+                            //             interventionCDF = (interventionCDF + 1)/2
+                            //         }
+                            //     }
+                            // }
+                            // let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
+                            // let changeColor = 'black'
+                            // if (Number(interventionCDF) < Number(sampleCDF)){
+                            //     changeColor = 'green'
+                            // }
+                            // else if (Number(interventionCDF) > Number(sampleCDF)){
+                            //     changeColor = 'red'
+                            // }
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
                                 weight: obj.weight,
                                 color: colorRGB,
                                 interventionColor: colorRGB2,
-                                indicatorColor: changeColor 
+                                colorDifference: differenceInColor
+                                // interventionColor: colorRGB2,
+                                // indicatorColor: changeColor 
                             });
                         }
                     }
                 }
 
                 newArray.sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight));
-                // console.log(newArray)
+                console.log(newArray)
 
                 // Split the array into two parts
                 const donutArray = newArray.slice(0, 30);
@@ -2257,7 +2389,7 @@ class Tab2Viz{
                 .attr("class", "main")
                 .attr("d", arc)
                 .attr("fill", d => d.data.color)
-                .attr("stroke", "#fff")
+                .attr("stroke", "black")
                 .style("stroke-width", "2px");
 
                 // Add the lifted inner strokes for negative weights
@@ -2292,7 +2424,7 @@ class Tab2Viz{
                 .attr("class", "main")
                 .attr("d", arc)
                 .attr("fill", d => d.data.interventionColor)
-                .attr("stroke", "#fff")
+                .attr("stroke", "black")
                 .style("stroke-width", "2px");
 
                 // Add the lifted inner strokes for negative weights
@@ -2302,7 +2434,7 @@ class Tab2Viz{
                 .attr("class", "inner-stroke")
                 .attr("d", innerArc)
                 .attr("fill", "none")
-                .attr("stroke", d => d.data.weight < 0 ? d.data.indicatorColor : "white")
+                .attr("stroke", d => d.data.weight < 0 ? "black" : "white")
                 .style("stroke-width", "10px");
 
                 // Add the lifted outer strokes for positive weights
@@ -2312,8 +2444,30 @@ class Tab2Viz{
                 .attr("class", "outer-stroke")
                 .attr("d", outerArc)
                 .attr("fill", "none")
-                .attr("stroke", d => d.data.weight > 0 ? d.data.indicatorColor : "white")
+                .attr("stroke", d => d.data.weight > 0 ? "black" : "white")
                 .style("stroke-width", "10px");
+
+                // Define a smaller radius for the inner pie (make sure it's positive and not too small)
+                // const innerPieRadius = Math.max(30, innerRadius * 0.6); // Adjust these values as needed
+
+                // Create the inner pie arc generator
+                const innerPieArc = d3.arc()
+                    .innerRadius(radius * 0.1)
+                    .outerRadius(radius * 0.5);
+
+                // Render the inner pie chart LAST to ensure it's on top
+                donutGroup2.selectAll("path.inner-pie")
+                    .data(pie(donutArray))
+                    .enter().append("path")
+                    .attr("class", "inner-pie")
+                    .attr("d", innerPieArc)
+                    .attr("fill", d => {
+                        // Add a console.log to debug
+                        // console.log("Data point:", d.data, "Color:", d.data.colorDifference);
+                        return d.data.colorDifference || "#ccc"; // Fallback color if undefined
+                    })
+                    .attr("stroke", "black")
+                    .style("stroke-width", "1px");
 
 
                 // Create bar code chart (bottom 40%)
@@ -2334,7 +2488,7 @@ class Tab2Viz{
                 .attr("width", barWidth - 1) // -1 for spacing between bars
                 .attr("height", barcodeHeight/10)
                 .attr("fill", d => d.color)
-                .attr("stroke", "#fff")
+                .attr("stroke", "black")
                 .style("stroke-width", "1px");
 
 
@@ -2355,15 +2509,26 @@ class Tab2Viz{
                 .attr("transform", `translate(${startingpoint2}, ${500})`);
 
                 // Create bars
+                // barcodeGroup2.selectAll("rect")
+                // .data(barcodeArray)
+                // .enter().append("rect")
+                // .attr("x", (d, i) => i * barWidth)
+                // .attr("y", 0)
+                // .attr("width", barWidth - 1) // -1 for spacing between bars
+                // .attr("height", barcodeHeight/10)
+                // .attr("fill", d => d.interventionColor)
+                // .attr("stroke", "black")
+                // .style("stroke-width", "1px");
+
                 barcodeGroup2.selectAll("rect")
                 .data(barcodeArray)
                 .enter().append("rect")
                 .attr("x", (d, i) => i * barWidth)
-                .attr("y", 0)
+                .attr("y", 40)
                 .attr("width", barWidth - 1) // -1 for spacing between bars
                 .attr("height", barcodeHeight/10)
-                .attr("fill", d => d.interventionColor)
-                .attr("stroke", "#fff")
+                .attr("fill", d => d.colorDifference)
+                .attr("stroke", "black")
                 .style("stroke-width", "1px");
 
 
@@ -2374,7 +2539,7 @@ class Tab2Viz{
                 .attr("x2", (d, i) => i * barWidth + barWidth - 2)
                 .attr("y1", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)  // Lift 10px from top or bottom
                 .attr("y2", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)
-                .attr("stroke", d => d.indicatorColor)
+                .attr("stroke", "black")
                 .attr("stroke-width", "4px")
                 .attr("stroke-linecap", "round");
             }
