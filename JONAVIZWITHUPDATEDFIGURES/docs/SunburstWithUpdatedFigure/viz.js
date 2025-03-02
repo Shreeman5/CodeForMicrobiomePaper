@@ -591,6 +591,22 @@ class Tab2Viz{
             .attr("text-anchor", "end")
             .text("Good CDF Change w/ Action(s)")
 
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 1320)
+            .attr("font-size", "35")
+            .attr("fill", "red")
+            .attr("text-anchor", "start")
+            .text("Actions: Vitamin D")
+
+        // svg.append("text")
+        //     .attr("x", 0)
+        //     .attr("y", 1360)
+        //     .attr("font-size", "35")
+        //     .attr("fill", "red")
+        //     .attr("text-anchor", "start")
+        //     .text("Vitamin D")
+
 
         
         // svg.append("text")
@@ -1456,7 +1472,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Diarrhea Sample 1 Proximity to Crohns Post 3 Actions')
+                .text('Diarrhea Sample 1 Proximity to Crohns Post Action(s)')
             }
             else if (i === 4){
                 svg.append("text")
@@ -1475,7 +1491,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Diarrhea Sample 2 Proximity to Crohns Post 3 Actions')
+                .text('Diarrhea Sample 2 Proximity to Crohns Post Action(s)')
             }
             else if (i === 5){
                 svg.append("text")
@@ -1494,7 +1510,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Crohns Sample 1 Proximity to Crohns Post 3 Actions')
+                .text('Crohns Sample 1 Proximity to Crohns Post Action(s)')
             }
             else if (i === 6){
                 svg.append("text")
@@ -1513,7 +1529,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Crohns Sample 2 Proximity to Crohns Post 3 Actions')
+                .text('Crohns Sample 2 Proximity to Crohns Post Action(s)')
             }
             else if (i === 7){
                 svg.append("text")
@@ -2159,10 +2175,10 @@ class Tab2Viz{
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleLIO(sampleCDF)
 
-                            let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
-                            let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
+                            // let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
+                            // let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
                             let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
-                            let interventionCDF = [sampleCDF1, sampleCDF2, sampleCDF3].sort((x, y) => x - y)[1]
+                            let interventionCDF = sampleCDF3
                             let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
@@ -2203,10 +2219,10 @@ class Tab2Viz{
                             let colorRGB = bivariateColorScaleLIO(sampleCDF)
 
 
-                            let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
-                            let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
+                            // let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
+                            // let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
                             let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
-                            let interventionCDF = [sampleCDF1, sampleCDF2, sampleCDF3].sort((x, y) => x - y)[1]
+                            let interventionCDF = sampleCDF3
                             let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
@@ -2252,10 +2268,10 @@ class Tab2Viz{
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleHIO(sampleCDF)
 
-                            let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
-                            let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
+                            // let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
+                            // let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
                             let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
-                            let interventionCDF = [sampleCDF1, sampleCDF2, sampleCDF3].sort((x, y) => x - y)[1]
+                            let interventionCDF = sampleCDF3
                             let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
@@ -2296,10 +2312,10 @@ class Tab2Viz{
                         else{
                             let colorRGB = bivariateColorScaleHIO(sampleCDF)
 
-                            let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
-                            let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
+                            // let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
+                            // let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
                             let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
-                            let interventionCDF = [sampleCDF1, sampleCDF2, sampleCDF3].sort((x, y) => x - y)[1]
+                            let interventionCDF = sampleCDF3
                             let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
