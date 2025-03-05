@@ -2175,29 +2175,34 @@ class Tab2Viz{
                 // console.log(this.structureData[ival])
 
                 const bivariateColorScaleLIO = (value) => {
-                    if (value <= 0.5) {
-                        return d3.interpolateRgb("darkred", "rgb(255, 200, 200)")(value / 0.5);
-                    } else {
-                        return d3.interpolateRgb("rgb(220, 230, 255)", "rgb(210, 215, 255)")((value - 0.51) / (1 - 0.51));
+                    if (value < 0.5) {
+                        return d3.interpolateRgb("darkred", "rgb(255, 200, 200)")(value / 0.49999999999999999999999999);
+                    } else if (value > 0.5){
+                        return d3.interpolateRgb("rgb(220, 230, 255)", "rgb(210, 215, 255)")((value - 0.50000000000000000000000001) / (1 - 0.50000000000000000000000001));
+                    }
+                    else if (value === 0.5){
+                        return "white"
                     }
                 };
 
                 const bivariateColorScaleHIO = (value) => {
-                    if (value <= 0.5) {
-                        return d3.interpolateRgb("rgb(210, 215, 255)", "rgb(220, 230, 255)")(value / 0.5);
-                    } else {
-                        return d3.interpolateRgb("rgb(255, 200, 200)", "darkred")((value - 0.51) / (1 - 0.51));
+                    if (value < 0.5) {
+                        return d3.interpolateRgb("rgb(210, 215, 255)", "rgb(220, 230, 255)")(value / 0.49999999999999999999999999);
+                    } else if (value > 0.5) {
+                        return d3.interpolateRgb("rgb(255, 200, 200)", "darkred")((value - 0.50000000000000000000000001) / (1 - 0.50000000000000000000000001));
+                    }else if (value === 0.5){
+                        return "white"
                     }
                 };
 
 
                 const colorDifferenceScaleLIO = d3.scaleLinear()
-                                .domain([-1, 0, 1])
-                                .range(["yellow", "white", "green"]);
+                                        .domain([-1, -0.01, 0, 0.01, 1])
+                                        .range(["darkred", "rgb(255, 200, 200)", "white", "rgb(220, 230, 255)", "rgb(210, 215, 255)"]);
 
                 const colorDifferenceScaleHIO = d3.scaleLinear()
-                                .domain([-1, 0, 1])
-                                .range(["green", "white", "yellow"]);
+                                        .domain([-1, -0.01, 0, 0.01, 1])
+                                .range(["rgb(210, 215, 255)", "rgb(220, 230, 255)", "white", "rgb(255, 200, 200)", "darkred"]);
 
                 // const selectedContainer = document.getElementById("selectedContainer-T2");
                 // const selectedSpans = selectedContainer.querySelectorAll("span");
