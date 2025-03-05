@@ -25,6 +25,27 @@ function findTaxonCDF3byName(dataArray, taxonName){
     return element ? element.CDF3 : null;
 }
 
+
+function findTaxonCDFKiwifruitCapsulesbyName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.KiwifruitCapsules : null;
+}
+
+function findTaxonCDFHighCarbohydrateDietbyName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.HighCarbohydrateDiet : null;
+}
+
+function findTaxonCDFModerateIntensityExercisebyName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.ModerateIntensityExercise : null;
+}
+
+function findTaxonCDFCitrusFruitExtractSupplementationbyName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.CitrusFruitExtractSupplementation : null;
+}
+
 // find Taxon CDF by Name, different function from above
 function findTaxonCDFbyName2(dataArray, taxonName){
     for (let obj of dataArray) {

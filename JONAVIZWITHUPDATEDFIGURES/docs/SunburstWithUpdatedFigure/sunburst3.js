@@ -51,18 +51,18 @@ async function getAllData(selectedSamples) {
         responseArray.push(csvData4)
         for (let i = 0; i < selectedSamples.length; i++){
 
-            let csvData5 = await d3.csv("CSVs/AggregateFiles/ERR262943_Diarrhea_aggregate.csv")
+            let csvData5 = await d3.csv("CSVs/AggregateFiles/SRR5936079_Crohn's Disease_aggregate.csv")
             responseArray.push(csvData5)
-            let csvData9 = await d3.csv("CSVs/AggregateFiles/ERR262958_Diarrhea_aggregate.csv")
+            let csvData9 = await d3.csv("CSVs/AggregateFiles/SRR5936079_Crohn's Disease_aggregate.csv")
             responseArray.push(csvData9)
             let csvData13 = await d3.csv("CSVs/AggregateFiles/SRR5936079_Crohn's Disease_aggregate.csv")
             responseArray.push(csvData13)
-            let csvData17 = await d3.csv("CSVs/AggregateFiles/SRR5950737_Crohn's Disease_aggregate.csv")
-            responseArray.push(csvData17)
+            // let csvData17 = await d3.csv("CSVs/AggregateFiles/SRR5950737_Crohn's Disease_aggregate.csv")
+            // responseArray.push(csvData17)
 
 
-            let csvData3 = await d3.csv("CSVs/AggregateFiles/"+selectedSamples[i]+"_aggregate.csv")
-            responseArray.push(csvData3)
+            // let csvData3 = await d3.csv("CSVs/AggregateFiles/"+selectedSamples[i]+"_aggregate.csv")
+            // responseArray.push(csvData3)
 
         }
         return responseArray;

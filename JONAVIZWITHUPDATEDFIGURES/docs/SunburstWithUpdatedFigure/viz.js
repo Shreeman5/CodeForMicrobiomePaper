@@ -465,49 +465,85 @@ class Tab2Viz{
         const gradient5 = svg.append("defs")
             .append("linearGradient")
             .attr("id", "gradient7")
-            .attr("x1", "0%").attr("y1", "0%")
-            .attr("x2", "100%").attr("y2", "0%");
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "0%");
         
-        // Define gradient color stops
         gradient5.append("stop")
             .attr("offset", "0%")
-            .attr("stop-color", "rgb(255, 200, 200)");
+            .attr("stop-color", "rgb(210, 215, 255)");
+
+        gradient5.append("stop")
+            .attr("offset", "49%")
+            .attr("stop-color", "rgb(220, 230, 255)");
+        
+        gradient5.append("stop")
+            .attr("offset", "50%")
+            .attr("stop-color", "grey");
+
+        gradient5.append("stop")
+            .attr("offset", "51%")
+            .attr("stop-color", "rgb(255, 200, 200)")
         
         gradient5.append("stop")
             .attr("offset", "100%")
             .attr("stop-color", "darkred");
         
-        // Append the rectangle with the gradient
-        svg.append("rect")
-            .attr("x", 380)
-            .attr("y", 1120)
-            .attr("width", 380)
-            .attr("height", 30)
-            .style("fill", "url(#gradient7)");
-
-
-        const gradient8 = svg.append("defs")
-            .append("linearGradient")
-            .attr("id", "gradient8")
-            .attr("x1", "0%").attr("y1", "0%")
-            .attr("x2", "100%").attr("y2", "0%");
-        
-        // Define gradient color stops
-        gradient8.append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", "rgb(210, 215, 255)");
-        
-        gradient8.append("stop")
-            .attr("offset", "100%")
-            .attr("stop-color", "rgb(220, 230, 255)");
-
-        // Append the rectangle with the gradient
+        // Append the rectangle with the gradient fill
         svg.append("rect")
             .attr("x", 0)
             .attr("y", 1120)
-            .attr("width", 380)
+            .attr("width", 760)
             .attr("height", 30)
-            .style("fill", "url(#gradient8)");
+            .style("fill", "url(#gradient7)");
+
+        // const gradient5 = svg.append("defs")
+        //     .append("linearGradient")
+        //     .attr("id", "gradient7")
+        //     .attr("x1", "0%").attr("y1", "0%")
+        //     .attr("x2", "100%").attr("y2", "0%");
+        
+        // // Define gradient color stops
+        // gradient5.append("stop")
+        //     .attr("offset", "0%")
+        //     .attr("stop-color", "rgb(255, 200, 200)");
+        
+        // gradient5.append("stop")
+        //     .attr("offset", "100%")
+        //     .attr("stop-color", "darkred");
+        
+        // // Append the rectangle with the gradient
+        // svg.append("rect")
+        //     .attr("x", 380)
+        //     .attr("y", 1120)
+        //     .attr("width", 380)
+        //     .attr("height", 30)
+        //     .style("fill", "url(#gradient7)");
+
+
+        // const gradient8 = svg.append("defs")
+        //     .append("linearGradient")
+        //     .attr("id", "gradient8")
+        //     .attr("x1", "0%").attr("y1", "0%")
+        //     .attr("x2", "100%").attr("y2", "0%");
+        
+        // // Define gradient color stops
+        // gradient8.append("stop")
+        //     .attr("offset", "0%")
+        //     .attr("stop-color", "rgb(210, 215, 255)");
+        
+        // gradient8.append("stop")
+        //     .attr("offset", "100%")
+        //     .attr("stop-color", "rgb(220, 230, 255)");
+
+        // // Append the rectangle with the gradient
+        // svg.append("rect")
+        //     .attr("x", 0)
+        //     .attr("y", 1120)
+        //     .attr("width", 380)
+        //     .attr("height", 30)
+        //     .style("fill", "url(#gradient8)");
 
         svg.append("text")
             .attr("x", 0)
@@ -528,68 +564,68 @@ class Tab2Viz{
 
 
 
-        const gradient9 = svg.append("defs")
-            .append("linearGradient")
-            .attr("id", "gradient9")
-            .attr("x1", "0%").attr("y1", "0%")
-            .attr("x2", "100%").attr("y2", "0%");
+        // const gradient9 = svg.append("defs")
+        //     .append("linearGradient")
+        //     .attr("id", "gradient9")
+        //     .attr("x1", "0%").attr("y1", "0%")
+        //     .attr("x2", "100%").attr("y2", "0%");
         
-        // Define gradient color stops
-        gradient9.append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", "yellow");
+        // // Define gradient color stops
+        // gradient9.append("stop")
+        //     .attr("offset", "0%")
+        //     .attr("stop-color", "yellow");
         
-        gradient9.append("stop")
-            .attr("offset", "100%")
-            .attr("stop-color", "white");
+        // gradient9.append("stop")
+        //     .attr("offset", "100%")
+        //     .attr("stop-color", "white");
         
-        // Append the rectangle with the gradient
-        svg.append("rect")
-            .attr("x", 0)
-            .attr("y", 1200)
-            .attr("width", 380)
-            .attr("height", 30)
-            .style("fill", "url(#gradient9)");
+        // // Append the rectangle with the gradient
+        // svg.append("rect")
+        //     .attr("x", 0)
+        //     .attr("y", 1200)
+        //     .attr("width", 380)
+        //     .attr("height", 30)
+        //     .style("fill", "url(#gradient9)");
 
 
-        const gradient10 = svg.append("defs")
-            .append("linearGradient")
-            .attr("id", "gradient10")
-            .attr("x1", "0%").attr("y1", "0%")
-            .attr("x2", "100%").attr("y2", "0%");
+        // const gradient10 = svg.append("defs")
+        //     .append("linearGradient")
+        //     .attr("id", "gradient10")
+        //     .attr("x1", "0%").attr("y1", "0%")
+        //     .attr("x2", "100%").attr("y2", "0%");
         
-        // Define gradient color stops
-        gradient10.append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", "white");
+        // // Define gradient color stops
+        // gradient10.append("stop")
+        //     .attr("offset", "0%")
+        //     .attr("stop-color", "white");
         
-        gradient10.append("stop")
-            .attr("offset", "100%")
-            .attr("stop-color", "green");
+        // gradient10.append("stop")
+        //     .attr("offset", "100%")
+        //     .attr("stop-color", "green");
         
-        // Append the rectangle with the gradient
-        svg.append("rect")
-            .attr("x", 380)
-            .attr("y", 1200)
-            .attr("width", 380)
-            .attr("height", 30)
-            .style("fill", "url(#gradient10)");
+        // // Append the rectangle with the gradient
+        // svg.append("rect")
+        //     .attr("x", 380)
+        //     .attr("y", 1200)
+        //     .attr("width", 380)
+        //     .attr("height", 30)
+        //     .style("fill", "url(#gradient10)");
 
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 1260)
-            .attr("font-size", "25")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("Bad CDF Change w/ Action(s)")
+        // svg.append("text")
+        //     .attr("x", 0)
+        //     .attr("y", 1260)
+        //     .attr("font-size", "25")
+        //     .attr("fill", "Black")
+        //     .attr("text-anchor", "start")
+        //     .text("Bad CDF Change w/ Action(s)")
 
-        svg.append("text")
-            .attr("x", 760)
-            .attr("y", 1260)
-            .attr("font-size", "25")
-            .attr("fill", "Black")
-            .attr("text-anchor", "end")
-            .text("Good CDF Change w/ Action(s)")
+        // svg.append("text")
+        //     .attr("x", 760)
+        //     .attr("y", 1260)
+        //     .attr("font-size", "25")
+        //     .attr("fill", "Black")
+        //     .attr("text-anchor", "end")
+        //     .text("Good CDF Change w/ Action(s)")
 
         svg.append("text")
             .attr("x", 0)
@@ -597,7 +633,15 @@ class Tab2Viz{
             .attr("font-size", "35")
             .attr("fill", "red")
             .attr("text-anchor", "start")
-            .text("Actions: Vitamin D")
+            .text("Sample = SRR5936079")
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 1360)
+            .attr("font-size", "35")
+            .attr("fill", "red")
+            .attr("text-anchor", "start")
+            .text("Sample has both Crohns and Diarrhea")
 
         // svg.append("text")
         //     .attr("x", 0)
@@ -1463,16 +1507,16 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Diarrhea Sample 1 Proximity to Crohns')
+                .text('Sample Proximity to Crohns')
 
                 svg.append("text")
                 // .attr("x", -450)
                 .attr("y", -580)
                 .attr("x", 540)
-                .attr("font-size", "38")
+                .attr("font-size", "30")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Diarrhea Sample 1 Proximity to Crohns Post Action(s)')
+                .text('Sample Proximity to Crohns Post GOOD Action(Moderate Intensity Exercise)')
             }
             else if (i === 4){
                 svg.append("text")
@@ -1482,16 +1526,16 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Diarrhea Sample 2 Proximity to Crohns')
+                .text('Sample Proximity to Crohns')
 
                 svg.append("text")
                 // .attr("x", -450)
                 .attr("y", -580)
                 .attr("x", 540)
-                .attr("font-size", "38")
+                .attr("font-size", "30")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Diarrhea Sample 2 Proximity to Crohns Post Action(s)')
+                .text('Sample Proximity to Crohns Post BAD Action(Citrus Fruit Extract Supplementation)')
             }
             else if (i === 5){
                 svg.append("text")
@@ -1501,7 +1545,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Crohns Sample 1 Proximity to Crohns')
+                .text('Sample Proximity to Crohns')
 
                 svg.append("text")
                 // .attr("x", -450)
@@ -1510,26 +1554,26 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Crohns Sample 1 Proximity to Crohns Post Action(s)')
+                .text('Sample Proximity to Crohns Post GOOD & BAD Actions')
             }
             else if (i === 6){
-                svg.append("text")
-                // .attr("x", -480)
-                .attr("y", -580)
-                .attr("x", -540)
-                .attr("font-size", "38")
-                .attr("fill", "black")
-                .attr("text-anchor", "middle") 
-                .text('Crohns Sample 2 Proximity to Crohns')
+                // svg.append("text")
+                // // .attr("x", -480)
+                // .attr("y", -580)
+                // .attr("x", -540)
+                // .attr("font-size", "38")
+                // .attr("fill", "black")
+                // .attr("text-anchor", "middle") 
+                // .text('Crohns Sample 2 Proximity to Crohns')
 
-                svg.append("text")
-                // .attr("x", -450)
-                .attr("y", -580)
-                .attr("x", 540)
-                .attr("font-size", "38")
-                .attr("fill", "black")
-                .attr("text-anchor", "middle") 
-                .text('Crohns Sample 2 Proximity to Crohns Post Action(s)')
+                // svg.append("text")
+                // // .attr("x", -450)
+                // .attr("y", -580)
+                // .attr("x", 540)
+                // .attr("font-size", "38")
+                // .attr("fill", "black")
+                // .attr("text-anchor", "middle") 
+                // .text('Crohns Sample 2 Proximity to Crohns Post Action(s)')
             }
             else if (i === 7){
                 svg.append("text")
@@ -2175,10 +2219,23 @@ class Tab2Viz{
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleLIO(sampleCDF)
 
+                            let sampleCDF1
+                            if (ival === 3){
+                                sampleCDF1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                            }
+                            else if (ival === 4){
+                                sampleCDF1 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                            }
+                            else if (ival === 5){
+                                let val1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = (val1 + val2) / 2
+                            }
+
                             // let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
                             // let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
-                            let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
-                            let interventionCDF = sampleCDF3
+                            // let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
+                            let interventionCDF = sampleCDF1
                             let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
@@ -2219,10 +2276,20 @@ class Tab2Viz{
                             let colorRGB = bivariateColorScaleLIO(sampleCDF)
 
 
-                            // let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
-                            // let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
-                            let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
-                            let interventionCDF = sampleCDF3
+                            let sampleCDF1
+                            if (ival === 3){
+                                sampleCDF1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                            }
+                            else if (ival === 4){
+                                sampleCDF1 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                            }
+                            else if (ival === 5){
+                                let val1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = (val1 + val2) / 2
+                            }
+
+                            let interventionCDF = sampleCDF1
                             let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
@@ -2268,10 +2335,21 @@ class Tab2Viz{
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleHIO(sampleCDF)
 
-                            // let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
-                            // let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
-                            let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
-                            let interventionCDF = sampleCDF3
+                            let sampleCDF1
+                            if (ival === 3){
+                                sampleCDF1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                            }
+                            else if (ival === 4){
+                                sampleCDF1 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                            }
+                            else if (ival === 5){
+                                let val1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = (val1 + val2) / 2
+                            }
+
+
+                            let interventionCDF = sampleCDF1
                             let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
@@ -2314,8 +2392,23 @@ class Tab2Viz{
 
                             // let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
                             // let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
-                            let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
-                            let interventionCDF = sampleCDF3
+                            // let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
+
+                            let sampleCDF1
+                            if (ival === 3){
+                                sampleCDF1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                            }
+                            else if (ival === 4){
+                                sampleCDF1 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                            }
+                            else if (ival === 5){
+                                let val1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = (val1 + val2) / 2
+                            }
+
+
+                            let interventionCDF = sampleCDF1
                             let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
