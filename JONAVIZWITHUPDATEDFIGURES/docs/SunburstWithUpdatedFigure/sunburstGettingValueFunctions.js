@@ -71,6 +71,44 @@ function findTaxonCDFProinflammatoryDietbyName(dataArray, taxonName){
     return element ? element.ProinflammatoryDiet : null;
 }
 
+function findTaxonCDFProbioticContainingBifidobacteriumbyName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.ProbioticContainingBifidobacterium : null;
+}
+
+function findTaxonCDFGlutenFreeDietbyName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.GlutenFreeDiet : null;
+}
+
+
+
+function findTaxonCDFRedWinebyName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.RedWine : null;
+}
+
+function findTaxonCDFCowMilkbyName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.CowMilk : null;
+}
+
+// function findTaxonCDFProbioticContainingBifidobacteriumbyName(dataArray, taxonName){
+//     const element = dataArray.find(item => item.name === taxonName);
+//     return element ? element.ProbioticContainingBifidobacterium : null;
+// }
+
+// function findTaxonCDFGlutenFreeDietbyName(dataArray, taxonName){
+//     const element = dataArray.find(item => item.name === taxonName);
+//     return element ? element.GlutenFreeDiet : null;
+// }
+
+
+
+
+
+
+
 
 
 

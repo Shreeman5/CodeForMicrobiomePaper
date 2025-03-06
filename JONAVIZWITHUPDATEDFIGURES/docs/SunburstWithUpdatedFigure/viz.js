@@ -339,7 +339,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("organism associated with Crohns where arc")  
+            .text("organism associated with Diarrhea where arc")  
 
         svg.append("text")
             .attr("x", 0)
@@ -363,7 +363,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("weight) for Crohns. LIOs are indicated by ")
+            .text("weight) for Diarrhea. LIOs are indicated by ")
 
         svg.append("text")
             .attr("x", 0)
@@ -404,7 +404,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("Crohns where rectangle placement is")
+            .text("Diarrhea where rectangle placement is")
 
         svg.append("text")
             .attr("x", 0)
@@ -436,7 +436,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("bottom 53 organisms(by literature weight) for")
+            .text("bottom 70 organisms(by literature weight) for")
 
         svg.append("text")
             .attr("x", 0)
@@ -444,7 +444,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("Crohns. LIOs are indicated by black lines at")
+            .text("Diarrhea. LIOs are indicated by black lines at")
 
         svg.append("text")
             .attr("x", 0)
@@ -622,7 +622,7 @@ class Tab2Viz{
             .attr("font-size", "35")
             .attr("fill", "red")
             .attr("text-anchor", "start")
-            .text("Sample = ERR262943")
+            .text("Sample = SRR5936079")
 
         // svg.append("text")
         //     .attr("x", 0)
@@ -1370,7 +1370,7 @@ class Tab2Viz{
         let csvData = this.structureData[1]
         let myRow
         for (const row in csvData){
-            if (csvData[row].Name === 'Crohn Disease'){
+            if (csvData[row].Name === 'Diarrhea'){
                 myRow = csvData[row]
                 break
             }
@@ -1496,7 +1496,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample Proximity to Crohns')
+                .text('Sample Proximity to Diarrhea')
 
                 svg.append("text")
                 // .attr("x", -450)
@@ -1505,7 +1505,7 @@ class Tab2Viz{
                 .attr("font-size", "30")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample Proximity to Crohns Post BEST Action(Mediterranean Diet)')
+                .text('Sample Proximity to Diarrhea Post BEST Action(Red Wine)')
             }
             else if (i === 4){
                 svg.append("text")
@@ -1515,7 +1515,7 @@ class Tab2Viz{
                 .attr("font-size", "38")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample Proximity to Crohns')
+                .text('Sample Proximity to Diarrhea')
 
                 svg.append("text")
                 // .attr("x", -450)
@@ -1524,7 +1524,7 @@ class Tab2Viz{
                 .attr("font-size", "30")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample Proximity to Crohns Post WORST Action(Citrus Fruit Extract Supplementation)')
+                .text("Sample Proximity to Diarrhea Post WORST Action(Cow's milk)")
             }
             else if (i === 5){
                 svg.append("text")
@@ -2239,14 +2239,14 @@ class Tab2Viz{
 
                             let sampleCDF1
                             if (ival === 3){
-                                sampleCDF1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 4){
-                                sampleCDF1 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 5){
-                                let val1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
-                                let val2 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
+                                let val1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
                                 sampleCDF1 = (val1 + val2) / 2
                             }
 
@@ -2311,14 +2311,14 @@ class Tab2Viz{
 
                             let sampleCDF1
                             if (ival === 3){
-                                sampleCDF1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 4){
-                                sampleCDF1 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 5){
-                                let val1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
-                                let val2 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
+                                let val1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
                                 sampleCDF1 = (val1 + val2) / 2
                             }
 
@@ -2386,14 +2386,14 @@ class Tab2Viz{
 
                             let sampleCDF1
                             if (ival === 3){
-                                sampleCDF1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 4){
-                                sampleCDF1 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 5){
-                                let val1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
-                                let val2 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
+                                let val1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
                                 sampleCDF1 = (val1 + val2) / 2
                             }
 
@@ -2461,14 +2461,14 @@ class Tab2Viz{
 
                             let sampleCDF1
                             if (ival === 3){
-                                sampleCDF1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 4){
-                                sampleCDF1 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 5){
-                                let val1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
-                                let val2 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
+                                let val1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
                                 sampleCDF1 = (val1 + val2) / 2
                             }
 
