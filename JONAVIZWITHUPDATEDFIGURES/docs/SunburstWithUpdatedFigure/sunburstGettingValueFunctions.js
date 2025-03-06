@@ -26,25 +26,64 @@ function findTaxonCDF3byName(dataArray, taxonName){
 }
 
 
-function findTaxonCDFKiwifruitCapsulesbyName(dataArray, taxonName){
+// function findTaxonCDFKiwifruitCapsulesbyName(dataArray, taxonName){
+//     const element = dataArray.find(item => item.name === taxonName);
+//     return element ? element.KiwifruitCapsules : null;
+// }
+
+// function findTaxonCDFHighCarbohydrateDietbyName(dataArray, taxonName){
+//     const element = dataArray.find(item => item.name === taxonName);
+//     return element ? element.HighCarbohydrateDiet : null;
+// }
+
+
+//ERR262943
+// function findTaxonCDFMediterraneanDietbyName(dataArray, taxonName){
+//     const element = dataArray.find(item => item.name === taxonName);
+//     return element ? element.MediterraneanDiet : null;
+// }
+
+// function findTaxonCDFProinflammatoryDietbyName(dataArray, taxonName){
+//     const element = dataArray.find(item => item.name === taxonName);
+//     return element ? element.ProinflammatoryDiet : null;
+// }
+
+
+// //SRR5936079
+// function findTaxonCDFMediterraneanDiet2byName(dataArray, taxonName){
+//     const element = dataArray.find(item => item.name === taxonName);
+//     return element ? element.MediterraneanDiet : null;
+// }
+
+// function findTaxonCDFCitrusFruitExtractSupplementationbyName(dataArray, taxonName){
+//     const element = dataArray.find(item => item.name === taxonName);
+//     return element ? element.CitrusFruitExtractSupplementation : null;
+// }
+
+//ERR262943
+function findTaxonCDFMediterraneanDietbyName(dataArray, taxonName){
     const element = dataArray.find(item => item.name === taxonName);
-    return element ? element.KiwifruitCapsules : null;
+    return element ? element.MediterraneanDiet : null;
 }
 
-function findTaxonCDFHighCarbohydrateDietbyName(dataArray, taxonName){
+function findTaxonCDFProinflammatoryDietbyName(dataArray, taxonName){
     const element = dataArray.find(item => item.name === taxonName);
-    return element ? element.HighCarbohydrateDiet : null;
+    return element ? element.ProinflammatoryDiet : null;
 }
 
-function findTaxonCDFModerateIntensityExercisebyName(dataArray, taxonName){
-    const element = dataArray.find(item => item.name === taxonName);
-    return element ? element.ModerateIntensityExercise : null;
-}
 
-function findTaxonCDFCitrusFruitExtractSupplementationbyName(dataArray, taxonName){
-    const element = dataArray.find(item => item.name === taxonName);
-    return element ? element.CitrusFruitExtractSupplementation : null;
-}
+
+
+
+// function findTaxonCDFModerateIntensityExercisebyName(dataArray, taxonName){
+//     const element = dataArray.find(item => item.name === taxonName);
+//     return element ? element.ModerateIntensityExercise : null;
+// }
+
+// function findTaxonCDFCitrusFruitExtractSupplementationbyName(dataArray, taxonName){
+//     const element = dataArray.find(item => item.name === taxonName);
+//     return element ? element.CitrusFruitExtractSupplementation : null;
+// }
 
 // find Taxon CDF by Name, different function from above
 function findTaxonCDFbyName2(dataArray, taxonName){

@@ -562,70 +562,59 @@ class Tab2Viz{
             .text("100% Organism Similarity")
 
 
-
-
-        // const gradient9 = svg.append("defs")
-        //     .append("linearGradient")
-        //     .attr("id", "gradient9")
-        //     .attr("x1", "0%").attr("y1", "0%")
-        //     .attr("x2", "100%").attr("y2", "0%");
+        const gradient6 = svg.append("defs")
+            .append("linearGradient")
+            .attr("id", "gradient8")
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "0%");
         
-        // // Define gradient color stops
-        // gradient9.append("stop")
-        //     .attr("offset", "0%")
-        //     .attr("stop-color", "yellow");
-        
-        // gradient9.append("stop")
-        //     .attr("offset", "100%")
-        //     .attr("stop-color", "white");
-        
-        // // Append the rectangle with the gradient
-        // svg.append("rect")
-        //     .attr("x", 0)
-        //     .attr("y", 1200)
-        //     .attr("width", 380)
-        //     .attr("height", 30)
-        //     .style("fill", "url(#gradient9)");
+        gradient6.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", "rgb(139, 128, 0)");
 
-
-        // const gradient10 = svg.append("defs")
-        //     .append("linearGradient")
-        //     .attr("id", "gradient10")
-        //     .attr("x1", "0%").attr("y1", "0%")
-        //     .attr("x2", "100%").attr("y2", "0%");
+        gradient6.append("stop")
+            .attr("offset", "49%")
+            .attr("stop-color", "rgb(255, 255, 224)");
         
-        // // Define gradient color stops
-        // gradient10.append("stop")
-        //     .attr("offset", "0%")
-        //     .attr("stop-color", "white");
-        
-        // gradient10.append("stop")
-        //     .attr("offset", "100%")
-        //     .attr("stop-color", "green");
-        
-        // // Append the rectangle with the gradient
-        // svg.append("rect")
-        //     .attr("x", 380)
-        //     .attr("y", 1200)
-        //     .attr("width", 380)
-        //     .attr("height", 30)
-        //     .style("fill", "url(#gradient10)");
+        gradient6.append("stop")
+            .attr("offset", "50%")
+            .attr("stop-color", "white");
 
-        // svg.append("text")
-        //     .attr("x", 0)
-        //     .attr("y", 1260)
-        //     .attr("font-size", "25")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "start")
-        //     .text("Bad CDF Change w/ Action(s)")
+        gradient6.append("stop")
+            .attr("offset", "51%")
+            .attr("stop-color", "rgb(144, 238, 144)")
+        
+        gradient6.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", "rgb(18, 93, 13)");
+        
+        // Append the rectangle with the gradient fill
+        svg.append("rect")
+            .attr("x", 0)
+            .attr("y", 1200)
+            .attr("width", 760)
+            .attr("height", 30)
+            .style("fill", "url(#gradient8)");
 
-        // svg.append("text")
-        //     .attr("x", 760)
-        //     .attr("y", 1260)
-        //     .attr("font-size", "25")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text("Good CDF Change w/ Action(s)")
+        
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 1260)
+            .attr("font-size", "25")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("Bad CDF Change w/ Action(s)")
+
+        svg.append("text")
+            .attr("x", 760)
+            .attr("y", 1260)
+            .attr("font-size", "25")
+            .attr("fill", "Black")
+            .attr("text-anchor", "end")
+            .text("Good CDF Change w/ Action(s)")
 
         svg.append("text")
             .attr("x", 0)
@@ -633,15 +622,15 @@ class Tab2Viz{
             .attr("font-size", "35")
             .attr("fill", "red")
             .attr("text-anchor", "start")
-            .text("Sample = SRR5936079")
+            .text("Sample = ERR262943")
 
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 1360)
-            .attr("font-size", "35")
-            .attr("fill", "red")
-            .attr("text-anchor", "start")
-            .text("Sample has both Crohns and Diarrhea")
+        // svg.append("text")
+        //     .attr("x", 0)
+        //     .attr("y", 1360)
+        //     .attr("font-size", "35")
+        //     .attr("fill", "red")
+        //     .attr("text-anchor", "start")
+        //     .text("Sample has both Crohns and Diarrhea")
 
         // svg.append("text")
         //     .attr("x", 0)
@@ -1516,7 +1505,7 @@ class Tab2Viz{
                 .attr("font-size", "30")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample Proximity to Crohns Post GOOD Action(Moderate Intensity Exercise)')
+                .text('Sample Proximity to Crohns Post BEST Action(Mediterranean Diet)')
             }
             else if (i === 4){
                 svg.append("text")
@@ -1535,7 +1524,7 @@ class Tab2Viz{
                 .attr("font-size", "30")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text('Sample Proximity to Crohns Post BAD Action(Citrus Fruit Extract Supplementation)')
+                .text('Sample Proximity to Crohns Post WORST Action(Citrus Fruit Extract Supplementation)')
             }
             else if (i === 5){
                 svg.append("text")
@@ -2156,6 +2145,7 @@ class Tab2Viz{
 
             if (i >= 3){
                 // console.log('X:', transformedData3)
+                // console.log(presentTaxons)
                 let ival = i
 
                 let curatedPresentTaxons = []
@@ -2167,7 +2157,11 @@ class Tab2Viz{
                     curatedPresentTaxons.push(taxonName)
                 }
 
-                transformedData = transformedData.filter(obj => curatedPresentTaxons.includes(obj.organism));
+                // console.log(presentTaxons)
+                // console.log(transformedData)
+
+                // transformedData = transformedData.filter(obj => curatedPresentTaxons.includes(obj.organism));
+                // console.log(transformedData)
                 // if (i === 3){
                 //     console.log("transformedData:", transformedData)
                 //     console.log(this.structureData[ival])
@@ -2197,12 +2191,12 @@ class Tab2Viz{
 
 
                 const colorDifferenceScaleLIO = d3.scaleLinear()
-                                        .domain([-1, -0.01, 0, 0.01, 1])
-                                        .range(["darkred", "rgb(255, 200, 200)", "white", "rgb(220, 230, 255)", "rgb(210, 215, 255)"]);
+                                        .domain([-0.01, -0.0001, 0, 0.0001, 0.01])
+                                        .range(["rgb(139, 128, 0)", "rgb(255, 255, 224)", "white", "rgb(144, 238, 144)", "rgb(18, 93, 13)"]);
 
                 const colorDifferenceScaleHIO = d3.scaleLinear()
-                                        .domain([-1, -0.01, 0, 0.01, 1])
-                                .range(["rgb(210, 215, 255)", "rgb(220, 230, 255)", "white", "rgb(255, 200, 200)", "darkred"]);
+                                        .domain([-0.01, -0.0001, 0, 0.0001, 0.01])
+                                        .range(["rgb(18, 93, 13)", "rgb(144, 238, 144)", "white", "rgb(255, 255, 224)", "rgb(139, 128, 0)"]);
 
                 // const selectedContainer = document.getElementById("selectedContainer-T2");
                 // const selectedSpans = selectedContainer.querySelectorAll("span");
@@ -2212,6 +2206,26 @@ class Tab2Viz{
                 //   });
                 // console.log("Currently selected items:", selectedItems);
 
+        //         gradient6.append("stop")
+        //     .attr("offset", "0%")
+        //     .attr("stop-color", "rgb(139, 128, 0)");
+
+        // gradient6.append("stop")
+        //     .attr("offset", "49%")
+        //     .attr("stop-color", "rgb(255, 255, 224)");
+        
+        // gradient6.append("stop")
+        //     .attr("offset", "50%")
+        //     .attr("stop-color", "white");
+
+        // gradient6.append("stop")
+        //     .attr("offset", "51%")
+        //     .attr("stop-color", "rgb(144, 238, 144)")
+        
+        // gradient6.append("stop")
+        //     .attr("offset", "100%")
+        //     .attr("stop-color", "rgb(18, 93, 13)");
+
 
                 const newArray = [];
 
@@ -2219,21 +2233,20 @@ class Tab2Viz{
                 for (const obj of transformedData) {
                     if (obj.weight < 0){
                         let sampleCDF = findTaxonCDFbyName(that.structureData[ival], obj.organism)
-                        // const result = getOrganismWeight(transformedData3, obj.organism);
                         if (sampleCDF == null){
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleLIO(sampleCDF)
 
                             let sampleCDF1
                             if (ival === 3){
-                                sampleCDF1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 4){
-                                sampleCDF1 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 5){
-                                let val1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
-                                let val2 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                let val1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
                                 sampleCDF1 = (val1 + val2) / 2
                             }
 
@@ -2244,7 +2257,22 @@ class Tab2Viz{
                             let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
-                            let differenceInColor = colorDifferenceScaleLIO(differenceInCDF)
+                            if (ival === 3){
+                                // console.log('LIOSampleCDFNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
+                                // console.log('LIOSampleCDFNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
+                                console.log('LIOSampleCDFNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
+                            }
+                            
+                            let differenceInColor 
+                            if (differenceInCDF > 0.01){
+                                differenceInColor = "rgb(18, 93, 13)"
+                            }
+                            else if (differenceInCDF < -0.01){
+                                differenceInColor = "rgb(139, 128, 0)"
+                            }
+                            else{
+                                differenceInColor = colorDifferenceScaleLIO(differenceInCDF)
+                            }
                             // if (ival === 3){
                             //     console.log("interventionValue: ", interventionCDF, obj.organism)
                             // }
@@ -2283,14 +2311,14 @@ class Tab2Viz{
 
                             let sampleCDF1
                             if (ival === 3){
-                                sampleCDF1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 4){
-                                sampleCDF1 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 5){
-                                let val1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
-                                let val2 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                let val1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
                                 sampleCDF1 = (val1 + val2) / 2
                             }
 
@@ -2298,7 +2326,23 @@ class Tab2Viz{
                             let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
-                            let differenceInColor = colorDifferenceScaleLIO(differenceInCDF)
+
+                            if (ival === 3){
+                                // console.log('LIOSampleCDFNotNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
+                                // console.log('LIOSampleCDFNotNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
+                                console.log('LIOSampleCDFNotNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
+                            }
+                            
+                            let differenceInColor 
+                            if (differenceInCDF > 0.01){
+                                differenceInColor = "rgb(18, 93, 13)"
+                            }
+                            else if (differenceInCDF < -0.01){
+                                differenceInColor = "rgb(139, 128, 0)"
+                            }
+                            else{
+                                differenceInColor = colorDifferenceScaleLIO(differenceInCDF)
+                            }
                             // if (ival === 3){
                             //     console.log("interventionValue2: ", interventionCDF, obj.organism)
                             // }
@@ -2342,14 +2386,14 @@ class Tab2Viz{
 
                             let sampleCDF1
                             if (ival === 3){
-                                sampleCDF1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 4){
-                                sampleCDF1 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 5){
-                                let val1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
-                                let val2 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                let val1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
                                 sampleCDF1 = (val1 + val2) / 2
                             }
 
@@ -2358,7 +2402,23 @@ class Tab2Viz{
                             let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
-                            let differenceInColor = colorDifferenceScaleHIO(differenceInCDF)
+
+                            if (ival === 3){
+                                // console.log('HIOSampleCDFNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
+                                // console.log('HIOSampleCDFNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
+                                console.log('HIOSampleCDFNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
+                            }
+                            
+                            let differenceInColor 
+                            if (differenceInCDF > 0.01){
+                                differenceInColor = "rgb(139, 128, 0)"
+                            }
+                            else if (differenceInCDF < -0.01){
+                                differenceInColor = "rgb(18, 93, 13)"
+                            }
+                            else{
+                                differenceInColor = colorDifferenceScaleHIO(differenceInCDF)
+                            }
                             // if (ival === 3){
                             //     console.log("interventionValue3: ", interventionCDF, obj.organism)
                             // }
@@ -2401,14 +2461,14 @@ class Tab2Viz{
 
                             let sampleCDF1
                             if (ival === 3){
-                                sampleCDF1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 4){
-                                sampleCDF1 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                sampleCDF1 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
                             }
                             else if (ival === 5){
-                                let val1 = Number(findTaxonCDFModerateIntensityExercisebyName(that.structureData[ival], obj.organism))
-                                let val2 = Number(findTaxonCDFCitrusFruitExtractSupplementationbyName(that.structureData[ival], obj.organism))
+                                let val1 = Number(findTaxonCDFMediterraneanDietbyName(that.structureData[ival], obj.organism))
+                                let val2 = Number(findTaxonCDFProinflammatoryDietbyName(that.structureData[ival], obj.organism))
                                 sampleCDF1 = (val1 + val2) / 2
                             }
 
@@ -2417,7 +2477,23 @@ class Tab2Viz{
                             let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
-                            let differenceInColor = colorDifferenceScaleHIO(differenceInCDF)
+
+                            if (ival === 3){
+                                // console.log('HIOSampleCDFNotNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
+                                // console.log('HIOSampleCDFNotNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
+                                console.log('HIOSampleCDFNotNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
+                            }
+                            
+                            let differenceInColor 
+                            if (differenceInCDF > 0.01){
+                                differenceInColor = "rgb(139, 128, 0)"
+                            }
+                            else if (differenceInCDF < -0.01){
+                                differenceInColor = "rgb(18, 93, 13)"
+                            }
+                            else{
+                                differenceInColor = colorDifferenceScaleHIO(differenceInCDF)
+                            }
                             // if (ival === 3){
                             //     console.log("interventionValue4: ", interventionCDF, obj.organism)
                             // }
@@ -2581,7 +2657,16 @@ class Tab2Viz{
                         return d.data.colorDifference || "#ccc"; // Fallback color if undefined
                     })
                     .attr("stroke", "black")
-                    .style("stroke-width", "1px");
+                    .style("stroke-width",d => {
+                        return "1px"
+                        // // console.log(d.data.colorDifference)
+                        // if (d.data.colorDifference === 'rgb(255, 255, 255)'){
+                        //     return "1px"
+                        // }
+                        // else{
+                        //     return "5px"
+                        // }
+                    });
 
 
                 // Create bar code chart (bottom 40%)
@@ -2659,7 +2744,16 @@ class Tab2Viz{
                 .attr("height", barcodeHeight/15)
                 .attr("fill", d => d.colorDifference)
                 .attr("stroke", "black")
-                .style("stroke-width", "1px");
+                .style("stroke-width", d => {
+                    return "1px"
+                    // console.log(d.colorDifference)
+                    // if (d.colorDifference === 'rgb(255, 255, 255)'){
+                    //     return "1px"
+                    // }
+                    // else{
+                    //     return "5px"
+                    // }
+                });
             }
             // if (i === 4){
 

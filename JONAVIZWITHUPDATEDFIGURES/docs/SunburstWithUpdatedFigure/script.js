@@ -401,7 +401,7 @@ function renderVizDivs(numberOfDivs){
     let x = 0
     let y = 0
     if (numberOfDivs >= 1){
-        numberOfDivs = 7
+        numberOfDivs = 5
     }
     else{
         numberOfDivs = 0
