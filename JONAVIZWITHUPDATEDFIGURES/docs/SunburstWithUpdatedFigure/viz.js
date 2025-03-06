@@ -622,7 +622,7 @@ class Tab2Viz{
             .attr("font-size", "35")
             .attr("fill", "red")
             .attr("text-anchor", "start")
-            .text("Sample = SRR5936079")
+            .text("Sample = ERR719231")
 
         // svg.append("text")
         //     .attr("x", 0)
@@ -1524,7 +1524,7 @@ class Tab2Viz{
                 .attr("font-size", "30")
                 .attr("fill", "black")
                 .attr("text-anchor", "middle") 
-                .text("Sample Proximity to Diarrhea Post WORST Action(Cow's milk)")
+                .text("Sample Proximity to Diarrhea Post WORST Action(Cow's Milk)")
             }
             else if (i === 5){
                 svg.append("text")
@@ -2233,6 +2233,7 @@ class Tab2Viz{
                 for (const obj of transformedData) {
                     if (obj.weight < 0){
                         let sampleCDF = findTaxonCDFbyName(that.structureData[ival], obj.organism)
+                        
                         if (sampleCDF == null){
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleLIO(sampleCDF)
@@ -2240,9 +2241,15 @@ class Tab2Viz{
                             let sampleCDF1
                             if (ival === 3){
                                 sampleCDF1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
+                                if (Number.isNaN(sampleCDF1)){
+                                    sampleCDF1 = sampleCDF
+                                }
                             }
                             else if (ival === 4){
                                 sampleCDF1 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
+                                if (Number.isNaN(sampleCDF1)){
+                                    sampleCDF1 = sampleCDF
+                                }
                             }
                             else if (ival === 5){
                                 let val1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
@@ -2258,9 +2265,7 @@ class Tab2Viz{
 
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
                             if (ival === 3){
-                                // console.log('LIOSampleCDFNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
-                                // console.log('LIOSampleCDFNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
-                                console.log('LIOSampleCDFNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
+                                // console.log('A:', interventionCDF)
                             }
                             
                             let differenceInColor 
@@ -2312,9 +2317,15 @@ class Tab2Viz{
                             let sampleCDF1
                             if (ival === 3){
                                 sampleCDF1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
+                                if (Number.isNaN(sampleCDF1)){
+                                    sampleCDF1 = sampleCDF
+                                }
                             }
                             else if (ival === 4){
                                 sampleCDF1 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
+                                if (Number.isNaN(sampleCDF1)){
+                                    sampleCDF1 = sampleCDF
+                                }
                             }
                             else if (ival === 5){
                                 let val1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
@@ -2328,9 +2339,10 @@ class Tab2Viz{
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
 
                             if (ival === 3){
+                                // console.log('B:', interventionCDF)
                                 // console.log('LIOSampleCDFNotNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
                                 // console.log('LIOSampleCDFNotNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
-                                console.log('LIOSampleCDFNotNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
+                                // console.log('LIOSampleCDFNotNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
                             }
                             
                             let differenceInColor 
@@ -2379,6 +2391,7 @@ class Tab2Viz{
                     }
                     else{
                         let sampleCDF = findTaxonCDFbyName(that.structureData[ival], obj.organism)
+                        // console.log('B:', sampleCDF)
                         // const result = getOrganismWeight(transformedData3, obj.organism);
                         if (sampleCDF == null){
                             sampleCDF = '0'
@@ -2387,9 +2400,15 @@ class Tab2Viz{
                             let sampleCDF1
                             if (ival === 3){
                                 sampleCDF1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
+                                if (Number.isNaN(sampleCDF1)){
+                                    sampleCDF1 = sampleCDF
+                                }
                             }
                             else if (ival === 4){
                                 sampleCDF1 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
+                                if (Number.isNaN(sampleCDF1)){
+                                    sampleCDF1 = sampleCDF
+                                }
                             }
                             else if (ival === 5){
                                 let val1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
@@ -2404,9 +2423,10 @@ class Tab2Viz{
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
 
                             if (ival === 3){
+                                // console.log('C:', interventionCDF)
                                 // console.log('HIOSampleCDFNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
                                 // console.log('HIOSampleCDFNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
-                                console.log('HIOSampleCDFNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
+                                // console.log('HIOSampleCDFNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
                             }
                             
                             let differenceInColor 
@@ -2462,9 +2482,15 @@ class Tab2Viz{
                             let sampleCDF1
                             if (ival === 3){
                                 sampleCDF1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
+                                if (Number.isNaN(sampleCDF1)){
+                                    sampleCDF1 = sampleCDF
+                                }
                             }
                             else if (ival === 4){
                                 sampleCDF1 = Number(findTaxonCDFCowMilkbyName(that.structureData[ival], obj.organism))
+                                if (Number.isNaN(sampleCDF1)){
+                                    sampleCDF1 = sampleCDF
+                                }
                             }
                             else if (ival === 5){
                                 let val1 = Number(findTaxonCDFRedWinebyName(that.structureData[ival], obj.organism))
@@ -2479,9 +2505,10 @@ class Tab2Viz{
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
 
                             if (ival === 3){
+                                // console.log('D:', interventionCDF, 'Organism: ', obj.organism)
                                 // console.log('HIOSampleCDFNotNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
                                 // console.log('HIOSampleCDFNotNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
-                                console.log('HIOSampleCDFNotNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
+                                // console.log('HIOSampleCDFNotNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
                             }
                             
                             let differenceInColor 

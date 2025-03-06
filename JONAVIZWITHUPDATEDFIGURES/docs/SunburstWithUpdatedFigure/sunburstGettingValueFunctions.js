@@ -82,7 +82,7 @@ function findTaxonCDFGlutenFreeDietbyName(dataArray, taxonName){
 }
 
 
-
+//SRR
 function findTaxonCDFRedWinebyName(dataArray, taxonName){
     const element = dataArray.find(item => item.name === taxonName);
     return element ? element.RedWine : null;
@@ -93,15 +93,17 @@ function findTaxonCDFCowMilkbyName(dataArray, taxonName){
     return element ? element.CowMilk : null;
 }
 
-// function findTaxonCDFProbioticContainingBifidobacteriumbyName(dataArray, taxonName){
-//     const element = dataArray.find(item => item.name === taxonName);
-//     return element ? element.ProbioticContainingBifidobacterium : null;
-// }
+function findTaxonCDFPlantBasedDietbyName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.PlantBasedDiet : null;
+}
 
-// function findTaxonCDFGlutenFreeDietbyName(dataArray, taxonName){
-//     const element = dataArray.find(item => item.name === taxonName);
-//     return element ? element.GlutenFreeDiet : null;
-// }
+function findTaxonCDFCheesebyName(dataArray, taxonName){
+    const element = dataArray.find(item => item.name === taxonName);
+    return element ? element.Cheese : null;
+}
+
+
 
 
 
