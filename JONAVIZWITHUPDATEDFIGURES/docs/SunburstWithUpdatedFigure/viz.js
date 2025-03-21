@@ -2601,13 +2601,13 @@ class Tab2Viz{
 
                 // Add the main arcs
                 donutGroup.selectAll("path.main")
-                .data(pie(donutArray))
-                .enter().append("path")
-                .attr("class", "main")
-                .attr("d", arc)
-                .attr("fill", d => d.data.color)
-                .attr("stroke", "black")
-                .style("stroke-width", "2px");
+                    .data(pie(donutArray))
+                    .enter().append("path")
+                    .attr("class", "main")
+                    .attr("d", arc)
+                    .attr("fill", d => d.data.color)
+                    .attr("stroke", "black")
+                    .style("stroke-width", "2px");
 
                 // Add the lifted inner strokes for negative weights
                 donutGroup.selectAll("path.inner-stroke")
@@ -2618,16 +2618,139 @@ class Tab2Viz{
                 .attr("fill", "none")
                 .attr("stroke", d => d.data.weight < 0 ? "black" : "white")
                 .style("stroke-width", "10px");
-
+            
                 // Add the lifted outer strokes for positive weights
                 donutGroup.selectAll("path.outer-stroke")
-                .data(pie(donutArray))
-                .enter().append("path")
-                .attr("class", "outer-stroke")
-                .attr("d", outerArc)
-                .attr("fill", "none")
-                .attr("stroke", d => d.data.weight > 0 ? "black" : "white")
-                .style("stroke-width", "10px");
+                    .data(pie(donutArray))
+                    .enter().append("path")
+                    .attr("class", "outer-stroke")
+                    .attr("d", outerArc)
+                    .attr("fill", "none")
+                    .attr("stroke", d => d.data.weight > 0 ? "black" : "white")
+                    .style("stroke-width", "10px");
+
+                donutGroup.append("defs").append("marker")
+                    .attr("id", "arrowhead")
+                    .attr("viewBox", "0 -5 10 10")
+                    .attr("refX", 8)
+                    .attr("refY", 0)
+                    .attr("markerWidth", 6)
+                    .attr("markerHeight", 6)
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", "M0,-5L10,0L0,5")
+                    .attr("fill", "black");
+
+                // After rendering, find the first black inner stroke and add the label
+                // Use a slight delay to ensure all elements are rendered
+                setTimeout(() => {
+                    // Find the first path with inner-stroke class that has black stroke
+                    const firstBlackInnerStroke = donutGroup.selectAll("path.inner-stroke")
+                        .filter(function() {
+                            return d3.select(this).attr("stroke") === "black";
+                        })
+                        .nodes()[0];
+                    
+                    if (firstBlackInnerStroke) {
+                        // Get the centroid of this path to position our line
+                        const firstData = d3.select(firstBlackInnerStroke).datum();
+                        const angle = (firstData.startAngle + firstData.endAngle) / 2;
+                        const radius = innerArc.innerRadius()();
+                        
+                        // Calculate line start point (on the inner edge of the inner stroke)
+                        const lineStartX = Math.sin(angle) * radius;
+                        const lineStartY = -Math.cos(angle) * radius;
+                        
+                        // Calculate line end point (offset inward and to side)
+                        const lineEndX = 350
+                        const lineEndY = -500
+                        
+                        // Add the line
+                        donutGroup.append("line")
+                                    .attr("class", "label-line")
+                                    .attr("x1", lineStartX)
+                                    .attr("y1", lineStartY)
+                                    .attr("x2", lineEndX)
+                                    .attr("y2", lineEndY)
+                                    .attr("stroke", "black")
+                                    .attr("stroke-width", 3)
+                                    // .attr("marker-end", "url(#arrowhead)");
+
+                        donutGroup.append("line")
+                            .attr("class", "label-line")
+                            .attr("x1", lineEndX)
+                            .attr("y1", lineEndY)
+                            .attr("x2", 400)
+                            .attr("y2", lineEndY)
+                            .attr("stroke", "black")
+                            .attr("stroke-width", 3)
+                            .attr("marker-end", "url(#arrowhead)")
+                        
+                        // Add the text label
+                        donutGroup.append("text")
+                            .attr("class", "label-text")
+                            .attr("x", 410)
+                            .attr("y", -490)
+                            .attr("text-anchor", lineStartX < 0 ? "end" : "start")
+                            .attr("dominant-baseline", "middle")
+                            .attr("font-size", "34px")
+                            .attr("font-weight", "bold")
+                            .text("LIO");
+                    }
+
+                    const firstBlackOuterStroke = donutGroup.selectAll("path.outer-stroke")
+                        .filter(function() {
+                            return d3.select(this).attr("stroke") === "black";
+                        })
+                        .nodes()[0];
+
+                    if (firstBlackOuterStroke) {
+                        // Get the centroid of this path to position our line
+                        const firstData = d3.select(firstBlackOuterStroke).datum();
+                        const angle = (firstData.startAngle + firstData.endAngle) / 2;
+                        const radius = outerArc.outerRadius()();
+                        
+                        // Calculate line start point (on the inner edge of the inner stroke)
+                        const lineStartX = Math.sin(angle) * radius;
+                        const lineStartY = -Math.cos(angle) * radius;
+                        
+                        // Calculate line end point (offset inward and to side)
+                        const lineEndX = 350
+                        const lineEndY = -450
+                        
+                        // Add the line
+                        donutGroup.append("line")
+                                    .attr("class", "label-line")
+                                    .attr("x1", lineStartX)
+                                    .attr("y1", lineStartY)
+                                    .attr("x2", lineEndX)
+                                    .attr("y2", lineEndY)
+                                    .attr("stroke", "black")
+                                    .attr("stroke-width", 3)
+                                    // .attr("marker-end", "url(#arrowhead)");
+
+                        donutGroup.append("line")
+                                    .attr("class", "label-line")
+                                    .attr("x1", lineEndX)
+                                    .attr("y1", lineEndY)
+                                    .attr("x2", 400)
+                                    .attr("y2", lineEndY)
+                                    .attr("stroke", "black")
+                                    .attr("stroke-width", 3)
+                                    .attr("marker-end", "url(#arrowhead)")
+                        
+                        // Add the text label
+                        donutGroup.append("text")
+                            .attr("class", "label-text")
+                            .attr("x", 410)
+                            .attr("y", -440)
+                            .attr("text-anchor", lineStartX < 0 ? "end" : "start")
+                            .attr("dominant-baseline", "middle")
+                            .attr("font-size", "34px")
+                            .attr("font-weight", "bold")
+                            .text("HIO");
+                    }
+                }, 100);
 
 
 
@@ -2686,13 +2809,6 @@ class Tab2Viz{
                     .attr("stroke", "black")
                     .style("stroke-width",d => {
                         return "1px"
-                        // // console.log(d.data.colorDifference)
-                        // if (d.data.colorDifference === 'rgb(255, 255, 255)'){
-                        //     return "1px"
-                        // }
-                        // else{
-                        //     return "5px"
-                        // }
                     });
 
 
@@ -2728,6 +2844,116 @@ class Tab2Viz{
                 .attr("stroke", "black")
                 .attr("stroke-width", "4px")
                 .attr("stroke-linecap", "round");
+
+                barcodeGroup.append("defs").append("marker")
+                    .attr("id", "barcode-arrowhead")
+                    .attr("viewBox", "0 -5 10 10")
+                    .attr("refX", 8)
+                    .attr("refY", 0)
+                    .attr("markerWidth", 6)
+                    .attr("markerHeight", 6)
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", "M0,-5L10,0L0,5")
+                    .attr("fill", "black");
+
+                setTimeout(() => {
+                    // Get the first line element
+                    const firstNegativeBar = barcodeArray.find(d => d.weight < 0);
+                    if (!firstNegativeBar) return; // If no positive-weight bars exist, exit
+                    
+                    const index = barcodeArray.indexOf(firstNegativeBar);
+                    
+                    // Position for the arrow start
+                    const arrowStartX = index * barWidth + barWidth / 2;  // Middle of the found bar
+                    const arrowStartY = -10;  // Same Y as the line
+                    
+                    // Position for the arrow end and label
+                    const arrowEndX = -10;
+                    const arrowEndY = -120;  // 30px away from line
+                    
+                    // Add the arrow line
+                    barcodeGroup.append("line")
+                        .attr("class", "label-arrow")
+                        .attr("x1", arrowStartX)
+                        .attr("y1", arrowStartY)
+                        .attr("x2", arrowEndX)
+                        .attr("y2", arrowEndY)
+                        .attr("stroke", "black")
+                        .attr("stroke-width", 3)
+
+                    barcodeGroup.append("line")
+                        .attr("class", "label-line")
+                        .attr("x1", -10)
+                        .attr("y1", -120)
+                        .attr("x2", -60)
+                        .attr("y2", -120)
+                        .attr("stroke", "black")
+                        .attr("stroke-width", 3)
+                        .attr("marker-end", "url(#barcode-arrowhead)")
+
+                    barcodeGroup.append("text")
+                        .attr("class", "label-text")
+                        .attr("x", -65)  // Position to the right of the arrow end
+                        .attr("y", -115)
+                        .attr("text-anchor", "end")
+                        .attr("dominant-baseline", "middle")
+                        .attr("font-size", "34px")
+                        .attr("font-weight", "bold")
+                        .text("LIO");
+
+                    const firstPositiveBar = barcodeArray.find(d => d.weight > 0);
+                    if (!firstPositiveBar) return; // If no positive-weight bars exist, exit
+                    
+                    const index2 = barcodeArray.indexOf(firstPositiveBar);
+
+                    const arrowStartX2 = index2 * barWidth + barWidth / 2;  // Middle of the found bar
+                    const arrowStartY2 = barcodeHeight/10 + 10;  // Same Y as the line
+                    
+                    // Position for the arrow end and label
+                    const arrowEndX2 = -10;
+                    const arrowEndY2 = 90;  // 30px away from line
+
+                    barcodeGroup.append("line")
+                        .attr("class", "label-arrow")
+                        .attr("x1", arrowStartX2)
+                        .attr("y1", arrowStartY2)
+                        .attr("x2", arrowEndX2)
+                        .attr("y2", arrowEndY2)
+                        .attr("stroke", "black")
+                        .attr("stroke-width", 3)
+
+                    barcodeGroup.append("line")
+                        .attr("class", "label-line")
+                        .attr("x1", arrowEndX2)
+                        .attr("y1", arrowEndY2)
+                        .attr("x2", -60)
+                        .attr("y2", arrowEndY2)
+                        .attr("stroke", "black")
+                        .attr("stroke-width", 3)
+                        .attr("marker-end", "url(#barcode-arrowhead)")
+
+                    barcodeGroup.append("text")
+                        .attr("class", "label-text")
+                        .attr("x", -65)  // Position to the right of the arrow end
+                        .attr("y", 95)
+                        .attr("text-anchor", "end")
+                        .attr("dominant-baseline", "middle")
+                        .attr("font-size", "34px")
+                        .attr("font-weight", "bold")
+                        .text("HIO");
+
+                    barcodeGroup.append("text")
+                        .attr("class", "label-text")
+                        .attr("x", -5)  // Position to the right of the arrow end
+                        .attr("y", 28)
+                        .attr("text-anchor", "end")
+                        .attr("dominant-baseline", "middle")
+                        .attr("font-size", "30px")
+                        .attr("font-weight", "bold")
+                        .text("ROLW = 31");
+
+                }, 100);
 
 
                 let startingpoint2 = -575 + availablespace + 540
