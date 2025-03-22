@@ -331,7 +331,7 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("For all the donuts, each arc represents an")
+            .text("LIO = Low Indicator Organism")
 
         svg.append("text")
             .attr("x", 0)
@@ -339,128 +339,16 @@ class Tab2Viz{
             .attr("font-size", "38")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("organism associated with Diarrhea where arc")  
+            .text("HIO = High Indicator Organism")  
 
         svg.append("text")
             .attr("x", 0)
             .attr("y", 190)
-            .attr("font-size", "38")
+            .attr("font-size", "35")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
-            .text("size is proportional to literature weight. Donut")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 250)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("contains top 30 organisms(by literature ")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 310)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("weight) for Diarrhea. LIOs are indicated by ")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 370)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("black inner arcs and HIOs are indicated by")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 430)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("black outer arcs.")    
-
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 530)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("For all the barcodes, each rectangle")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 590)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("represents an organism associated with")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 650)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("Diarrhea where rectangle placement is")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 710)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("proportional to literature weight: leftmost")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 770)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("rectangle has most weight and rightmost")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 830)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("rectangle has least weight. Barcode contains")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 890)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("bottom 70 organisms(by literature weight) for")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 950)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("Diarrhea. LIOs are indicated by black lines at")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 1010)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("the top of rectangles and HIOs are indicated")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 1070)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("by black lines at the bottom of rectangles.")
+            .text("ROLW = Rank of Organism by Literature Weight")   
+        
 
         const gradient5 = svg.append("defs")
             .append("linearGradient")
@@ -2269,44 +2157,27 @@ class Tab2Viz{
                             }
                             
                             let differenceInColor 
+                            let typeofDifference
                             if (differenceInCDF > 0.01){
                                 differenceInColor = "rgb(18, 93, 13)"
+                                typeofDifference = "good"
                             }
                             else if (differenceInCDF < -0.01){
                                 differenceInColor = "rgb(139, 128, 0)"
+                                typeofDifference = "bad"
                             }
                             else{
                                 differenceInColor = colorDifferenceScaleLIO(differenceInCDF)
                             }
-                            // if (ival === 3){
-                            //     console.log("interventionValue: ", interventionCDF, obj.organism)
-                            // }
-                            // let interventionCDF = Number(sampleCDF)
-                            // if (result != null){
-                            //     for (let i = 0; i < result.length; i++){
-                            //         if (result[i] < 0){
-                            //             interventionCDF = (interventionCDF + 0)/2
-                            //         }
-                            //         else if (result[i] > 0){ 
-                            //             interventionCDF = (interventionCDF + 1)/2
-                            //         }
-                            //     }
-                            // }
-                            // let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
-                            // let changeColor = 'black'
-                            // if (Number(interventionCDF) > Number(sampleCDF)){
-                            //     changeColor = 'green'
-                            // }
-                            // else if (Number(interventionCDF) < Number(sampleCDF)){
-                            //     changeColor = 'red'
-                            // }
+
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
                                 weight: obj.weight,
                                 color: colorRGB,
                                 interventionColor: colorRGB2,
-                                colorDifference: differenceInColor
+                                colorDifference: differenceInColor,
+                                CDFdifference: typeofDifference
                                 // indicatorColor: changeColor 
                             });
                         }
@@ -2346,11 +2217,14 @@ class Tab2Viz{
                             }
                             
                             let differenceInColor 
+                            let typeofDifference
                             if (differenceInCDF > 0.01){
                                 differenceInColor = "rgb(18, 93, 13)"
+                                typeofDifference = "good"
                             }
                             else if (differenceInCDF < -0.01){
                                 differenceInColor = "rgb(139, 128, 0)"
+                                typeofDifference = "bad"
                             }
                             else{
                                 differenceInColor = colorDifferenceScaleLIO(differenceInCDF)
@@ -2383,7 +2257,8 @@ class Tab2Viz{
                                 weight: obj.weight,
                                 color: colorRGB,
                                 interventionColor: colorRGB2,
-                                colorDifference: differenceInColor
+                                colorDifference: differenceInColor,
+                                CDFdifference: typeofDifference
                                 // interventionColor: colorRGB2,
                                 // indicatorColor: changeColor 
                             });
@@ -2430,11 +2305,14 @@ class Tab2Viz{
                             }
                             
                             let differenceInColor 
+                            let typeofDifference
                             if (differenceInCDF > 0.01){
                                 differenceInColor = "rgb(139, 128, 0)"
+                                typeofDifference = "bad"
                             }
                             else if (differenceInCDF < -0.01){
                                 differenceInColor = "rgb(18, 93, 13)"
+                                typeofDifference = "good"
                             }
                             else{
                                 differenceInColor = colorDifferenceScaleHIO(differenceInCDF)
@@ -2467,7 +2345,8 @@ class Tab2Viz{
                                 weight: obj.weight,
                                 color: colorRGB,
                                 interventionColor: colorRGB2,
-                                colorDifference: differenceInColor
+                                colorDifference: differenceInColor,
+                                CDFdifference: typeofDifference
                                 // interventionColor: colorRGB2,
                                 // indicatorColor: changeColor 
                             });
@@ -2512,11 +2391,14 @@ class Tab2Viz{
                             }
                             
                             let differenceInColor 
+                            let typeofDifference
                             if (differenceInCDF > 0.01){
                                 differenceInColor = "rgb(139, 128, 0)"
+                                typeofDifference = "bad"
                             }
                             else if (differenceInCDF < -0.01){
                                 differenceInColor = "rgb(18, 93, 13)"
+                                typeofDifference = "good"
                             }
                             else{
                                 differenceInColor = colorDifferenceScaleHIO(differenceInCDF)
@@ -2549,7 +2431,8 @@ class Tab2Viz{
                                 weight: obj.weight,
                                 color: colorRGB,
                                 interventionColor: colorRGB2,
-                                colorDifference: differenceInColor
+                                colorDifference: differenceInColor,
+                                CDFdifference: typeofDifference
                                 // interventionColor: colorRGB2,
                                 // indicatorColor: changeColor 
                             });
@@ -2599,15 +2482,51 @@ class Tab2Viz{
                 const donutGroup = svg.append("g")
                 .attr("transform", `translate(${-540}, ${-40})`);
 
-                // Add the main arcs
+                const arcData = pie(donutArray);
+
                 donutGroup.selectAll("path.main")
-                    .data(pie(donutArray))
+                    .data(arcData)
                     .enter().append("path")
                     .attr("class", "main")
                     .attr("d", arc)
-                    .attr("fill", d => d.data.color)
+                    .attr("fill", d => {
+                        if (d.data.CDFdifference == undefined){
+                            return "grey"
+                        }
+                        return d.data.color
+                    })
                     .attr("stroke", "black")
                     .style("stroke-width", "2px");
+
+                // Now add lines for first and last arcs
+                const firstArc = arcData[0];
+                const lastArc = arcData[arcData.length - 1];
+
+                // Add line for first arc (pointing to center [0,0])
+                donutGroup.append("path")
+                .attr("d", () => {
+                    const outerPoint = arc.centroid(firstArc);
+                    const innerPoint = [0, -100];
+                    return `M${outerPoint[0]},${outerPoint[1]}L${innerPoint[0]},${innerPoint[1]}`;
+                })
+                .attr("stroke", "black")
+                .attr("stroke-width", "3px")
+                .attr("fill", "none");
+
+                // Add line for last arc (pointing to [100,0])
+                donutGroup.append("path")
+                .attr("d", () => {
+                    const outerPoint = arc.centroid(lastArc);
+                    const innerPoint = [-100, -100];
+                    return `M${outerPoint[0]},${outerPoint[1]}L${innerPoint[0]},${innerPoint[1]}`;
+                })
+                .attr("stroke", "black")
+                .attr("stroke-width", "3px")
+                .attr("fill", "none");
+
+
+
+                    
 
                 // Add the lifted inner strokes for negative weights
                 donutGroup.selectAll("path.inner-stroke")
@@ -2696,6 +2615,46 @@ class Tab2Viz{
                             .attr("font-size", "34px")
                             .attr("font-weight", "bold")
                             .text("LIO");
+
+                        // for the ROLW's
+
+                        donutGroup.append("line")
+                            .attr("class", "label-line")
+                            .attr("x1", 0)
+                            .attr("y1", -100)
+                            .attr("x2", 0)
+                            .attr("y2", 0)
+                            .attr("stroke", "black")
+                            .attr("stroke-width", 3)
+                            .attr("marker-end", "url(#arrowhead)")
+
+                        donutGroup.append("line")
+                            .attr("class", "label-line")
+                            .attr("x1", -100)
+                            .attr("y1", -100)
+                            .attr("x2", -100)
+                            .attr("y2", 0)
+                            .attr("stroke", "black")
+                            .attr("stroke-width", 3)
+                            .attr("marker-end", "url(#arrowhead)")
+                        
+                        donutGroup.append("text")
+                            .attr("class", "label-text")
+                            .attr("x", -260)
+                            .attr("y", 30)
+                            .attr("text-anchor", "start")
+                            .attr("font-size", "34px")
+                            .attr("font-weight", "bold")
+                            .text("ROLW = 30");
+                        
+                        donutGroup.append("text")
+                            .attr("class", "label-text")
+                            .attr("x", -10)
+                            .attr("y", 30)
+                            .attr("text-anchor", "start")
+                            .attr("font-size", "34px")
+                            .attr("font-weight", "bold")
+                            .text("1");
                     }
 
                     const firstBlackOuterStroke = donutGroup.selectAll("path.outer-stroke")
@@ -2763,7 +2722,12 @@ class Tab2Viz{
                 .enter().append("path")
                 .attr("class", "main")
                 .attr("d", arc)
-                .attr("fill", d => d.data.interventionColor)
+                .attr("fill", d => {
+                    if (d.data.CDFdifference == undefined){
+                        return "grey"
+                    }
+                    return d.data.interventionColor
+                })
                 .attr("stroke", "black")
                 .style("stroke-width", "2px");
 
@@ -2793,23 +2757,52 @@ class Tab2Viz{
                 // Create the inner pie arc generator
                 const innerPieArc = d3.arc()
                     .innerRadius(radius * 0.1)
-                    .outerRadius(radius * 0.5);
+                    .outerRadius(radius * 1.5);
 
                 // Render the inner pie chart LAST to ensure it's on top
-                donutGroup2.selectAll("path.inner-pie")
-                    .data(pie(donutArray))
-                    .enter().append("path")
-                    .attr("class", "inner-pie")
-                    .attr("d", innerPieArc)
-                    .attr("fill", d => {
-                        // Add a console.log to debug
-                        // console.log("Data point:", d.data, "Color:", d.data.colorDifference);
-                        return d.data.colorDifference || "#ccc"; // Fallback color if undefined
-                    })
-                    .attr("stroke", "black")
-                    .style("stroke-width",d => {
-                        return "1px"
-                    });
+                // donutGroup2.selectAll("path.inner-pie")
+                //     .data(pie(donutArray))
+                //     .enter().append("path")
+                //     .attr("class", "inner-pie")
+                //     .attr("d", innerPieArc)
+                //     .attr("fill", d => {
+                //         // Add a console.log to debug
+                //         console.log(d)
+                //         // console.log("Data point:", d.data, "Color:", d.data.colorDifference);
+                //         return d.data.colorDifference || "#ccc"; // Fallback color if undefined
+                //     })
+                //     .attr("stroke", "black")
+                //     .style("stroke-width",d => {
+                //         return "1px"
+                //     });
+
+                donutGroup2.selectAll("text.difference-symbol")
+                        .data(pie(donutArray))
+                        .enter()
+                        .append("text")
+                        .attr("class", "difference-symbol")
+                        .attr("transform", d => {
+                            // Calculate position at the center of where each arc would be
+                            const centroid = innerPieArc.centroid(d);
+                            return `translate(${centroid[0]}, ${centroid[1]})`;
+                        })
+                        .style("text-anchor", "middle")
+                        .style("dominant-baseline", "middle")
+                        .style("font-size", "50px")
+                        .style("font-weight", "bold")
+                        .style("fill", "black")
+                        .text(d => {
+                            // Determine symbol based on CDFdifference
+                            // console.log(d.data.CDFdifference)
+                            if (d.data.CDFdifference === "good") {
+                                return "+";
+                            } else if (d.data.CDFdifference === "bad") {
+                                return "-";
+                            } else {
+                                return ""; // Show nothing if CDFdifference is 0
+                            }
+                        });
+
 
 
                 // Create bar code chart (bottom 40%)
@@ -2829,7 +2822,12 @@ class Tab2Viz{
                 .attr("y", 0)
                 .attr("width", barWidth - 1) // -1 for spacing between bars
                 .attr("height", barcodeHeight/10)
-                .attr("fill", d => d.color)
+                .attr("fill", d => {
+                    if (d.CDFdifference == undefined){
+                        return "grey"
+                    }
+                    return d.color
+                })
                 .attr("stroke", "black")
                 .style("stroke-width", "1px");
 
@@ -2968,7 +2966,12 @@ class Tab2Viz{
                 .attr("y", 0)
                 .attr("width", barWidth - 1) // -1 for spacing between bars
                 .attr("height", barcodeHeight/10)
-                .attr("fill", d => d.interventionColor)
+                .attr("fill", d => {
+                    if (d.CDFdifference == undefined){
+                        return "grey"
+                    }
+                    return d.interventionColor
+                })
                 .attr("stroke", "black")
                 .style("stroke-width", "1px");
 
@@ -2987,26 +2990,49 @@ class Tab2Viz{
                 const barcodeGroup3 = svg.append("g")
                 .attr("transform", `translate(${startingpoint3}, ${570})`);
 
+                barcodeGroup3.selectAll("text.barcode-symbol")
+                            .data(barcodeArray)
+                            .enter()
+                            .append("text")
+                            .attr("class", "barcode-symbol")
+                            .attr("x", (d, i) => i * barWidth + barWidth/2) // Center the text in the position where the rectangle would be
+                            .attr("y", barcodeHeight/30) // Position at the vertical center of where the rectangle would be
+                            .attr("text-anchor", "middle") // Center text horizontally
+                            .attr("dominant-baseline", "middle") // Center text vertically
+                            .attr("fill", "black") // Use the same color as before, with black as fallback
+                            .style("font-size", "30px")
+                            .style("font-weight", "bold")
+                            .text(d => {
+                                
+                                // Determine symbol based on CDFdifference
+                                if (d.CDFdifference === "good") {
+                                    return "+";
+                                } else if (d.CDFdifference === "bad") {
+                                    return "-";
+                                } else {
+                                    return ""; // Show nothing if CDFdifference is 0
+                                }
+                            });
 
-                barcodeGroup3.selectAll("rect")
-                .data(barcodeArray)
-                .enter().append("rect")
-                .attr("x", (d, i) => i * barWidth)
-                .attr("y", 0)
-                .attr("width", barWidth - 1) // -1 for spacing between bars
-                .attr("height", barcodeHeight/15)
-                .attr("fill", d => d.colorDifference)
-                .attr("stroke", "black")
-                .style("stroke-width", d => {
-                    return "1px"
-                    // console.log(d.colorDifference)
-                    // if (d.colorDifference === 'rgb(255, 255, 255)'){
-                    //     return "1px"
-                    // }
-                    // else{
-                    //     return "5px"
-                    // }
-                });
+                // barcodeGroup3.selectAll("rect")
+                // .data(barcodeArray)
+                // .enter().append("rect")
+                // .attr("x", (d, i) => i * barWidth)
+                // .attr("y", 0)
+                // .attr("width", barWidth - 1) // -1 for spacing between bars
+                // .attr("height", barcodeHeight/15)
+                // .attr("fill", d => d.colorDifference)
+                // .attr("stroke", "black")
+                // .style("stroke-width", d => {
+                //     return "1px"
+                //     // console.log(d.colorDifference)
+                //     // if (d.colorDifference === 'rgb(255, 255, 255)'){
+                //     //     return "1px"
+                //     // }
+                //     // else{
+                //     //     return "5px"
+                //     // }
+                // });
             }
             // if (i === 4){
 
