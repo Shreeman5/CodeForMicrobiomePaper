@@ -319,36 +319,389 @@ class Tab2Viz{
     }
 
 
-    renderLegendofSecondRow(){
+    renderLegendofSecondRow(donutArray, barcodeArray){
         let svg = d3.select(".dynamic-div-x3" ).append("svg")
         .attr("width", 760)
         .attr("height", 1570)
 
+        const totalHeight = 1570;  // Updated height
+        const donutHeight = totalHeight * 0.6;
+        const barcodeHeight = totalHeight * 0.4;
+        const width = 760;  // Updated width
 
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 70)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("LIO = Low Indicator Organism")
+        const radius = (donutHeight / 1.4) - 400;
 
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 130)
-            .attr("font-size", "38")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("HIO = High Indicator Organism")  
+        const totalWeight = d3.sum(donutArray, d => Math.abs(d.weight));
+        const normalizedWeights = donutArray.map(d => Math.abs(d.weight) / totalWeight);
 
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 190)
-            .attr("font-size", "35")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("ROLW = Rank of Organism by Literature Weight")   
+        const pie = d3.pie()
+        .value((d, i) => normalizedWeights[i])
+        .sort(null);
+
+        const arc = d3.arc()
+        .innerRadius(radius * 0.6)
+        .outerRadius(radius);
+
+        const innerArc = d3.arc()
+        .innerRadius(radius * 0.57)
+        .outerRadius(radius * 0.57)
+        .cornerRadius(0);
+
+        const innerArc2 = d3.arc()
+        .innerRadius(radius * 0.54)
+        .outerRadius(radius * 0.54)
+        .cornerRadius(0);
+
+        const outerArc = d3.arc()
+        .innerRadius(radius * 1.03)
+        .outerRadius(radius * 1.03)
+        .cornerRadius(0);
+
+        const outerArc2 = d3.arc()
+        .innerRadius(radius * 1.06)
+        .outerRadius(radius * 1.06)
+        .cornerRadius(0);
+
+        const donutGroup = svg.append("g")
+        .attr("transform", `translate(${380}, ${300})`);
+
+        const arcData = pie(donutArray);
+
+        donutGroup.selectAll("path.main")
+            .data(arcData)
+            .enter().append("path")
+            .attr("class", "main")
+            .attr("d", arc)
+            .attr("fill", d => {
+                return d.data.color
+            })
+            .attr("stroke", "black")
+            .style("stroke-width", "2px");
+
+        donutGroup.selectAll("path.inner-stroke")
+        .data(pie(donutArray))
+        .enter().append("path")
+        .attr("class", "inner-stroke")
+        .attr("d", innerArc2)
+        .attr("fill", "none")
+        .attr("stroke", d => d.data.weight < 0 ? "black" : "white")
+        .style("stroke-width", "10px");
+    
+        // Add the lifted outer strokes for positive weights
+        donutGroup.selectAll("path.outer-stroke")
+            .data(pie(donutArray))
+            .enter().append("path")
+            .attr("class", "outer-stroke")
+            .attr("d", outerArc2)
+            .attr("fill", "none")
+            .attr("stroke", d => d.data.weight > 0 ? "black" : "white")
+            .style("stroke-width", "10px");
+
+        const barWidth = (width / barcodeArray.length) - 31;
+        let barcodechartwidth = barWidth * barcodeArray.length
+
         
+        const barcodeGroup = svg.append("g")
+        .attr("transform", `translate(${120}, ${700})`);
+
+        // Create bars
+        barcodeGroup.selectAll("rect")
+        .data(barcodeArray)
+        .enter().append("rect")
+        .attr("x", (d, i) => i * barWidth)
+        .attr("y", 0)
+        .attr("width", barWidth - 1) // -1 for spacing between bars
+        .attr("height", barcodeHeight/10)
+        .attr("fill", d => {
+            // if (d.CDFdifference == undefined){
+            //     return "grey"
+            // }
+            return d.color
+        })
+        .attr("stroke", "black")
+        .style("stroke-width", "1px");
+
+        barcodeGroup.selectAll("line")
+        .data(barcodeArray)
+        .enter().append("line")
+        .attr("x1", (d, i) => i * barWidth)  // Center of each bar
+        .attr("x2", (d, i) => i * barWidth + barWidth - 2)
+        .attr("y1", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)  // Lift 10px from top or bottom
+        .attr("y2", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)
+        .attr("stroke", "black")
+        .attr("stroke-width", "4px")
+        .attr("stroke-linecap", "round");
+
+
+
+        
+
+
+        donutGroup.append("defs").append("marker")
+            .attr("id", "arrowhead")
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 8)
+            .attr("refY", 0)
+            .attr("markerWidth", 15)
+            .attr("markerHeight", 15)
+            .attr("orient", "auto-start-reverse")
+            .append("path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .attr("fill", "green");
+
+        barcodeGroup.append("defs").append("marker")
+            .attr("id", "barcode-arrowhead")
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 8)
+            .attr("refY", 0)
+            .attr("markerWidth", 15)
+            .attr("markerHeight", 15)
+            .attr("orient", "auto-start-reverse")
+            .append("path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .attr("fill", "green");
+
+        const firstBlackInnerStroke = donutGroup.selectAll("path.inner-stroke")
+            .filter(function() {
+                return d3.select(this).attr("stroke") === "black";
+            })
+            .nodes()[0];    
+        
+        const firstData = d3.select(firstBlackInnerStroke).datum();
+        const angle = (firstData.startAngle + firstData.endAngle) / 2;
+        const radius2 = innerArc.innerRadius()();
+        
+        // Calculate line start point (on the inner edge of the inner stroke)
+        const lineStartX = Math.sin(angle) * radius2;
+        const lineStartY = -Math.cos(angle) * radius2;
+        
+        // Calculate line end point (offset inward and to side)
+        const lineEndX = -180
+        const lineEndY = 380
+
+        donutGroup.append("line")
+                .attr("class", "label-line")
+                .attr("x1", lineStartX+10)
+                .attr("y1", lineStartY)
+                .attr("x2", lineEndX)
+                .attr("y2", lineEndY)
+                .attr("stroke", "black")
+                .attr("stroke-width", 3)
+                .attr("marker-start", "url(#arrowhead)")
+                .attr("marker-end", "url(#arrowhead)");
+
+        svg.append("text")
+        .attr("x", 220)
+        .attr("y", 600)
+        .attr("font-size", "38")
+        .attr("fill", "Black")
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .text("A")
+
+        const firstBlackOuterStroke = donutGroup.selectAll("path.outer-stroke")
+            .filter(function() {
+                return d3.select(this).attr("stroke") === "black";
+            })
+            .nodes()[0];
+
+        const firstData2 = d3.select(firstBlackOuterStroke).datum();
+        const angle2 = (firstData2.startAngle + firstData2.endAngle) / 2;
+        const radius3 = outerArc.outerRadius()();
+        
+        // Calculate line start point (on the inner edge of the inner stroke)
+        const lineStartX2 = Math.sin(angle2) * radius3;
+        const lineStartY2 = -Math.cos(angle2) * radius3;
+
+        const lineEndX2 = 225
+        const lineEndY2 = 250
+
+        donutGroup.append("line")
+                .attr("class", "label-line")
+                .attr("x1", lineStartX2+10)
+                .attr("y1", lineStartY2)
+                .attr("x2", lineEndX2)
+                .attr("y2", lineEndY2)
+                .attr("stroke", "black")
+                .attr("stroke-width", 3)
+                .attr("marker-start", "url(#arrowhead)")
+
+        barcodeGroup.append("line")
+        .attr("class", "label-line")
+        .attr("x1", 400)
+        .attr("y1", 60)
+        .attr("x2", 490)
+        .attr("y2", -160)
+        .attr("stroke", "black")
+        .attr("stroke-width", 3)
+        .attr("marker-start", "url(#barcode-arrowhead)")
+
+        svg.append("text")
+        .attr("x", 570)
+        .attr("y", 570)
+        .attr("font-size", "38")
+        .attr("fill", "Black")
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .text("B")
+
+        svg.append("line")
+        .attr("class", "label-line")
+        .attr("x1", 400)
+        .attr("y1", 480)
+        .attr("x2", 400)
+        .attr("y2", 730)
+        .attr("stroke", "black")
+        .attr("stroke-width", 3)
+        .attr("marker-start", "url(#barcode-arrowhead)")
+        .attr("marker-end", "url(#barcode-arrowhead)")
+
+        svg.append("text")
+        .attr("x", 410)
+        .attr("y", 650)
+        .attr("font-size", "38")
+        .attr("fill", "Black")
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .text("C")
+
+        svg.append("line")
+        .attr("class", "label-line")
+        .attr("x1", 500)
+        .attr("y1", 70)
+        .attr("x2", 600)
+        .attr("y2", 70)
+        .attr("stroke", "black")
+        .attr("stroke-width", 3)
+        .attr("marker-end", "url(#barcode-arrowhead)")
+
+        svg.append("text")
+        .attr("x", 610)
+        .attr("y", 70)
+        .attr("font-size", "20")
+        .attr("fill", "Black")
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .text("D: ROLW = 1")
+
+
+        svg.append("line")
+        .attr("class", "label-line")
+        .attr("x1", 240)
+        .attr("y1", 70)
+        .attr("x2", 150)
+        .attr("y2", 70)
+        .attr("stroke", "black")
+        .attr("stroke-width", 3)
+        .attr("marker-end", "url(#barcode-arrowhead)")
+
+        svg.append("text")
+        .attr("x", 140)
+        .attr("y", 70)
+        .attr("font-size", "20")
+        .attr("fill", "Black")
+        .attr("text-anchor", "end")
+        .style("font-weight", "bold")
+        .text("D: ROLW = 2")
+
+        svg.append("line")
+        .attr("class", "label-line")
+        .attr("x1", 150)
+        .attr("y1", 730)
+        .attr("x2", 100)
+        .attr("y2", 640)
+        .attr("stroke", "black")
+        .attr("stroke-width", 3)
+        .attr("marker-end", "url(#barcode-arrowhead)")
+
+        svg.append("text")
+        .attr("x", 150)
+        .attr("y", 630)
+        .attr("font-size", "20")
+        .attr("fill", "Black")
+        .attr("text-anchor", "end")
+        .style("font-weight", "bold")
+        .text("E: ROLW = 3")
+
+        svg.append("line")
+        .attr("class", "label-line")
+        .attr("x1", 600)
+        .attr("y1", 730)
+        .attr("x2", 650)
+        .attr("y2", 640)
+        .attr("stroke", "black")
+        .attr("stroke-width", 3)
+        .attr("marker-end", "url(#barcode-arrowhead)")
+
+        svg.append("text")
+        .attr("x", 600)
+        .attr("y", 630)
+        .attr("font-size", "20")
+        .attr("fill", "Black")
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .text("E: ROLW = 10")
+
+
+
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 850)
+            .attr("font-size", "28")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("A: Lower presence of organism tends towards disease.(LIO)")
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 890)
+            .attr("font-size", "28")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("B: Higher presence of organism tends towards disease.(HIO)")
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 930)
+            .attr("font-size", "28")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("C: Arcs & Rectangles indicate organisms in sample. Colors")
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 970)
+            .attr("font-size", "28")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("show organism similarity in sample and disease.")
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 1010)
+            .attr("font-size", "28")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("D: Arc size corresponds to Rank of Organism by Literature")
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 1050)
+            .attr("font-size", "28")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("Weight.(ROLW)")
+
+        svg.append("text")
+            .attr("x", 0)
+            .attr("y", 1090)
+            .attr("font-size", "28")
+            .attr("fill", "Black")
+            .attr("text-anchor", "start")
+            .text("E: Rectangle placement corresponds to ROLW.")
+
+
 
         const gradient5 = svg.append("defs")
             .append("linearGradient")
@@ -386,53 +739,6 @@ class Tab2Viz{
             .attr("height", 30)
             .style("fill", "url(#gradient7)");
 
-        // const gradient5 = svg.append("defs")
-        //     .append("linearGradient")
-        //     .attr("id", "gradient7")
-        //     .attr("x1", "0%").attr("y1", "0%")
-        //     .attr("x2", "100%").attr("y2", "0%");
-        
-        // // Define gradient color stops
-        // gradient5.append("stop")
-        //     .attr("offset", "0%")
-        //     .attr("stop-color", "rgb(255, 200, 200)");
-        
-        // gradient5.append("stop")
-        //     .attr("offset", "100%")
-        //     .attr("stop-color", "darkred");
-        
-        // // Append the rectangle with the gradient
-        // svg.append("rect")
-        //     .attr("x", 380)
-        //     .attr("y", 1120)
-        //     .attr("width", 380)
-        //     .attr("height", 30)
-        //     .style("fill", "url(#gradient7)");
-
-
-        // const gradient8 = svg.append("defs")
-        //     .append("linearGradient")
-        //     .attr("id", "gradient8")
-        //     .attr("x1", "0%").attr("y1", "0%")
-        //     .attr("x2", "100%").attr("y2", "0%");
-        
-        // // Define gradient color stops
-        // gradient8.append("stop")
-        //     .attr("offset", "0%")
-        //     .attr("stop-color", "rgb(210, 215, 255)");
-        
-        // gradient8.append("stop")
-        //     .attr("offset", "100%")
-        //     .attr("stop-color", "rgb(220, 230, 255)");
-
-        // // Append the rectangle with the gradient
-        // svg.append("rect")
-        //     .attr("x", 0)
-        //     .attr("y", 1120)
-        //     .attr("width", 380)
-        //     .attr("height", 30)
-        //     .style("fill", "url(#gradient8)");
-
         svg.append("text")
             .attr("x", 0)
             .attr("y", 1180)
@@ -449,273 +755,78 @@ class Tab2Viz{
             .attr("text-anchor", "end")
             .text("100% Organism Similarity")
 
-
-        const gradient6 = svg.append("defs")
-            .append("linearGradient")
-            .attr("id", "gradient8")
-            .attr("x1", "0%")
-            .attr("y1", "0%")
-            .attr("x2", "100%")
-            .attr("y2", "0%");
-        
-        gradient6.append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", "rgb(139, 128, 0)");
-
-        gradient6.append("stop")
-            .attr("offset", "49%")
-            .attr("stop-color", "rgb(255, 255, 224)");
-        
-        gradient6.append("stop")
-            .attr("offset", "50%")
-            .attr("stop-color", "white");
-
-        gradient6.append("stop")
-            .attr("offset", "51%")
-            .attr("stop-color", "rgb(144, 238, 144)")
-        
-        gradient6.append("stop")
-            .attr("offset", "100%")
-            .attr("stop-color", "rgb(18, 93, 13)");
-        
-        // Append the rectangle with the gradient fill
-        svg.append("rect")
-            .attr("x", 0)
-            .attr("y", 1200)
-            .attr("width", 760)
-            .attr("height", 30)
-            .style("fill", "url(#gradient8)");
-
-        
-
         svg.append("text")
             .attr("x", 0)
-            .attr("y", 1260)
-            .attr("font-size", "25")
-            .attr("fill", "Black")
-            .attr("text-anchor", "start")
-            .text("Bad CDF Change w/ Action(s)")
-
-        svg.append("text")
-            .attr("x", 760)
-            .attr("y", 1260)
-            .attr("font-size", "25")
-            .attr("fill", "Black")
-            .attr("text-anchor", "end")
-            .text("Good CDF Change w/ Action(s)")
-
-        svg.append("text")
-            .attr("x", 0)
-            .attr("y", 1320)
+            .attr("y", 1230)
             .attr("font-size", "35")
             .attr("fill", "red")
             .attr("text-anchor", "start")
             .text("Sample = ERR719231")
 
-        // svg.append("text")
-        //     .attr("x", 0)
-        //     .attr("y", 1360)
-        //     .attr("font-size", "35")
-        //     .attr("fill", "red")
-        //     .attr("text-anchor", "start")
-        //     .text("Sample has both Crohns and Diarrhea")
-
-        // svg.append("text")
-        //     .attr("x", 0)
-        //     .attr("y", 1360)
-        //     .attr("font-size", "35")
-        //     .attr("fill", "red")
-        //     .attr("text-anchor", "start")
-        //     .text("Vitamin D")
-
-
-        
-        // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 310)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text("Condtion CDF >> Sample CDF")
-
-        // svg.append("rect")
-        //     .attr("x", 552)  
-        //     .attr("y", 270)   
-        //     .attr("width", 200) 
-        //     .attr("height", 30) 
-        //     .attr("fill", "darkblue")
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
-
-        // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 320)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text("Condition CDF > Sample CDF")
-
-        // svg.append("rect")
-        //     .attr("x", 552)  
-        //     .attr("y", 290)    
-        //     .attr("width", 200) 
-        //     .attr("height", 30) 
-        //     .attr("fill", "lightblue") 
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
-
-        // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 390)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text("Condtion CDF == Sample CDF")
-            
-        // svg.append("rect")
-        //     .attr("x", 552)   
-        //     .attr("y", 360)   
-        //     .attr("width", 200) 
-        //     .attr("height", 30) 
-        //     .attr("fill", "grey") 
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
-
-        // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 460)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text("Condition CDF < Sample CDF")
-            
-        // svg.append("rect")
-        //     .attr("x", 552)    
-        //     .attr("y", 430)    
-        //     .attr("width", 200)
-        //     .attr("height", 30) 
-        //     .attr("fill", "lightcoral") 
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
-
-        // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 530)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "end")
-        //     .text("Condition CDF << Sample CDF")
-            
-        // svg.append("rect")
-        //     .attr("x", 552)    
-        //     .attr("y", 500)    
-        //     .attr("width", 200)
-        //     .attr("height", 30) 
-        //     .attr("fill", "darkred") 
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
-
-        // svg.append("text")
-        //     .attr("x", 762)
-        //     .attr("y", 570)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "red")
-        //     .attr("text-anchor", "end")
-        //     .text("All Red Donut = Really BAD")
-
-        // svg.append("text")
-        //     .attr("x", 762)
-        //     .attr("y", 610)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "blue")
-        //     .attr("text-anchor", "end")
-        //     .text("All Blue Donut = Really GOOD")
-
-        // svg.append("text")
-        //     .attr("x", 762)
-        //     .attr("y", 650)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "grey")
-        //     .attr("text-anchor", "end")
-        //     .text("All Grey Donut = NORMAL")
-
-        // svg.append("text")
-        //     .attr("x", 762)
-        //     .attr("y", 690)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "black")
-        //     .attr("text-anchor", "end")
-        //     .text("Inner Black Triangle = LIO")
-        
-        // svg.append("text")
-        //     .attr("x", 762)
-        //     .attr("y", 730)
-        //     .attr("font-size", "38")
-        //     .attr("fill", "black")
-        //     .attr("text-anchor", "end")
-        //     .text("Outer Black Triangle = HIO")
-
         
 
 
+        // const gradient6 = svg.append("defs")
+        //     .append("linearGradient")
+        //     .attr("id", "gradient8")
+        //     .attr("x1", "0%")
+        //     .attr("y1", "0%")
+        //     .attr("x2", "100%")
+        //     .attr("y2", "0%");
+        
+        // gradient6.append("stop")
+        //     .attr("offset", "0%")
+        //     .attr("stop-color", "rgb(139, 128, 0)");
 
+        // gradient6.append("stop")
+        //     .attr("offset", "49%")
+        //     .attr("stop-color", "rgb(255, 255, 224)");
+        
+        // gradient6.append("stop")
+        //     .attr("offset", "50%")
+        //     .attr("stop-color", "white");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // gradient6.append("stop")
+        //     .attr("offset", "51%")
+        //     .attr("stop-color", "rgb(144, 238, 144)")
+        
+        // gradient6.append("stop")
+        //     .attr("offset", "100%")
+        //     .attr("stop-color", "rgb(18, 93, 13)");
+        
+        // // Append the rectangle with the gradient fill
+        // svg.append("rect")
+        //     .attr("x", 0)
+        //     .attr("y", 1200)
+        //     .attr("width", 760)
+        //     .attr("height", 30)
+        //     .style("fill", "url(#gradient8)");
+        
 
         // svg.append("text")
-        //     .attr("x", 542)
-        //     .attr("y", 540)
-        //     .attr("font-size", "30")
+        //     .attr("x", 0)
+        //     .attr("y", 1260)
+        //     .attr("font-size", "25")
+        //     .attr("fill", "Black")
+        //     .attr("text-anchor", "start")
+        //     .text("Bad CDF Change w/ Action(s)")
+
+        // svg.append("text")
+        //     .attr("x", 760)
+        //     .attr("y", 1260)
+        //     .attr("font-size", "25")
         //     .attr("fill", "Black")
         //     .attr("text-anchor", "end")
-        //     .text("No CDF change of Indicator Organism")
-            
-        // svg.append("rect")
-        //     .attr("x", 552)    
-        //     .attr("y", 510)    
-        //     .attr("width", 200)
-        //     .attr("height", 30) 
-        //     .attr("fill", "black") 
-        //     .attr("stroke", "black")
-        //     .attr("stroke-width", "1")
+        //     .text("Good CDF Change w/ Action(s)")
 
-
-        // svg.append("text")
-        //     .attr("x", 0)
-        //     .attr("y", 610)
-        //     .attr("font-size", "33")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "start")
-        //     .text("Arcs pointing inwards are low indicator organisms.")
-
-        // svg.append("text")
-        //     .attr("x", 0)
-        //     .attr("y", 680)
-        //     .attr("font-size", "32")
-        //     .attr("fill", "Black")
-        //     .attr("text-anchor", "start")
-        //     .text("Arcs pointing outwards are high indicator organisms.")
+        
     }
 
     // renders legend
     renderLegend(){
         this.renderMainLegend()
         this.renderLegendOfFirstRow()
-        this.renderLegendofSecondRow()
+        // this.renderLegendofSecondRow()
         
 
         
@@ -2032,8 +2143,6 @@ class Tab2Viz{
 
 
             if (i >= 3){
-                // console.log('X:', transformedData3)
-                // console.log(presentTaxons)
                 let ival = i
 
                 let curatedPresentTaxons = []
@@ -2044,17 +2153,6 @@ class Tab2Viz{
                     let taxonName = nodeName.substring(firstIndex+2, lastIndex)
                     curatedPresentTaxons.push(taxonName)
                 }
-
-                // console.log(presentTaxons)
-                // console.log(transformedData)
-
-                // transformedData = transformedData.filter(obj => curatedPresentTaxons.includes(obj.organism));
-                // console.log(transformedData)
-                // if (i === 3){
-                //     console.log("transformedData:", transformedData)
-                //     console.log(this.structureData[ival])
-                // }
-                // console.log(this.structureData[ival])
 
                 const bivariateColorScaleLIO = (value) => {
                     if (value < 0.5) {
@@ -2085,34 +2183,6 @@ class Tab2Viz{
                 const colorDifferenceScaleHIO = d3.scaleLinear()
                                         .domain([-0.01, -0.0001, 0, 0.0001, 0.01])
                                         .range(["rgb(18, 93, 13)", "rgb(144, 238, 144)", "white", "rgb(255, 255, 224)", "rgb(139, 128, 0)"]);
-
-                // const selectedContainer = document.getElementById("selectedContainer-T2");
-                // const selectedSpans = selectedContainer.querySelectorAll("span");
-                // const selectedItems = Array.from(selectedSpans).map(span => {
-                //     const text = span.textContent;
-                //     return text.substring(0, text.length - 1).trim();
-                //   });
-                // console.log("Currently selected items:", selectedItems);
-
-        //         gradient6.append("stop")
-        //     .attr("offset", "0%")
-        //     .attr("stop-color", "rgb(139, 128, 0)");
-
-        // gradient6.append("stop")
-        //     .attr("offset", "49%")
-        //     .attr("stop-color", "rgb(255, 255, 224)");
-        
-        // gradient6.append("stop")
-        //     .attr("offset", "50%")
-        //     .attr("stop-color", "white");
-
-        // gradient6.append("stop")
-        //     .attr("offset", "51%")
-        //     .attr("stop-color", "rgb(144, 238, 144)")
-        
-        // gradient6.append("stop")
-        //     .attr("offset", "100%")
-        //     .attr("stop-color", "rgb(18, 93, 13)");
 
 
                 const newArray = [];
@@ -2145,9 +2215,6 @@ class Tab2Viz{
                                 sampleCDF1 = (val1 + val2) / 2
                             }
 
-                            // let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
-                            // let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
-                            // let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
                             let interventionCDF = sampleCDF1
                             let colorRGB2 = bivariateColorScaleLIO(interventionCDF)
 
@@ -2210,10 +2277,6 @@ class Tab2Viz{
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
 
                             if (ival === 3){
-                                // console.log('B:', interventionCDF)
-                                // console.log('LIOSampleCDFNotNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
-                                // console.log('LIOSampleCDFNotNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
-                                // console.log('LIOSampleCDFNotNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
                             }
                             
                             let differenceInColor 
@@ -2229,28 +2292,7 @@ class Tab2Viz{
                             else{
                                 differenceInColor = colorDifferenceScaleLIO(differenceInCDF)
                             }
-                            // if (ival === 3){
-                            //     console.log("interventionValue2: ", interventionCDF, obj.organism)
-                            // }
-                            // let interventionCDF = Number(sampleCDF)
-                            // if (result != null){
-                            //     for (let i = 0; i < result.length; i++){
-                            //         if (result[i] < 0){
-                            //             interventionCDF = (interventionCDF + 0)/2
-                            //         }
-                            //         else if (result[i] > 0){ 
-                            //             interventionCDF = (interventionCDF + 1)/2
-                            //         }
-                            //     }
-                            // }
-                            // let colorRGB2 = bivariateColorScaleLIO(interventionCDF) 
-                            // let changeColor = 'black'
-                            // if (Number(interventionCDF) > Number(sampleCDF)){
-                            //     changeColor = 'green'
-                            // }
-                            // else if (Number(interventionCDF) < Number(sampleCDF)){
-                            //     changeColor = 'red'
-                            // }
+                            
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
@@ -2266,8 +2308,6 @@ class Tab2Viz{
                     }
                     else{
                         let sampleCDF = findTaxonCDFbyName(that.structureData[ival], obj.organism)
-                        // console.log('B:', sampleCDF)
-                        // const result = getOrganismWeight(transformedData3, obj.organism);
                         if (sampleCDF == null){
                             sampleCDF = '0'
                             let colorRGB = bivariateColorScaleHIO(sampleCDF)
@@ -2298,10 +2338,6 @@ class Tab2Viz{
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
 
                             if (ival === 3){
-                                // console.log('C:', interventionCDF)
-                                // console.log('HIOSampleCDFNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
-                                // console.log('HIOSampleCDFNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
-                                // console.log('HIOSampleCDFNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
                             }
                             
                             let differenceInColor 
@@ -2317,28 +2353,6 @@ class Tab2Viz{
                             else{
                                 differenceInColor = colorDifferenceScaleHIO(differenceInCDF)
                             }
-                            // if (ival === 3){
-                            //     console.log("interventionValue3: ", interventionCDF, obj.organism)
-                            // }
-                            // let interventionCDF = Number(sampleCDF)
-                            // if (result != null){
-                            //     for (let i = 0; i < result.length; i++){
-                            //         if (result[i] < 0){
-                            //             interventionCDF = (interventionCDF + 0)/2
-                            //         }
-                            //         else if (result[i] > 0){ 
-                            //             interventionCDF = (interventionCDF + 1)/2
-                            //         }
-                            //     }
-                            // }
-                            // let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
-                            // let changeColor = 'black'
-                            // if (Number(interventionCDF) < Number(sampleCDF)){
-                            //     changeColor = 'green'
-                            // }
-                            // else if (Number(interventionCDF) > Number(sampleCDF)){
-                            //     changeColor = 'red'
-                            // }
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
@@ -2353,10 +2367,6 @@ class Tab2Viz{
                         }
                         else{
                             let colorRGB = bivariateColorScaleHIO(sampleCDF)
-
-                            // let sampleCDF1 = Number(findTaxonCDF1byName(that.structureData[ival], obj.organism))
-                            // let sampleCDF2 = Number(findTaxonCDF2byName(that.structureData[ival], obj.organism))
-                            // let sampleCDF3 = Number(findTaxonCDF3byName(that.structureData[ival], obj.organism))
 
                             let sampleCDF1
                             if (ival === 3){
@@ -2384,10 +2394,6 @@ class Tab2Viz{
                             let differenceInCDF = Number(interventionCDF) - Number(sampleCDF)
 
                             if (ival === 3){
-                                // console.log('D:', interventionCDF, 'Organism: ', obj.organism)
-                                // console.log('HIOSampleCDFNotNullStarterCDF:', sampleCDF, ' Organism: ', obj.organism)
-                                // console.log('HIOSampleCDFNotNullEnderCDF:', interventionCDF, ' Organism: ', obj.organism)
-                                // console.log('HIOSampleCDFNotNullDifference:', differenceInCDF, ' Organism: ', obj.organism)
                             }
                             
                             let differenceInColor 
@@ -2403,28 +2409,6 @@ class Tab2Viz{
                             else{
                                 differenceInColor = colorDifferenceScaleHIO(differenceInCDF)
                             }
-                            // if (ival === 3){
-                            //     console.log("interventionValue4: ", interventionCDF, obj.organism)
-                            // }
-                            // let interventionCDF = Number(sampleCDF)
-                            // if (result != null){
-                            //     for (let i = 0; i < result.length; i++){
-                            //         if (result[i] < 0){
-                            //             interventionCDF = (interventionCDF + 0)/2
-                            //         }
-                            //         else if (result[i] > 0){ 
-                            //             interventionCDF = (interventionCDF + 1)/2
-                            //         }
-                            //     }
-                            // }
-                            // let colorRGB2 = bivariateColorScaleHIO(interventionCDF)
-                            // let changeColor = 'black'
-                            // if (Number(interventionCDF) < Number(sampleCDF)){
-                            //     changeColor = 'green'
-                            // }
-                            // else if (Number(interventionCDF) > Number(sampleCDF)){
-                            //     changeColor = 'red'
-                            // }
                             newArray.push({
                                 organism: obj.organism,
                                 ncbi_taxon_id: obj.ncbi_taxon_id,
@@ -2442,10 +2426,21 @@ class Tab2Viz{
 
                 newArray.sort((a, b) => Math.abs(b.weight) - Math.abs(a.weight));
                 console.log(newArray)
+                
 
                 // Split the array into two parts
                 const donutArray = newArray.slice(0, 30);
                 const barcodeArray = newArray.slice(30);
+
+                const legendArray1 = newArray.slice(9, 11)
+                let legendArray2 = newArray.slice(9, 11)
+                for (let kk = 0; kk < 2; kk++){
+                    legendArray2 = legendArray2.concat(legendArray2)
+                }
+                
+                if (ival === 3){
+                    this.renderLegendofSecondRow(legendArray1, legendArray2)
+                }
 
                 // Calculate the total height distribution
                 const totalHeight = 1220;  // Updated height
@@ -2467,6 +2462,11 @@ class Tab2Viz{
                 const arc = d3.arc()
                 .innerRadius(radius * 0.6)
                 .outerRadius(radius);
+
+                const sliverArc = d3.arc()
+                    .innerRadius(radius * 0.95) // Almost at the outer edge
+                    .outerRadius(radius)       // Exactly at the outer edge
+                    .cornerRadius(2);          // Optional: smooth out edges
 
                 const innerArc = d3.arc()
                 .innerRadius(radius * 0.57)
@@ -2490,39 +2490,39 @@ class Tab2Viz{
                     .attr("class", "main")
                     .attr("d", arc)
                     .attr("fill", d => {
-                        if (d.data.CDFdifference == undefined){
-                            return "grey"
-                        }
+                        // if (d.data.CDFdifference == undefined){
+                        //     return "grey"
+                        // }
                         return d.data.color
                     })
                     .attr("stroke", "black")
                     .style("stroke-width", "2px");
 
                 // Now add lines for first and last arcs
-                const firstArc = arcData[0];
-                const lastArc = arcData[arcData.length - 1];
+                // const firstArc = arcData[0];
+                // const lastArc = arcData[arcData.length - 1];
 
-                // Add line for first arc (pointing to center [0,0])
-                donutGroup.append("path")
-                .attr("d", () => {
-                    const outerPoint = arc.centroid(firstArc);
-                    const innerPoint = [0, -100];
-                    return `M${outerPoint[0]},${outerPoint[1]}L${innerPoint[0]},${innerPoint[1]}`;
-                })
-                .attr("stroke", "black")
-                .attr("stroke-width", "3px")
-                .attr("fill", "none");
+                // // Add line for first arc (pointing to center [0,0])
+                // donutGroup.append("path")
+                // .attr("d", () => {
+                //     const outerPoint = arc.centroid(firstArc);
+                //     const innerPoint = [0, -100];
+                //     return `M${outerPoint[0]},${outerPoint[1]}L${innerPoint[0]},${innerPoint[1]}`;
+                // })
+                // .attr("stroke", "black")
+                // .attr("stroke-width", "3px")
+                // .attr("fill", "none");
 
-                // Add line for last arc (pointing to [100,0])
-                donutGroup.append("path")
-                .attr("d", () => {
-                    const outerPoint = arc.centroid(lastArc);
-                    const innerPoint = [-100, -100];
-                    return `M${outerPoint[0]},${outerPoint[1]}L${innerPoint[0]},${innerPoint[1]}`;
-                })
-                .attr("stroke", "black")
-                .attr("stroke-width", "3px")
-                .attr("fill", "none");
+                // // Add line for last arc (pointing to [100,0])
+                // donutGroup.append("path")
+                // .attr("d", () => {
+                //     const outerPoint = arc.centroid(lastArc);
+                //     const innerPoint = [-100, -100];
+                //     return `M${outerPoint[0]},${outerPoint[1]}L${innerPoint[0]},${innerPoint[1]}`;
+                // })
+                // .attr("stroke", "black")
+                // .attr("stroke-width", "3px")
+                // .attr("fill", "none");
 
 
 
@@ -2548,168 +2548,168 @@ class Tab2Viz{
                     .attr("stroke", d => d.data.weight > 0 ? "black" : "white")
                     .style("stroke-width", "10px");
 
-                donutGroup.append("defs").append("marker")
-                    .attr("id", "arrowhead")
-                    .attr("viewBox", "0 -5 10 10")
-                    .attr("refX", 8)
-                    .attr("refY", 0)
-                    .attr("markerWidth", 6)
-                    .attr("markerHeight", 6)
-                    .attr("orient", "auto")
-                    .append("path")
-                    .attr("d", "M0,-5L10,0L0,5")
-                    .attr("fill", "black");
+                // donutGroup.append("defs").append("marker")
+                //     .attr("id", "arrowhead")
+                //     .attr("viewBox", "0 -5 10 10")
+                //     .attr("refX", 8)
+                //     .attr("refY", 0)
+                //     .attr("markerWidth", 6)
+                //     .attr("markerHeight", 6)
+                //     .attr("orient", "auto")
+                //     .append("path")
+                //     .attr("d", "M0,-5L10,0L0,5")
+                //     .attr("fill", "black");
 
                 // After rendering, find the first black inner stroke and add the label
                 // Use a slight delay to ensure all elements are rendered
-                setTimeout(() => {
-                    // Find the first path with inner-stroke class that has black stroke
-                    const firstBlackInnerStroke = donutGroup.selectAll("path.inner-stroke")
-                        .filter(function() {
-                            return d3.select(this).attr("stroke") === "black";
-                        })
-                        .nodes()[0];
+                // setTimeout(() => {
+                //     // Find the first path with inner-stroke class that has black stroke
+                //     const firstBlackInnerStroke = donutGroup.selectAll("path.inner-stroke")
+                //         .filter(function() {
+                //             return d3.select(this).attr("stroke") === "black";
+                //         })
+                //         .nodes()[0];
                     
-                    if (firstBlackInnerStroke) {
-                        // Get the centroid of this path to position our line
-                        const firstData = d3.select(firstBlackInnerStroke).datum();
-                        const angle = (firstData.startAngle + firstData.endAngle) / 2;
-                        const radius = innerArc.innerRadius()();
+                //     if (firstBlackInnerStroke) {
+                //         // Get the centroid of this path to position our line
+                //         const firstData = d3.select(firstBlackInnerStroke).datum();
+                //         const angle = (firstData.startAngle + firstData.endAngle) / 2;
+                //         const radius = innerArc.innerRadius()();
                         
-                        // Calculate line start point (on the inner edge of the inner stroke)
-                        const lineStartX = Math.sin(angle) * radius;
-                        const lineStartY = -Math.cos(angle) * radius;
+                //         // Calculate line start point (on the inner edge of the inner stroke)
+                //         const lineStartX = Math.sin(angle) * radius;
+                //         const lineStartY = -Math.cos(angle) * radius;
                         
-                        // Calculate line end point (offset inward and to side)
-                        const lineEndX = 350
-                        const lineEndY = -500
+                //         // Calculate line end point (offset inward and to side)
+                //         const lineEndX = 350
+                //         const lineEndY = -500
                         
-                        // Add the line
-                        donutGroup.append("line")
-                                    .attr("class", "label-line")
-                                    .attr("x1", lineStartX)
-                                    .attr("y1", lineStartY)
-                                    .attr("x2", lineEndX)
-                                    .attr("y2", lineEndY)
-                                    .attr("stroke", "black")
-                                    .attr("stroke-width", 3)
-                                    // .attr("marker-end", "url(#arrowhead)");
+                //         // Add the line
+                //         donutGroup.append("line")
+                //                     .attr("class", "label-line")
+                //                     .attr("x1", lineStartX)
+                //                     .attr("y1", lineStartY)
+                //                     .attr("x2", lineEndX)
+                //                     .attr("y2", lineEndY)
+                //                     .attr("stroke", "black")
+                //                     .attr("stroke-width", 3)
+                //                     // .attr("marker-end", "url(#arrowhead)");
 
-                        donutGroup.append("line")
-                            .attr("class", "label-line")
-                            .attr("x1", lineEndX)
-                            .attr("y1", lineEndY)
-                            .attr("x2", 400)
-                            .attr("y2", lineEndY)
-                            .attr("stroke", "black")
-                            .attr("stroke-width", 3)
-                            .attr("marker-end", "url(#arrowhead)")
+                //         donutGroup.append("line")
+                //             .attr("class", "label-line")
+                //             .attr("x1", lineEndX)
+                //             .attr("y1", lineEndY)
+                //             .attr("x2", 400)
+                //             .attr("y2", lineEndY)
+                //             .attr("stroke", "black")
+                //             .attr("stroke-width", 3)
+                //             .attr("marker-end", "url(#arrowhead)")
                         
-                        // Add the text label
-                        donutGroup.append("text")
-                            .attr("class", "label-text")
-                            .attr("x", 410)
-                            .attr("y", -490)
-                            .attr("text-anchor", lineStartX < 0 ? "end" : "start")
-                            .attr("dominant-baseline", "middle")
-                            .attr("font-size", "34px")
-                            .attr("font-weight", "bold")
-                            .text("LIO");
+                //         // Add the text label
+                //         donutGroup.append("text")
+                //             .attr("class", "label-text")
+                //             .attr("x", 410)
+                //             .attr("y", -490)
+                //             .attr("text-anchor", lineStartX < 0 ? "end" : "start")
+                //             .attr("dominant-baseline", "middle")
+                //             .attr("font-size", "34px")
+                //             .attr("font-weight", "bold")
+                //             .text("LIO");
 
-                        // for the ROLW's
+                //         // for the ROLW's
 
-                        donutGroup.append("line")
-                            .attr("class", "label-line")
-                            .attr("x1", 0)
-                            .attr("y1", -100)
-                            .attr("x2", 0)
-                            .attr("y2", 0)
-                            .attr("stroke", "black")
-                            .attr("stroke-width", 3)
-                            .attr("marker-end", "url(#arrowhead)")
+                //         donutGroup.append("line")
+                //             .attr("class", "label-line")
+                //             .attr("x1", 0)
+                //             .attr("y1", -100)
+                //             .attr("x2", 0)
+                //             .attr("y2", 0)
+                //             .attr("stroke", "black")
+                //             .attr("stroke-width", 3)
+                //             .attr("marker-end", "url(#arrowhead)")
 
-                        donutGroup.append("line")
-                            .attr("class", "label-line")
-                            .attr("x1", -100)
-                            .attr("y1", -100)
-                            .attr("x2", -100)
-                            .attr("y2", 0)
-                            .attr("stroke", "black")
-                            .attr("stroke-width", 3)
-                            .attr("marker-end", "url(#arrowhead)")
+                //         donutGroup.append("line")
+                //             .attr("class", "label-line")
+                //             .attr("x1", -100)
+                //             .attr("y1", -100)
+                //             .attr("x2", -100)
+                //             .attr("y2", 0)
+                //             .attr("stroke", "black")
+                //             .attr("stroke-width", 3)
+                //             .attr("marker-end", "url(#arrowhead)")
                         
-                        donutGroup.append("text")
-                            .attr("class", "label-text")
-                            .attr("x", -260)
-                            .attr("y", 30)
-                            .attr("text-anchor", "start")
-                            .attr("font-size", "34px")
-                            .attr("font-weight", "bold")
-                            .text("ROLW = 30");
+                //         donutGroup.append("text")
+                //             .attr("class", "label-text")
+                //             .attr("x", -260)
+                //             .attr("y", 30)
+                //             .attr("text-anchor", "start")
+                //             .attr("font-size", "34px")
+                //             .attr("font-weight", "bold")
+                //             .text("ROLW = 30");
                         
-                        donutGroup.append("text")
-                            .attr("class", "label-text")
-                            .attr("x", -10)
-                            .attr("y", 30)
-                            .attr("text-anchor", "start")
-                            .attr("font-size", "34px")
-                            .attr("font-weight", "bold")
-                            .text("1");
-                    }
+                //         donutGroup.append("text")
+                //             .attr("class", "label-text")
+                //             .attr("x", -10)
+                //             .attr("y", 30)
+                //             .attr("text-anchor", "start")
+                //             .attr("font-size", "34px")
+                //             .attr("font-weight", "bold")
+                //             .text("1");
+                //     }
 
-                    const firstBlackOuterStroke = donutGroup.selectAll("path.outer-stroke")
-                        .filter(function() {
-                            return d3.select(this).attr("stroke") === "black";
-                        })
-                        .nodes()[0];
+                //     const firstBlackOuterStroke = donutGroup.selectAll("path.outer-stroke")
+                //         .filter(function() {
+                //             return d3.select(this).attr("stroke") === "black";
+                //         })
+                //         .nodes()[0];
 
-                    if (firstBlackOuterStroke) {
-                        // Get the centroid of this path to position our line
-                        const firstData = d3.select(firstBlackOuterStroke).datum();
-                        const angle = (firstData.startAngle + firstData.endAngle) / 2;
-                        const radius = outerArc.outerRadius()();
+                //     if (firstBlackOuterStroke) {
+                //         // Get the centroid of this path to position our line
+                //         const firstData = d3.select(firstBlackOuterStroke).datum();
+                //         const angle = (firstData.startAngle + firstData.endAngle) / 2;
+                //         const radius = outerArc.outerRadius()();
                         
-                        // Calculate line start point (on the inner edge of the inner stroke)
-                        const lineStartX = Math.sin(angle) * radius;
-                        const lineStartY = -Math.cos(angle) * radius;
+                //         // Calculate line start point (on the inner edge of the inner stroke)
+                //         const lineStartX = Math.sin(angle) * radius;
+                //         const lineStartY = -Math.cos(angle) * radius;
                         
-                        // Calculate line end point (offset inward and to side)
-                        const lineEndX = 350
-                        const lineEndY = -450
+                //         // Calculate line end point (offset inward and to side)
+                //         const lineEndX = 350
+                //         const lineEndY = -450
                         
-                        // Add the line
-                        donutGroup.append("line")
-                                    .attr("class", "label-line")
-                                    .attr("x1", lineStartX)
-                                    .attr("y1", lineStartY)
-                                    .attr("x2", lineEndX)
-                                    .attr("y2", lineEndY)
-                                    .attr("stroke", "black")
-                                    .attr("stroke-width", 3)
-                                    // .attr("marker-end", "url(#arrowhead)");
+                //         // Add the line
+                //         donutGroup.append("line")
+                //                     .attr("class", "label-line")
+                //                     .attr("x1", lineStartX)
+                //                     .attr("y1", lineStartY)
+                //                     .attr("x2", lineEndX)
+                //                     .attr("y2", lineEndY)
+                //                     .attr("stroke", "black")
+                //                     .attr("stroke-width", 3)
+                //                     // .attr("marker-end", "url(#arrowhead)");
 
-                        donutGroup.append("line")
-                                    .attr("class", "label-line")
-                                    .attr("x1", lineEndX)
-                                    .attr("y1", lineEndY)
-                                    .attr("x2", 400)
-                                    .attr("y2", lineEndY)
-                                    .attr("stroke", "black")
-                                    .attr("stroke-width", 3)
-                                    .attr("marker-end", "url(#arrowhead)")
+                //         donutGroup.append("line")
+                //                     .attr("class", "label-line")
+                //                     .attr("x1", lineEndX)
+                //                     .attr("y1", lineEndY)
+                //                     .attr("x2", 400)
+                //                     .attr("y2", lineEndY)
+                //                     .attr("stroke", "black")
+                //                     .attr("stroke-width", 3)
+                //                     .attr("marker-end", "url(#arrowhead)")
                         
-                        // Add the text label
-                        donutGroup.append("text")
-                            .attr("class", "label-text")
-                            .attr("x", 410)
-                            .attr("y", -440)
-                            .attr("text-anchor", lineStartX < 0 ? "end" : "start")
-                            .attr("dominant-baseline", "middle")
-                            .attr("font-size", "34px")
-                            .attr("font-weight", "bold")
-                            .text("HIO");
-                    }
-                }, 100);
+                //         // Add the text label
+                //         donutGroup.append("text")
+                //             .attr("class", "label-text")
+                //             .attr("x", 410)
+                //             .attr("y", -440)
+                //             .attr("text-anchor", lineStartX < 0 ? "end" : "start")
+                //             .attr("dominant-baseline", "middle")
+                //             .attr("font-size", "34px")
+                //             .attr("font-weight", "bold")
+                //             .text("HIO");
+                //     }
+                // }, 100);
 
 
 
@@ -2717,19 +2717,47 @@ class Tab2Viz{
                 .attr("transform", `translate(${540}, ${-40})`);
 
                 // Add the main arcs
-                donutGroup2.selectAll("path.main")
-                .data(pie(donutArray))
-                .enter().append("path")
-                .attr("class", "main")
-                .attr("d", arc)
-                .attr("fill", d => {
-                    if (d.data.CDFdifference == undefined){
-                        return "grey"
-                    }
-                    return d.data.interventionColor
-                })
-                .attr("stroke", "black")
-                .style("stroke-width", "2px");
+                donutGroup2.selectAll("g.arc-group")
+                    .data(pie(donutArray))
+                    .enter()
+                    .append("g")
+                    .attr("class", "arc-group")
+                    .each(function(d) {
+                        const group = d3.select(this);
+
+                        // Full arc (grey if CDFdifference is undefined)
+                        group.append("path")
+                            .attr("class", "main")
+                            .attr("d", arc(d))
+                            .attr("fill", d.data.CDFdifference === undefined ? "grey" : d.data.interventionColor)
+                            .attr("stroke", "black")
+                            .style("stroke-width", "2px");
+
+                        // Add a thin horizontal sliver along the outer radius
+                        if (d.data.CDFdifference === undefined) {
+                            group.append("path")
+                                .attr("class", "overlay")
+                                .attr("d", sliverArc(d)) // Uses a very thin band at the outer edge
+                                .attr("fill", d.data.interventionColor)
+                                .attr("stroke", "black")
+                                .style("stroke-width", "1px");
+                        }
+                    });
+
+
+                // donutGroup2.selectAll("path.main")
+                // .data(pie(donutArray))
+                // .enter().append("path")
+                // .attr("class", "main")
+                // .attr("d", arc2)
+                // .attr("fill", d => {
+                //     if (d.data.CDFdifference == undefined){
+                //         return "grey"
+                //     }
+                //     // return d.data.interventionColor
+                // })
+                // .attr("stroke", "black")
+                // .style("stroke-width", "2px");
 
                 // Add the lifted inner strokes for negative weights
                 donutGroup2.selectAll("path.inner-stroke")
@@ -2823,9 +2851,9 @@ class Tab2Viz{
                 .attr("width", barWidth - 1) // -1 for spacing between bars
                 .attr("height", barcodeHeight/10)
                 .attr("fill", d => {
-                    if (d.CDFdifference == undefined){
-                        return "grey"
-                    }
+                    // if (d.CDFdifference == undefined){
+                    //     return "grey"
+                    // }
                     return d.color
                 })
                 .attr("stroke", "black")
@@ -2843,115 +2871,115 @@ class Tab2Viz{
                 .attr("stroke-width", "4px")
                 .attr("stroke-linecap", "round");
 
-                barcodeGroup.append("defs").append("marker")
-                    .attr("id", "barcode-arrowhead")
-                    .attr("viewBox", "0 -5 10 10")
-                    .attr("refX", 8)
-                    .attr("refY", 0)
-                    .attr("markerWidth", 6)
-                    .attr("markerHeight", 6)
-                    .attr("orient", "auto")
-                    .append("path")
-                    .attr("d", "M0,-5L10,0L0,5")
-                    .attr("fill", "black");
+                // barcodeGroup.append("defs").append("marker")
+                //     .attr("id", "barcode-arrowhead")
+                //     .attr("viewBox", "0 -5 10 10")
+                //     .attr("refX", 8)
+                //     .attr("refY", 0)
+                //     .attr("markerWidth", 6)
+                //     .attr("markerHeight", 6)
+                //     .attr("orient", "auto")
+                //     .append("path")
+                //     .attr("d", "M0,-5L10,0L0,5")
+                //     .attr("fill", "black");
 
-                setTimeout(() => {
-                    // Get the first line element
-                    const firstNegativeBar = barcodeArray.find(d => d.weight < 0);
-                    if (!firstNegativeBar) return; // If no positive-weight bars exist, exit
+                // setTimeout(() => {
+                //     // Get the first line element
+                //     const firstNegativeBar = barcodeArray.find(d => d.weight < 0);
+                //     if (!firstNegativeBar) return; // If no positive-weight bars exist, exit
                     
-                    const index = barcodeArray.indexOf(firstNegativeBar);
+                //     const index = barcodeArray.indexOf(firstNegativeBar);
                     
-                    // Position for the arrow start
-                    const arrowStartX = index * barWidth + barWidth / 2;  // Middle of the found bar
-                    const arrowStartY = -10;  // Same Y as the line
+                //     // Position for the arrow start
+                //     const arrowStartX = index * barWidth + barWidth / 2;  // Middle of the found bar
+                //     const arrowStartY = -10;  // Same Y as the line
                     
-                    // Position for the arrow end and label
-                    const arrowEndX = -10;
-                    const arrowEndY = -120;  // 30px away from line
+                //     // Position for the arrow end and label
+                //     const arrowEndX = -10;
+                //     const arrowEndY = -120;  // 30px away from line
                     
-                    // Add the arrow line
-                    barcodeGroup.append("line")
-                        .attr("class", "label-arrow")
-                        .attr("x1", arrowStartX)
-                        .attr("y1", arrowStartY)
-                        .attr("x2", arrowEndX)
-                        .attr("y2", arrowEndY)
-                        .attr("stroke", "black")
-                        .attr("stroke-width", 3)
+                //     // Add the arrow line
+                //     barcodeGroup.append("line")
+                //         .attr("class", "label-arrow")
+                //         .attr("x1", arrowStartX)
+                //         .attr("y1", arrowStartY)
+                //         .attr("x2", arrowEndX)
+                //         .attr("y2", arrowEndY)
+                //         .attr("stroke", "black")
+                //         .attr("stroke-width", 3)
 
-                    barcodeGroup.append("line")
-                        .attr("class", "label-line")
-                        .attr("x1", -10)
-                        .attr("y1", -120)
-                        .attr("x2", -60)
-                        .attr("y2", -120)
-                        .attr("stroke", "black")
-                        .attr("stroke-width", 3)
-                        .attr("marker-end", "url(#barcode-arrowhead)")
+                //     barcodeGroup.append("line")
+                //         .attr("class", "label-line")
+                //         .attr("x1", -10)
+                //         .attr("y1", -120)
+                //         .attr("x2", -60)
+                //         .attr("y2", -120)
+                //         .attr("stroke", "black")
+                //         .attr("stroke-width", 3)
+                //         .attr("marker-end", "url(#barcode-arrowhead)")
 
-                    barcodeGroup.append("text")
-                        .attr("class", "label-text")
-                        .attr("x", -65)  // Position to the right of the arrow end
-                        .attr("y", -115)
-                        .attr("text-anchor", "end")
-                        .attr("dominant-baseline", "middle")
-                        .attr("font-size", "34px")
-                        .attr("font-weight", "bold")
-                        .text("LIO");
+                //     barcodeGroup.append("text")
+                //         .attr("class", "label-text")
+                //         .attr("x", -65)  // Position to the right of the arrow end
+                //         .attr("y", -115)
+                //         .attr("text-anchor", "end")
+                //         .attr("dominant-baseline", "middle")
+                //         .attr("font-size", "34px")
+                //         .attr("font-weight", "bold")
+                //         .text("LIO");
 
-                    const firstPositiveBar = barcodeArray.find(d => d.weight > 0);
-                    if (!firstPositiveBar) return; // If no positive-weight bars exist, exit
+                //     const firstPositiveBar = barcodeArray.find(d => d.weight > 0);
+                //     if (!firstPositiveBar) return; // If no positive-weight bars exist, exit
                     
-                    const index2 = barcodeArray.indexOf(firstPositiveBar);
+                //     const index2 = barcodeArray.indexOf(firstPositiveBar);
 
-                    const arrowStartX2 = index2 * barWidth + barWidth / 2;  // Middle of the found bar
-                    const arrowStartY2 = barcodeHeight/10 + 10;  // Same Y as the line
+                //     const arrowStartX2 = index2 * barWidth + barWidth / 2;  // Middle of the found bar
+                //     const arrowStartY2 = barcodeHeight/10 + 10;  // Same Y as the line
                     
-                    // Position for the arrow end and label
-                    const arrowEndX2 = -10;
-                    const arrowEndY2 = 90;  // 30px away from line
+                //     // Position for the arrow end and label
+                //     const arrowEndX2 = -10;
+                //     const arrowEndY2 = 90;  // 30px away from line
 
-                    barcodeGroup.append("line")
-                        .attr("class", "label-arrow")
-                        .attr("x1", arrowStartX2)
-                        .attr("y1", arrowStartY2)
-                        .attr("x2", arrowEndX2)
-                        .attr("y2", arrowEndY2)
-                        .attr("stroke", "black")
-                        .attr("stroke-width", 3)
+                //     barcodeGroup.append("line")
+                //         .attr("class", "label-arrow")
+                //         .attr("x1", arrowStartX2)
+                //         .attr("y1", arrowStartY2)
+                //         .attr("x2", arrowEndX2)
+                //         .attr("y2", arrowEndY2)
+                //         .attr("stroke", "black")
+                //         .attr("stroke-width", 3)
 
-                    barcodeGroup.append("line")
-                        .attr("class", "label-line")
-                        .attr("x1", arrowEndX2)
-                        .attr("y1", arrowEndY2)
-                        .attr("x2", -60)
-                        .attr("y2", arrowEndY2)
-                        .attr("stroke", "black")
-                        .attr("stroke-width", 3)
-                        .attr("marker-end", "url(#barcode-arrowhead)")
+                //     barcodeGroup.append("line")
+                //         .attr("class", "label-line")
+                //         .attr("x1", arrowEndX2)
+                //         .attr("y1", arrowEndY2)
+                //         .attr("x2", -60)
+                //         .attr("y2", arrowEndY2)
+                //         .attr("stroke", "black")
+                //         .attr("stroke-width", 3)
+                //         .attr("marker-end", "url(#barcode-arrowhead)")
 
-                    barcodeGroup.append("text")
-                        .attr("class", "label-text")
-                        .attr("x", -65)  // Position to the right of the arrow end
-                        .attr("y", 95)
-                        .attr("text-anchor", "end")
-                        .attr("dominant-baseline", "middle")
-                        .attr("font-size", "34px")
-                        .attr("font-weight", "bold")
-                        .text("HIO");
+                //     barcodeGroup.append("text")
+                //         .attr("class", "label-text")
+                //         .attr("x", -65)  // Position to the right of the arrow end
+                //         .attr("y", 95)
+                //         .attr("text-anchor", "end")
+                //         .attr("dominant-baseline", "middle")
+                //         .attr("font-size", "34px")
+                //         .attr("font-weight", "bold")
+                //         .text("HIO");
 
-                    barcodeGroup.append("text")
-                        .attr("class", "label-text")
-                        .attr("x", -5)  // Position to the right of the arrow end
-                        .attr("y", 28)
-                        .attr("text-anchor", "end")
-                        .attr("dominant-baseline", "middle")
-                        .attr("font-size", "30px")
-                        .attr("font-weight", "bold")
-                        .text("ROLW = 31");
+                //     barcodeGroup.append("text")
+                //         .attr("class", "label-text")
+                //         .attr("x", -5)  // Position to the right of the arrow end
+                //         .attr("y", 28)
+                //         .attr("text-anchor", "end")
+                //         .attr("dominant-baseline", "middle")
+                //         .attr("font-size", "30px")
+                //         .attr("font-weight", "bold")
+                //         .text("ROLW = 31");
 
-                }, 100);
+                // }, 100);
 
 
                 let startingpoint2 = -575 + availablespace + 540
