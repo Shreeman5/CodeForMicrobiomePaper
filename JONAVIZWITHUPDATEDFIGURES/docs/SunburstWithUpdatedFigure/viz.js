@@ -488,7 +488,7 @@ class Tab2Viz{
               
             // Add rectangle background
             tooltip.append("rect")
-                .attr("x", mouseX + 10)
+                .attr("x", mouseX - 430)
                 .attr("y", mouseY + 30)
                 .attr("width", 440)  // Increased width from 220 to 550
                 .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
@@ -500,14 +500,14 @@ class Tab2Viz{
 
                 // Add text inside the box
             tooltip.append("text")
-                .attr("x", mouseX + 20)
+                .attr("x", mouseX - 420)
                 .attr("y", mouseY + 60)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("Organisms ordered by arc size in");
 
             tooltip.append("text")
-                .attr("x", mouseX + 20)
+                .attr("x", mouseX - 420)
                 .attr("y", mouseY+90)
                 .attr("font-size", "29")
                 .attr("fill", "black")
@@ -530,8 +530,8 @@ class Tab2Viz{
                 .attr("class", "label-line")
                 .attr("x1", lineStartX+10)
                 .attr("y1", lineStartY)
-                .attr("x2", lineEndX)
-                .attr("y2", lineEndY)
+                .attr("x2", lineEndX + 50)
+                .attr("y2", lineEndY - 180)
                 .attr("stroke", "black")
                 .attr("stroke-width", 3)
                 // .attr("marker-start", "url(#arrowhead)")
@@ -539,21 +539,39 @@ class Tab2Viz{
 
         svg.append("text")
         .attr("x", 0)
-        .attr("y", 390)
+        .attr("y", 210)
         .attr("font-size", "29")
         .attr("fill", "Black")
         .attr("text-anchor", "start")
         .style("font-weight", "bold")
-        .text("Inner")
+        .text("Organism less")
 
         svg.append("text")
         .attr("x", 0)
-        .attr("y", 420)
+        .attr("y", 240)
         .attr("font-size", "29")
         .attr("fill", "Black")
         .attr("text-anchor", "start")
         .style("font-weight", "bold")
-        .text("line(?)")
+        .text("prevalent")
+
+        svg.append("text")
+        .attr("x", 0)
+        .attr("y", 270)
+        .attr("font-size", "29")
+        .attr("fill", "Black")
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .text("in disease")
+
+        svg.append("text")
+        .attr("x", 0)
+        .attr("y", 300)
+        .attr("font-size", "29")
+        .attr("fill", "Black")
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .text("(?)")
         .on("mouseover", function(event) {
             // Get mouse position
             const [mouseX, mouseY] = d3.pointer(event);
@@ -625,7 +643,7 @@ class Tab2Viz{
                 .attr("x1", lineStartX2+10)
                 .attr("y1", lineStartY2)
                 .attr("x2", lineEndX2+10)
-                .attr("y2", lineEndY2)
+                .attr("y2", lineEndY2+70)
                 .attr("stroke", "black")
                 .attr("stroke-width", 3)
                 // .attr("marker-start", "url(#arrowhead)")
@@ -641,22 +659,31 @@ class Tab2Viz{
         // .attr("marker-start", "url(#barcode-arrowhead)")
 
         svg.append("text")
-        .attr("x", 630)
-        .attr("y", 600)
+        .attr("x", 570)
+        .attr("y", 660)
         .attr("font-size", "29")
         .attr("fill", "Black")
         .attr("text-anchor", "start")
         .style("font-weight", "bold")
-        .text("Outer")
+        .text("Organism")
 
         svg.append("text")
-        .attr("x", 630)
-        .attr("y", 630)
+        .attr("x", 540)
+        .attr("y", 690)
         .attr("font-size", "29")
         .attr("fill", "Black")
         .attr("text-anchor", "start")
         .style("font-weight", "bold")
-        .text("line(?)")
+        .text("more prevalent")
+
+        svg.append("text")
+        .attr("x", 540)
+        .attr("y", 720)
+        .attr("font-size", "29")
+        .attr("fill", "Black")
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .text("in disease(?)")
         .on("mouseover", function(event) {
             // Get mouse position
             const [mouseX, mouseY] = d3.pointer(event);
@@ -667,7 +694,7 @@ class Tab2Viz{
               
             // Add rectangle background
             tooltip.append("rect")
-                .attr("x", mouseX - 400)
+                .attr("x", mouseX - 500)
                 .attr("y", mouseY + 30)
                 .attr("width", 460)  // Increased width from 220 to 550
                 .attr("height", 110)  // Increased height from 50 to 70 to accommodate larger text
@@ -679,21 +706,21 @@ class Tab2Viz{
 
                 // Add text inside the box
             tooltip.append("text")
-                .attr("x", mouseX - 390)
+                .attr("x", mouseX - 490)
                 .attr("y", mouseY + 60)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("Outer line means high presence of");
 
             tooltip.append("text")
-                .attr("x", mouseX - 390)
+                .attr("x", mouseX - 490)
                 .attr("y", mouseY+90)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("organism found in disease");
 
             tooltip.append("text")
-                .attr("x", mouseX - 390)
+                .attr("x", mouseX - 490)
                 .attr("y", mouseY+120)
                 .attr("font-size", "29")
                 .attr("fill", "black")
@@ -712,20 +739,29 @@ class Tab2Viz{
         .attr("x1", 400)
         .attr("y1", 630)
         .attr("x2", 400)
-        .attr("y2", 730)
+        .attr("y2", 750)
         .attr("stroke", "black")
         .attr("stroke-width", 3)
         // .attr("marker-start", "url(#barcode-arrowhead)")
         // .attr("marker-end", "url(#barcode-arrowhead)")
 
         svg.append("text")
-        .attr("x", 350)
-        .attr("y", 755)
+        .attr("x", 250)
+        .attr("y", 775)
         .attr("font-size", "29")
         .attr("fill", "Black")
         .attr("text-anchor", "start")
         .style("font-weight", "bold")
-        .text("Highest(?)")
+        .text("Arc length indicates")
+
+        svg.append("text")
+        .attr("x", 250)
+        .attr("y", 805)
+        .attr("font-size", "29")
+        .attr("fill", "Black")
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .text("literature weight(?)")
         .on("mouseover", function(event) {
             // Get mouse position
             const [mouseX, mouseY] = d3.pointer(event);
@@ -736,7 +772,7 @@ class Tab2Viz{
               
             // Add rectangle background
             tooltip.append("rect")
-                .attr("x", mouseX - 150)
+                .attr("x", mouseX - 250)
                 .attr("y", mouseY + 30)
                 .attr("width", 500)  // Increased width from 220 to 550
                 .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
@@ -748,14 +784,14 @@ class Tab2Viz{
 
                 // Add text inside the box
             tooltip.append("text")
-                .attr("x", mouseX - 140)
+                .attr("x", mouseX - 240)
                 .attr("y", mouseY + 60)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("Organisms appears with the highest");
 
             tooltip.append("text")
-                .attr("x", mouseX - 140)
+                .attr("x", mouseX - 240)
                 .attr("y", mouseY+90)
                 .attr("font-size", "29")
                 .attr("fill", "black")
@@ -766,64 +802,64 @@ class Tab2Viz{
             svg.selectAll(".tooltip-box").remove();
           });
 
-        svg.append("line")
-        .attr("class", "label-line")
-        .attr("x1", 200)
-        .attr("y1", 580)
-        .attr("x2", 200)
-        .attr("y2", 730)
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
-        // .attr("marker-start", "url(#barcode-arrowhead)")
-        // .attr("marker-end", "url(#barcode-arrowhead)")
+        // svg.append("line")
+        // .attr("class", "label-line")
+        // .attr("x1", 200)
+        // .attr("y1", 580)
+        // .attr("x2", 200)
+        // .attr("y2", 730)
+        // .attr("stroke", "black")
+        // .attr("stroke-width", 3)
+        // // .attr("marker-start", "url(#barcode-arrowhead)")
+        // // .attr("marker-end", "url(#barcode-arrowhead)")
 
-        svg.append("text")
-        .attr("x", 80)
-        .attr("y", 755)
-        .attr("font-size", "29")
-        .attr("fill", "Black")
-        .attr("text-anchor", "start")
-        .style("font-weight", "bold")
-        .text("2nd highest(?)")
-        .on("mouseover", function(event) {
-            // Get mouse position
-            const [mouseX, mouseY] = d3.pointer(event);
+        // svg.append("text")
+        // .attr("x", 80)
+        // .attr("y", 755)
+        // .attr("font-size", "29")
+        // .attr("fill", "Black")
+        // .attr("text-anchor", "start")
+        // .style("font-weight", "bold")
+        // .text("2nd highest(?)")
+        // .on("mouseover", function(event) {
+        //     // Get mouse position
+        //     const [mouseX, mouseY] = d3.pointer(event);
             
-            // Create tooltip box
-            const tooltip = svg.append("g")
-              .attr("class", "tooltip-box");
+        //     // Create tooltip box
+        //     const tooltip = svg.append("g")
+        //       .attr("class", "tooltip-box");
               
-            // Add rectangle background
-            tooltip.append("rect")
-                .attr("x", mouseX - 150)
-                .attr("y", mouseY + 30)
-                .attr("width", 550)  // Increased width from 220 to 550
-                .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
-                .attr("fill", "white")
-                .attr("stroke", "black")
-                .attr("stroke-width", 1)
-                .attr("rx", 5)
-                .attr("ry", 5);
+        //     // Add rectangle background
+        //     tooltip.append("rect")
+        //         .attr("x", mouseX - 150)
+        //         .attr("y", mouseY + 30)
+        //         .attr("width", 550)  // Increased width from 220 to 550
+        //         .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
+        //         .attr("fill", "white")
+        //         .attr("stroke", "black")
+        //         .attr("stroke-width", 1)
+        //         .attr("rx", 5)
+        //         .attr("ry", 5);
 
-                // Add text inside the box
-            tooltip.append("text")
-                .attr("x", mouseX - 140)
-                .attr("y", mouseY + 60)
-                .attr("font-size", "29")
-                .attr("fill", "black")
-                .text("Organisms appears with the 2nd highest");
+        //         // Add text inside the box
+        //     tooltip.append("text")
+        //         .attr("x", mouseX - 140)
+        //         .attr("y", mouseY + 60)
+        //         .attr("font-size", "29")
+        //         .attr("fill", "black")
+        //         .text("Organisms appears with the 2nd highest");
 
-            tooltip.append("text")
-                .attr("x", mouseX - 140)
-                .attr("y", mouseY+90)
-                .attr("font-size", "29")
-                .attr("fill", "black")
-                .text("frequency in disease literature");
-          })
-          .on("mouseout", function() {
-            // Remove tooltip when not hovering
-            svg.selectAll(".tooltip-box").remove();
-          });
+        //     tooltip.append("text")
+        //         .attr("x", mouseX - 140)
+        //         .attr("y", mouseY+90)
+        //         .attr("font-size", "29")
+        //         .attr("fill", "black")
+        //         .text("frequency in disease literature");
+        //   })
+        //   .on("mouseout", function() {
+        //     // Remove tooltip when not hovering
+        //     svg.selectAll(".tooltip-box").remove();
+        //   });
 
 
 
@@ -844,7 +880,7 @@ class Tab2Viz{
               
             // Add rectangle background
             tooltip.append("rect")
-                .attr("x", mouseX + 10)
+                .attr("x", mouseX - 500)
                 .attr("y", mouseY + 30)
                 .attr("width", 440)  // Increased width from 220 to 550
                 .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
@@ -856,14 +892,14 @@ class Tab2Viz{
 
                 // Add text inside the box
             tooltip.append("text")
-                .attr("x", mouseX + 20)
+                .attr("x", mouseX - 490)
                 .attr("y", mouseY + 60)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("Organisms ordered left to right in");
 
             tooltip.append("text")
-                .attr("x", mouseX + 20)
+                .attr("x", mouseX - 490)
                 .attr("y", mouseY+90)
                 .attr("font-size", "29")
                 .attr("fill", "black")
@@ -880,22 +916,31 @@ class Tab2Viz{
 
         svg.append("line")
         .attr("class", "label-line")
-        .attr("x1", 450)
-        .attr("y1", 170)
-        .attr("x2", 600)
-        .attr("y2", 170)
+        .attr("x1", 590)
+        .attr("y1", 180)
+        .attr("x2", 590)
+        .attr("y2", 270)
         .attr("stroke", "black")
         .attr("stroke-width", 3)
         // .attr("marker-end", "url(#barcode-arrowhead)")
 
         svg.append("text")
-        .attr("x", 610)
-        .attr("y", 190)
+        .attr("x", 565)
+        .attr("y", 135)
         .attr("font-size", "29")
         .attr("fill", "Black")
         .attr("text-anchor", "start")
         .style("font-weight", "bold")
-        .text("Blue(?)")
+        .text("Similar to")
+
+        svg.append("text")
+        .attr("x", 565)
+        .attr("y", 165)
+        .attr("font-size", "29")
+        .attr("fill", "Black")
+        .attr("text-anchor", "start")
+        .style("font-weight", "bold")
+        .text("No-Disease(?)")
         .on("mouseover", function(event) {
             // Get mouse position
             const [mouseX, mouseY] = d3.pointer(event);
@@ -906,7 +951,7 @@ class Tab2Viz{
               
             // Add rectangle background
             tooltip.append("rect")
-                .attr("x", mouseX - 400)
+                .attr("x", mouseX - 520)
                 .attr("y", mouseY + 30)
                 .attr("width", 500)  // Increased width from 220 to 550
                 .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
@@ -918,14 +963,14 @@ class Tab2Viz{
 
                 // Add text inside the box
             tooltip.append("text")
-                .attr("x", mouseX - 390)
+                .attr("x", mouseX - 510)
                 .attr("y", mouseY +60)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("Blue means organism presence in");
 
             tooltip.append("text")
-                .attr("x", mouseX - 390)
+                .attr("x", mouseX - 510)
                 .attr("y", mouseY+90)
                 .attr("font-size", "29")
                 .attr("fill", "black")
@@ -939,22 +984,22 @@ class Tab2Viz{
 
         svg.append("line")
         .attr("class", "label-line")
-        .attr("x1", 270)
-        .attr("y1", 170)
-        .attr("x2", 150)
-        .attr("y2", 170)
+        .attr("x1", 240)
+        .attr("y1", 220)
+        .attr("x2", 240)
+        .attr("y2", 160)
         .attr("stroke", "black")
         .attr("stroke-width", 3)
         // .attr("marker-end", "url(#barcode-arrowhead)")
 
         svg.append("text")
-        .attr("x", 50)
-        .attr("y", 175)
+        .attr("x", 0)
+        .attr("y", 145)
         .attr("font-size", "29")
         .attr("fill", "Black")
         // .attr("text-anchor", "end")
         .style("font-weight", "bold")
-        .text("Red(?)")
+        .text("Similar to Disease(?)")
         .on("mouseover", function(event) {
             // Get mouse position
             const [mouseX, mouseY] = d3.pointer(event);
@@ -965,7 +1010,7 @@ class Tab2Viz{
               
             // Add rectangle background
             tooltip.append("rect")
-                .attr("x", mouseX + 10)
+                .attr("x", mouseX - 10)
                 .attr("y", mouseY + 30)
                 .attr("width", 470)  // Increased width from 220 to 550
                 .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
@@ -977,14 +1022,14 @@ class Tab2Viz{
 
                 // Add text inside the box
             tooltip.append("text")
-                .attr("x", mouseX + 20)
+                .attr("x", mouseX)
                 .attr("y", mouseY +60)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("Red means organism presence in");
 
             tooltip.append("text")
-                .attr("x", mouseX + 20)
+                .attr("x", mouseX)
                 .attr("y", mouseY+90)
                 .attr("font-size", "29")
                 .attr("fill", "black")
@@ -1013,7 +1058,7 @@ class Tab2Viz{
         .attr("fill", "Black")
         // .attr("text-anchor", "end")
         .style("font-weight", "bold")
-        .text("Lower line(?)")
+        .text("Organism less prevalent in disease(?)")
         .on("mouseover", function(event) {
             // Get mouse position
             const [mouseX, mouseY] = d3.pointer(event);
@@ -1024,10 +1069,10 @@ class Tab2Viz{
               
             // Add rectangle background
             tooltip.append("rect")
-                .attr("x", mouseX + 10)
+                .attr("x", mouseX - 400)
                 .attr("y", mouseY + 30)
                 .attr("width", 470)  // Increased width from 220 to 550
-                .attr("height", 110)  // Increased height from 50 to 70 to accommodate larger text
+                .attr("height", 200)  // Increased height from 50 to 70 to accommodate larger text
                 .attr("fill", "white")
                 .attr("stroke", "black")
                 .attr("stroke-width", 1)
@@ -1036,89 +1081,43 @@ class Tab2Viz{
 
                 // Add text inside the box
             tooltip.append("text")
-                .attr("x", mouseX + 20)
+                .attr("x", mouseX - 390)
                 .attr("y", mouseY + 60)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("Lower line means low presence of");
 
             tooltip.append("text")
-                .attr("x", mouseX + 20)
+                .attr("x", mouseX - 390)
                 .attr("y", mouseY+90)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("organism found in disease");
 
             tooltip.append("text")
-                .attr("x", mouseX + 20)
+                .attr("x", mouseX - 390)
                 .attr("y", mouseY+120)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("(Low Indicator Organism = LIO)");
-          })
-          .on("mouseout", function() {
-            // Remove tooltip when not hovering
-            svg.selectAll(".tooltip-box").remove();
-          });
 
-
-
-        svg.append("line")
-        .attr("class", "label-line")
-        .attr("x1", 535)
-        .attr("y1", 940)
-        .attr("x2", 535)
-        .attr("y2", 1060)
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
-        // .attr("marker-end", "url(#barcode-arrowhead)")
-
-        svg.append("text")
-        .attr("x", 445)
-        .attr("y", 1085)
-        .attr("font-size", "29")
-        .attr("fill", "Black")
-        // .attr("text-anchor", "end")
-        .style("font-weight", "bold")
-        .text("Upper line(?)")
-        .on("mouseover", function(event) {
-            // Get mouse position
-            const [mouseX, mouseY] = d3.pointer(event);
-            
-            // Create tooltip box
-            const tooltip = svg.append("g")
-              .attr("class", "tooltip-box");
-              
-            // Add rectangle background
-            tooltip.append("rect")
-                .attr("x", mouseX - 250)
-                .attr("y", mouseY + 30)
-                .attr("width", 470)  // Increased width from 220 to 550
-                .attr("height", 110)  // Increased height from 50 to 70 to accommodate larger text
-                .attr("fill", "white")
-                .attr("stroke", "black")
-                .attr("stroke-width", 1)
-                .attr("rx", 5)
-                .attr("ry", 5);
-
-                // Add text inside the box
             tooltip.append("text")
-                .attr("x", mouseX - 240)
-                .attr("y", mouseY + 60)
+                .attr("x", mouseX - 390)
+                .attr("y", mouseY+150)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("Upper line means high presence of");
 
             tooltip.append("text")
-                .attr("x", mouseX - 240)
-                .attr("y", mouseY+90)
+                .attr("x", mouseX - 390)
+                .attr("y", mouseY+180)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("organism found in disease");
 
             tooltip.append("text")
-                .attr("x", mouseX - 240)
-                .attr("y", mouseY+120)
+                .attr("x", mouseX - 390)
+                .attr("y", mouseY+210)
                 .attr("font-size", "29")
                 .attr("fill", "black")
                 .text("(High Indicator Organism = HIO)");
@@ -1127,6 +1126,73 @@ class Tab2Viz{
             // Remove tooltip when not hovering
             svg.selectAll(".tooltip-box").remove();
           });
+
+
+
+        // svg.append("line")
+        // .attr("class", "label-line")
+        // .attr("x1", 535)
+        // .attr("y1", 940)
+        // .attr("x2", 535)
+        // .attr("y2", 1060)
+        // .attr("stroke", "black")
+        // .attr("stroke-width", 3)
+        // // .attr("marker-end", "url(#barcode-arrowhead)")
+
+        // svg.append("text")
+        // .attr("x", 445)
+        // .attr("y", 1085)
+        // .attr("font-size", "29")
+        // .attr("fill", "Black")
+        // // .attr("text-anchor", "end")
+        // .style("font-weight", "bold")
+        // .text("Upper line(?)")
+        // .on("mouseover", function(event) {
+        //     // Get mouse position
+        //     const [mouseX, mouseY] = d3.pointer(event);
+            
+        //     // Create tooltip box
+        //     const tooltip = svg.append("g")
+        //       .attr("class", "tooltip-box");
+              
+        //     // Add rectangle background
+        //     tooltip.append("rect")
+        //         .attr("x", mouseX - 250)
+        //         .attr("y", mouseY + 30)
+        //         .attr("width", 470)  // Increased width from 220 to 550
+        //         .attr("height", 110)  // Increased height from 50 to 70 to accommodate larger text
+        //         .attr("fill", "white")
+        //         .attr("stroke", "black")
+        //         .attr("stroke-width", 1)
+        //         .attr("rx", 5)
+        //         .attr("ry", 5);
+
+        //         // Add text inside the box
+        //     tooltip.append("text")
+        //         .attr("x", mouseX - 240)
+        //         .attr("y", mouseY + 60)
+        //         .attr("font-size", "29")
+        //         .attr("fill", "black")
+        //         .text("Upper line means high presence of");
+
+        //     tooltip.append("text")
+        //         .attr("x", mouseX - 240)
+        //         .attr("y", mouseY+90)
+        //         .attr("font-size", "29")
+        //         .attr("fill", "black")
+        //         .text("organism found in disease");
+
+        //     tooltip.append("text")
+        //         .attr("x", mouseX - 240)
+        //         .attr("y", mouseY+120)
+        //         .attr("font-size", "29")
+        //         .attr("fill", "black")
+        //         .text("(High Indicator Organism = HIO)");
+        //   })
+        //   .on("mouseout", function() {
+        //     // Remove tooltip when not hovering
+        //     svg.selectAll(".tooltip-box").remove();
+        //   });
 
         svg.append("text")
         .attr("x", 445)
@@ -1146,129 +1212,129 @@ class Tab2Viz{
         .style("font-weight", "bold")
         .text("")
 
-        svg.append("line")
-        .attr("class", "label-line")
-        .attr("x1", 135)
-        .attr("y1", 980)
-        .attr("x2", 95)
-        .attr("y2", 980)
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
+        // svg.append("line")
+        // .attr("class", "label-line")
+        // .attr("x1", 135)
+        // .attr("y1", 980)
+        // .attr("x2", 95)
+        // .attr("y2", 980)
+        // .attr("stroke", "black")
+        // .attr("stroke-width", 3)
 
-        svg.append("text")
-        .attr("x", 0)
-        .attr("y", 980)
-        .attr("font-size", "29")
-        .attr("fill", "Black")
-        // .attr("text-anchor", "end")
-        .style("font-weight", "bold")
-        .text("3rd(?)")
-        .on("mouseover", function(event) {
-            // Get mouse position
-            const [mouseX, mouseY] = d3.pointer(event);
+        // svg.append("text")
+        // .attr("x", 0)
+        // .attr("y", 980)
+        // .attr("font-size", "29")
+        // .attr("fill", "Black")
+        // // .attr("text-anchor", "end")
+        // .style("font-weight", "bold")
+        // .text("3rd(?)")
+        // .on("mouseover", function(event) {
+        //     // Get mouse position
+        //     const [mouseX, mouseY] = d3.pointer(event);
             
-            // Create tooltip box
-            const tooltip = svg.append("g")
-              .attr("class", "tooltip-box");
+        //     // Create tooltip box
+        //     const tooltip = svg.append("g")
+        //       .attr("class", "tooltip-box");
               
-            // Add rectangle background
-            tooltip.append("rect")
-                .attr("x", mouseX + 10)
-                .attr("y", mouseY + 30)
-                .attr("width", 520)  // Increased width from 220 to 550
-                .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
-                .attr("fill", "white")
-                .attr("stroke", "black")
-                .attr("stroke-width", 1)
-                .attr("rx", 5)
-                .attr("ry", 5);
+        //     // Add rectangle background
+        //     tooltip.append("rect")
+        //         .attr("x", mouseX + 10)
+        //         .attr("y", mouseY + 30)
+        //         .attr("width", 520)  // Increased width from 220 to 550
+        //         .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
+        //         .attr("fill", "white")
+        //         .attr("stroke", "black")
+        //         .attr("stroke-width", 1)
+        //         .attr("rx", 5)
+        //         .attr("ry", 5);
 
-                // Add text inside the box
-            tooltip.append("text")
-                .attr("x", mouseX + 20)
-                .attr("y", mouseY + 60)
-                .attr("font-size", "29")
-                .attr("fill", "black")
-                .text("Organism appears with the 3rd highest");
+        //         // Add text inside the box
+        //     tooltip.append("text")
+        //         .attr("x", mouseX + 20)
+        //         .attr("y", mouseY + 60)
+        //         .attr("font-size", "29")
+        //         .attr("fill", "black")
+        //         .text("Organism appears with the 3rd highest");
 
-            tooltip.append("text")
-                .attr("x", mouseX + 20)
-                .attr("y", mouseY+90)
-                .attr("font-size", "29")
-                .attr("fill", "black")
-                .text("frequency in disease literature");
-          })
-          .on("mouseout", function() {
-            // Remove tooltip when not hovering
-            svg.selectAll(".tooltip-box").remove();
-          });
+        //     tooltip.append("text")
+        //         .attr("x", mouseX + 20)
+        //         .attr("y", mouseY+90)
+        //         .attr("font-size", "29")
+        //         .attr("fill", "black")
+        //         .text("frequency in disease literature");
+        //   })
+        //   .on("mouseout", function() {
+        //     // Remove tooltip when not hovering
+        //     svg.selectAll(".tooltip-box").remove();
+        //   });
 
-        svg.append("text")
-        .attr("x", 0)
-        .attr("y", 1010)
-        .attr("font-size", "29")
-        .attr("fill", "Black")
-        // .attr("text-anchor", "end")
-        .style("font-weight", "bold")
-        .text("highest")
+        // svg.append("text")
+        // .attr("x", 0)
+        // .attr("y", 1010)
+        // .attr("font-size", "29")
+        // .attr("fill", "Black")
+        // // .attr("text-anchor", "end")
+        // .style("font-weight", "bold")
+        // .text("highest")
 
 
-        svg.append("line")
-        .attr("class", "label-line")
-        .attr("x1", 605)
-        .attr("y1", 980)
-        .attr("x2", 655)
-        .attr("y2", 980)
-        .attr("stroke", "black")
-        .attr("stroke-width", 3)
+        // svg.append("line")
+        // .attr("class", "label-line")
+        // .attr("x1", 605)
+        // .attr("y1", 980)
+        // .attr("x2", 655)
+        // .attr("y2", 980)
+        // .attr("stroke", "black")
+        // .attr("stroke-width", 3)
 
-        svg.append("text")
-        .attr("x", 635)
-        .attr("y", 975)
-        .attr("font-size", "27")
-        .attr("fill", "Black")
-        // .attr("text-anchor", "end")
-        .style("font-weight", "bold")
-        .text("Lowest(?)")
-        .on("mouseover", function(event) {
-            // Get mouse position
-            const [mouseX, mouseY] = d3.pointer(event);
+        // svg.append("text")
+        // .attr("x", 635)
+        // .attr("y", 975)
+        // .attr("font-size", "27")
+        // .attr("fill", "Black")
+        // // .attr("text-anchor", "end")
+        // .style("font-weight", "bold")
+        // .text("Lowest(?)")
+        // .on("mouseover", function(event) {
+        //     // Get mouse position
+        //     const [mouseX, mouseY] = d3.pointer(event);
             
-            // Create tooltip box
-            const tooltip = svg.append("g")
-              .attr("class", "tooltip-box");
+        //     // Create tooltip box
+        //     const tooltip = svg.append("g")
+        //       .attr("class", "tooltip-box");
               
-            // Add rectangle background
-            tooltip.append("rect")
-                .attr("x", mouseX - 450)
-                .attr("y", mouseY + 30)
-                .attr("width", 480)  // Increased width from 220 to 550
-                .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
-                .attr("fill", "white")
-                .attr("stroke", "black")
-                .attr("stroke-width", 1)
-                .attr("rx", 5)
-                .attr("ry", 5);
+        //     // Add rectangle background
+        //     tooltip.append("rect")
+        //         .attr("x", mouseX - 450)
+        //         .attr("y", mouseY + 30)
+        //         .attr("width", 480)  // Increased width from 220 to 550
+        //         .attr("height", 80)  // Increased height from 50 to 70 to accommodate larger text
+        //         .attr("fill", "white")
+        //         .attr("stroke", "black")
+        //         .attr("stroke-width", 1)
+        //         .attr("rx", 5)
+        //         .attr("ry", 5);
 
-                // Add text inside the box
-            tooltip.append("text")
-                .attr("x", mouseX - 440)
-                .attr("y", mouseY + 60)
-                .attr("font-size", "29")
-                .attr("fill", "black")
-                .text("Organism appears with the lowest");
+        //         // Add text inside the box
+        //     tooltip.append("text")
+        //         .attr("x", mouseX - 440)
+        //         .attr("y", mouseY + 60)
+        //         .attr("font-size", "29")
+        //         .attr("fill", "black")
+        //         .text("Organism appears with the lowest");
 
-            tooltip.append("text")
-                .attr("x", mouseX - 440)
-                .attr("y", mouseY+90)
-                .attr("font-size", "29")
-                .attr("fill", "black")
-                .text("frequency in disease literature");
-          })
-          .on("mouseout", function() {
-            // Remove tooltip when not hovering
-            svg.selectAll(".tooltip-box").remove();
-          });
+        //     tooltip.append("text")
+        //         .attr("x", mouseX - 440)
+        //         .attr("y", mouseY+90)
+        //         .attr("font-size", "29")
+        //         .attr("fill", "black")
+        //         .text("frequency in disease literature");
+        //   })
+        //   .on("mouseout", function() {
+        //     // Remove tooltip when not hovering
+        //     svg.selectAll(".tooltip-box").remove();
+        //   });
         
         
 
@@ -1311,25 +1377,25 @@ class Tab2Viz{
         svg.append("text")
             .attr("x", 0)
             .attr("y", 1180)
-            .attr("font-size", "29")
+            .attr("font-size", "25")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
             .style("font-weight", "bold")
             .text("0%")
 
         svg.append("text")
-            .attr("x", 80)
-            .attr("y", 1180)
+            .attr("x", 50)
+            .attr("y", 1190)
             .attr("font-size", "29")
             .attr("fill", "Black")
             .attr("text-anchor", "start")
             .style("font-weight", "bold")
-            .text("Sample similarity with disease(Organisms)")
+            .text("Organism prevalence relative to disease state")
 
         svg.append("text")
             .attr("x", 760)
             .attr("y", 1180)
-            .attr("font-size", "29")
+            .attr("font-size", "25")
             .attr("fill", "Black")
             .attr("text-anchor", "end")
             .style("font-weight", "bold")
@@ -3445,8 +3511,8 @@ class Tab2Viz{
                 .enter().append("line")
                 .attr("x1", (d, i) => i * barWidth)  // Center of each bar
                 .attr("x2", (d, i) => i * barWidth + barWidth - 2)
-                .attr("y1", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)  // Lift 10px from top or bottom
-                .attr("y2", d => d.weight < 0 ? -10 : barcodeHeight/10 + 10)
+                .attr("y1", d => d.weight > 0 ? -10 : barcodeHeight/10 + 10)  // Lift 10px from top or bottom
+                .attr("y2", d => d.weight > 0 ? -10 : barcodeHeight/10 + 10)
                 .attr("stroke", "black")
                 .attr("stroke-width", "4px")
                 .attr("stroke-linecap", "round");
